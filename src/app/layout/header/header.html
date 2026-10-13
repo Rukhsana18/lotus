@@ -1,0 +1,23 @@
+<header class="site-header" [class.casino-header]="isCasinoRoute()">
+    <button
+        class="menu-button"
+        type="button"
+        aria-label="Toggle navigation"
+        [attr.aria-expanded]="mobileMenuOpen"
+        (click)="toggleMobileMenu()"
+    >
+        <i class="fa-solid" [class.icon-burger]="!mobileMenuOpen" [class.fa-xmark]="mobileMenuOpen" aria-hidden="true"></i>
+    </button>
+    <a class="brand" routerLink="/sports" aria-label="Lotus home"><img src="../../../assets/logo.svg" height="30" alt=""></a>
+    <nav class="primary-nav" [class.open]="mobileMenuOpen" aria-label="Main navigation">
+        <a routerLink="/home" routerLinkActive="active" ariaCurrentWhenActive="page"><i class="nav-icon icon icon-sports-home-solid" aria-hidden="true"></i> Home</a>
+        <a routerLink="/sports" routerLinkActive="active" ariaCurrentWhenActive="page"><i class="nav-icon icon icon-footer-sport" aria-hidden="true"></i> Sports</a>
+        <a routerLink="/casino" routerLinkActive="active" [class.active]="isCasinoRoute()" ariaCurrentWhenActive="page"><i class="nav-icon icon icon-footer-casino" aria-hidden="true"></i> Casino</a>
+    </nav>
+    <div class="header-actions">
+        <time>{{ currentTime() | date: 'MMM d, yyyy' }} &nbsp; {{ currentTime() | date: 'HH:mm:ss' }}</time>
+        <div class="border-1"></div>
+        <a class="search-button" routerLink="/search" [queryParams]="isCasinoRoute() ? { mode: 'casino' } : null" aria-label="Search"><i class="icon icon-search-new" aria-hidden="true"></i></a>
+        <button class="login-button" type="button">Login</button>
+    </div>
+</header>

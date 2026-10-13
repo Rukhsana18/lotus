@@ -1,0 +1,683 @@
+:host {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+
+  color: #ffffff;
+
+  font-family:
+    Lato,
+    "Lato",
+    Arial,
+    sans-serif;
+}
+
+
+/* =========================================================
+   MAIN PAGE
+   ========================================================= */
+
+.casino-page {
+  display: grid;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  grid-template-columns: 236px minmax(0, 1fr);
+  gap: 18px;
+  padding: 12px;
+  overflow: hidden;
+  background: #080808;
+}
+
+.casino-main {
+  min-width: 0;
+  min-height: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  scrollbar-width: none;
+}
+
+.casino-main::-webkit-scrollbar {
+  display: none;
+}
+
+.category-wrapper {
+  position: relative;
+  width: 100%;
+  min-width: 0;
+  margin-top: 40px;
+  margin-bottom: 20px;
+}
+
+.category-list {
+  display: flex;
+  gap: 12px;
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-behavior: smooth;
+  scroll-snap-type: x proximity;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.category-list::-webkit-scrollbar {
+  display: none;
+}
+
+.category-card {
+  position: relative;
+  display: flex;
+  flex: 0 0 94px;
+  height: 113px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  border-top: none !important;
+  border: 1.5px solid transparent;
+  scroll-snap-align: start;
+  background-image: linear-gradient(180deg, #080808, #171717), linear-gradient(to top, #262626 0%, transparent 70%);
+  border-radius: 12px;
+  color: #aeb5c0;
+  text-decoration: none;
+  transition:
+    border-color 150ms ease,
+    background 150ms ease,
+    color 150ms ease,
+    transform 150ms ease;
+}
+
+.category-card.selected {
+  border-color: #315c62;
+  background:
+    linear-gradient(145deg,
+      #121515 0%,
+      #171919 100%);
+  color: #ffffff;
+  box-shadow:
+    inset 0 -2px 0 #25555d;
+}
+
+.category-image-wrapper {
+  display: flex;
+  width: 65px;
+  height: 65px;
+  align-items: center;
+  justify-content: center;
+}
+
+.category-image {
+  display: block;
+  width: 44px;
+  height: 44px;
+  object-fit: contain;
+  filter:
+    drop-shadow(0 3px 4px rgba(0, 0, 0, 0.8));
+}
+
+.category-fallback {
+  display: block;
+  font-size: 43px;
+  line-height: 1;
+  filter:
+    drop-shadow(0 3px 4px rgba(0, 0, 0, 0.8));
+}
+
+.category-name {
+  font-size: 10px;
+  font-weight: 800;
+  text-align: center;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: #9a9da3 !important;
+}
+
+.releases-section {
+  width: 100%;
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+ padding: 16px 6px 8px;
+}
+
+.section-header h2 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+  color: #ffffff;
+  font-size: 29px;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.section-icon {
+  font-size: 29px;
+}
+
+.section-header>a {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: #b9b9b9;
+  font-size: 14px;
+  text-decoration: none;
+}
+
+.section-header>a:hover {
+  color: #ffffff;
+}
+
+.game-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 14px;
+}
+
+/* Game cards */
+.game-card,
+.more-releases-card {
+  min-width: 0;
+  aspect-ratio: 1.58 / 1;
+}
+
+/* More Releases card */
+.more-releases-card {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+
+  border-radius: 12px;
+
+  background: #262626;
+
+  color: #fff;
+  text-decoration: none;
+
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease,
+    background 180ms ease;
+}
+
+
+.more-releases-card:hover .more-releases-title i {
+  transform: translateX(5px);
+}
+
+.more-releases-card:hover::before {
+  opacity: 1;
+}
+
+.more-releases-content {
+  position: relative;
+  z-index: 1;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+
+  text-align: center;
+}
+
+
+
+.more-releases-title {
+  color: var(--casino-lobby-empty-card-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--casino-lobby-empty-card-bg);
+    font-size: 20px;
+    font-weight: 700;
+    border-radius: 8px;
+    white-space: nowrap;
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+}
+
+.more-releases-arrow {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+
+  color: #aaa;
+  font-size: 12px;
+}
+
+@media (max-width: 1200px) {
+  .game-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 850px) {
+  .game-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 560px) {
+  .game-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 9px;
+  }
+}
+
+.game-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.game-card:hover .game-image {
+  transform: scale(1.06);
+}
+
+.new-badge {
+  position: absolute;
+  z-index: 5;
+  top: 0;
+  left: 11px;
+  padding: 4px 8px;
+  border-radius:
+    0 0 5px 5px;
+  background: #ff7022;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 900;
+  line-height: 1.1;
+}
+
+.game-overlay {
+  position: absolute;
+  z-index: 4;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 15px;
+  background:
+    rgba(0, 0, 0, 0.72);
+  opacity: 0;
+  text-align: center;
+  transition:
+    opacity 160ms ease;
+}
+
+.game-card:hover .game-overlay,
+.game-card:focus-visible .game-overlay {
+  opacity: 1;
+}
+
+.play-button {
+  padding: 10px 16px;
+  border: 0;
+  border-radius: 8px;
+  background:
+    linear-gradient(180deg,
+      #3d727a 0%,
+      #24535b 100%);
+  color: #ffffff;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.game-name {
+  max-width: 100%;
+  overflow: hidden;
+  font-size: 15px;
+  font-weight: 800;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.game-provider {
+  color: #d3d3d3;
+  font-size: 12px;
+}
+
+@media (min-width: 1600px) {
+  .casino-page {
+    grid-template-columns: 236px minmax(0, 1fr);
+    gap: 18px;
+    padding: 16px;
+  }
+
+  .game-grid {
+    grid-template-columns:
+      repeat(5, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 1400px) {
+  .casino-page {
+    grid-template-columns: 236px minmax(0, 1fr);
+  }
+
+  .category-card {
+    flex-basis: 94px;
+    width: 125px;
+    height: 78px;
+  }
+
+  .game-grid {
+    grid-template-columns:
+      repeat(5, minmax(0, 1fr));
+  }
+
+}
+
+@media (max-width: 1000px) {
+  .casino-page {
+    grid-template-columns: 236px minmax(0, 1fr);
+    gap: 12px;
+    padding: 12px;
+  }
+
+
+  .category-wrapper {
+    margin-top: 25px;
+    // margin-bottom: 35px;
+  }
+
+  .game-grid {
+    grid-template-columns:
+      repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 750px) {
+
+  .casino-page {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    height: 100%;
+    padding: 8px;
+  }
+
+
+  .casino-main {
+    flex: 1;
+    min-height: 0;
+  }
+
+  .category-wrapper {
+    margin-top: 16px;
+    // margin-bottom: 25px;
+  }
+
+  .category-list {
+    gap: 8px;
+  }
+
+  .category-card {
+    flex-basis: 96px;
+    height: 88px;
+    border-radius: 9px;
+  }
+
+  .category-image-wrapper {
+    width: 45px;
+    height: 45px;
+  }
+
+  .category-image {
+    width: 43px;
+    height: 43px;
+  }
+
+  .category-fallback {
+    font-size: 31px;
+  }
+
+  .category-name {
+    font-size: 9px;
+  }
+
+  .section-header {
+    margin-bottom: 15px;
+  }
+
+  .section-header h2 {
+    font-size: 21px;
+  }
+
+  .section-icon {
+    font-size: 22px;
+  }
+
+  .game-grid {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+    gap: 9px;
+  }
+
+  .new-badge {
+    left: 8px;
+    padding: 3px 6px;
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 420px) {
+  .casino-page {
+    padding: 6px;
+  }
+
+  .category-card {
+    flex-basis: 88px;
+    height: 82px;
+  }
+
+  .game-grid {
+    gap: 7px;
+  }
+}
+
+.casino-main .green-banner::after,
+.casino-main .red-banner::after {
+  background: none !important;
+}
+
+@media (max-width: 1400px) {
+  .casino-main .casino-banner {
+    height: 150px !important;
+  }
+}
+
+.casino-banners .carousel-control-prev,
+.casino-banners .carousel-control-next {
+  width: 32px;
+  height: 32px;
+}
+
+
+
+
+/* Carousel navigation arrows */
+.category-arrow {
+  position: absolute;
+  z-index: 5;
+  top: 50%;
+  display: flex;
+  width: 32px;
+  height: 32px;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  transform: translateY(-50%);
+  border: none;
+  border-radius: 50%;
+  background: #343434;
+  color: #efecec;
+  font-size: 25px;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.45);
+  transition:
+    background 150ms ease,
+    transform 150ms ease;
+}
+
+.carousel-control-next-icon,
+.carousel-control-prev-icon {
+  height: 16px;
+}
+
+.category-arrow:hover {
+  background: #ffffff;
+}
+
+.category-prev {
+  left: 8px;
+}
+
+.category-next {
+  right: 8px;
+}
+
+/* Mobile */
+@media (max-width: 750px) {
+  .category-arrow {
+    width: 38px;
+    height: 38px;
+    font-size: 20px;
+  }
+
+  .category-prev {
+    left: 4px;
+  }
+
+  .category-next {
+    right: 4px;
+  }
+}
+
+.card-header {
+  font-size: 20px;
+  font-weight: 700;
+
+  img {
+    height: 32px;
+  }
+}
+
+.casino-footer {
+  background: #171717;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+}
+
+.footer-content {
+  padding: 12px;
+
+  .footer-area {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    gap: 38px;
+  }
+}
+
+.footer-div {
+  a {
+    text-decoration: none;
+    color: white;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+  }
+}
+
+.game-card {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+.game-image {
+  display: block;
+  width: 100%;
+  height: 180px; // Adjust according to your card size
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.action {
+  position: absolute;
+  inset: 0; // Covers the entire image
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: rgba(8, 8, 8, 0.55);
+  backdrop-filter: blur(4px);
+
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.25s ease, visibility 0.25s ease;
+
+  z-index: 2;
+  border-radius: inherit;
+}
+
+.game-card:hover .action,
+.game-card:focus-visible .action {
+  opacity: 1;
+  visibility: visible;
+}
+
+.play-now-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+
+  padding: 12px 16px;
+  border: none;
+  border-radius: 12px;
+
+  background: #2c4f58;
+  color: #fff;
+
+  font-size: 12px;
+  font-weight: 700;
+    line-height: 12px;
+  cursor: pointer;
+
+  transition: background 0.2s ease;
+}
+
+.play-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+
+  background: #fff;
+  color: #285969;
+  font-size: 10px;
+}

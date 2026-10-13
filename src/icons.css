@@ -1,0 +1,1027 @@
+
+@font-face {
+  font-family:Apollo;
+  src:url("/assets/fonts/Apollo.ttf") format("truetype");
+  font-weight:400;
+  font-style:normal;
+  font-display:block
+}
+[class^=icon-],
+[class*=" icon-"] {
+  font-family:Apollo!important;
+  font-style:normal;
+  font-weight:400!important;
+  font-variant:normal;
+  text-transform:none;
+  line-height:1;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale
+}
+.icon-zero:before {
+  content:"\f101"
+}
+.icon-zero-percent:before {
+  content:"\f102"
+}
+.icon-whatsapp-logo:before {
+  content:"\f103"
+}
+.icon-weak-market-lock:before {
+  content:"\f104"
+}
+.icon-warning-sign:before {
+  content:"\f105"
+}
+.icon-warning-circle:before {
+  content:"\f106"
+}
+.icon-wallet:before {
+  content:"\f107"
+}
+.icon-wallet-solid:before {
+  content:"\f108"
+}
+.icon-virtual-tennis:before {
+  content:"\f109"
+}
+.icon-virtual-sports:before {
+  content:"\f10a"
+}
+.icon-virtual-football:before {
+  content:"\f10b"
+}
+.icon-virtual-cricket:before {
+  content:"\f10c"
+}
+.icon-virtual-casino:before {
+  content:"\f10d"
+}
+.icon-video:before {
+  content:"\f10e"
+}
+.icon-video-tv:before {
+  content:"\f10f"
+}
+.icon-video-new:before {
+  content:"\f110"
+}
+.icon-users:before {
+  content:"\f111"
+}
+.icon-user:before {
+  content:"\f112"
+}
+.icon-user-new-plus:before {
+  content:"\f113"
+}
+.icon-university:before {
+  content:"\f114"
+}
+.icon-trophy1:before {
+  content:"\f115"
+}
+.icon-trophy:before {
+  content:"\f116"
+}
+.icon-trophy-filled:before {
+  content:"\f117"
+}
+.icon-transfer-statement-solid:before {
+  content:"\f118"
+}
+.icon-trading-lock:before {
+  content:"\f119"
+}
+.icon-time2:before {
+  content:"\f11a"
+}
+.icon-time:before {
+  content:"\f11b"
+}
+.icon-time-circle-solid:before {
+  content:"\f11c"
+}
+.icon-tick-mark:before {
+  content:"\f11d"
+}
+.icon-tick-mark-microbetting:before {
+  content:"\f11e"
+}
+.icon-thumb-up:before {
+  content:"\f11f"
+}
+.icon-tennis-field:before {
+  content:"\f120"
+}
+.icon-tennis-ball:before {
+  content:"\f121"
+}
+.icon-teen-patty-casino-tab:before {
+  content:"\f122"
+}
+.icon-teen-patti-card:before {
+  content:"\f123"
+}
+.icon-teams:before {
+  content:"\f124"
+}
+.icon-teams-active:before {
+  content:"\f125"
+}
+.icon-table-copy:before {
+  content:"\f126"
+}
+.icon-suspended:before {
+  content:"\f127"
+}
+.icon-sun-high:before {
+  content:"\f128"
+}
+.icon-stopwatch:before {
+  content:"\f129"
+}
+.icon-statistics:before {
+  content:"\f12a"
+}
+.icon-stat-video:before {
+  content:"\f12b"
+}
+.icon-star:before {
+  content:"\f12c"
+}
+.icon-star-favorite:before {
+  content:"\f12d"
+}
+.icon-star-empty:before {
+  content:"\f12e"
+}
+.icon-sports-home:before {
+  content:"\f12f"
+}
+.icon-sports-home-solid:before {
+  content:"\f130"
+}
+.icon-sport-virtual:before {
+  content:"\f131"
+}
+.icon-sport-tennis:before {
+  content:"\f132"
+}
+.icon-sport-slots:before {
+  content:"\f133"
+}
+.icon-sport-rugbyunion:before {
+  content:"\f134"
+}
+.icon-sport-rugbyleague:before {
+  content:"\f135"
+}
+.icon-sport-rugby:before {
+  content:"\f136"
+}
+.icon-sport-politics:before {
+  content:"\f137"
+}
+.icon-sport-mixedmartialarts:before {
+  content:"\f138"
+}
+.icon-sport-kabaddi:before {
+  content:"\f139"
+}
+.icon-sport-horseracing:before {
+  content:"\f13a"
+}
+.icon-sport-horseracing-solid:before {
+  content:"\f13b"
+}
+.icon-sport-greyhoundracing:before {
+  content:"\f13c"
+}
+.icon-sport-golf:before {
+  content:"\f13d"
+}
+.icon-sport-football:before {
+  content:"\f13e"
+}
+.icon-sport-expressbetting1:before {
+  content:"\f13f"
+}
+.icon-sport-expressbetting:before {
+  content:"\f140"
+}
+.icon-sport-exchangegame-solid:before {
+  content:"\f141"
+}
+.icon-sport-esports:before {
+  content:"\f142"
+}
+.icon-sport-cricket:before {
+  content:"\f143"
+}
+.icon-sport-boxing:before {
+  content:"\f144"
+}
+.icon-sport-basketball:before {
+  content:"\f145"
+}
+.icon-sport-baseball:before {
+  content:"\f146"
+}
+.icon-sport-americanfootball:before {
+  content:"\f147"
+}
+.icon-sport-american-football-solid:before {
+  content:"\f148"
+}
+.icon-spinner:before {
+  content:"\f149"
+}
+.icon-sort-up:before {
+  content:"\f14a"
+}
+.icon-sort-down:before {
+  content:"\f14b"
+}
+.icon-soccer-field:before {
+  content:"\f14c"
+}
+.icon-slots-casino-tab:before {
+  content:"\f14d"
+}
+.icon-slots-card:before {
+  content:"\f14e"
+}
+.icon-signout:before {
+  content:"\f14f"
+}
+.icon-signout-solid:before {
+  content:"\f150"
+}
+.icon-sicbo:before {
+  content:"\f151"
+}
+.icon-show:before {
+  content:"\f152"
+}
+.icon-show-password:before {
+  content:"\f153"
+}
+.icon-share:before {
+  content:"\f154"
+}
+.icon-settled-bets:before {
+  content:"\f155"
+}
+.icon-settings2:before {
+  content:"\f156"
+}
+.icon-settings:before {
+  content:"\f157"
+}
+.icon-settings-solid:before {
+  content:"\f158"
+}
+.icon-setting-express-betting:before {
+  content:"\f159"
+}
+.icon-search:before {
+  content:"\f15a"
+}
+.icon-search-new:before {
+  content:"\f15b"
+}
+.icon-search-lite:before {
+  content:"\f15c"
+}
+.icon-rules4:before {
+  content:"\f15d"
+}
+.icon-rules3:before {
+  content:"\f15e"
+}
+.icon-rules2:before {
+  content:"\f15f"
+}
+.icon-rules1:before {
+  content:"\f160"
+}
+.icon-rules-solid:before {
+  content:"\f161"
+}
+.icon-rules-regs:before {
+  content:"\f162"
+}
+.icon-rugby-field:before {
+  content:"\f163"
+}
+.icon-rounded-arrow-up:before {
+  content:"\f164"
+}
+.icon-rounded-arrow-down:before {
+  content:"\f165"
+}
+.icon-roulette-casino-tab:before {
+  content:"\f166"
+}
+.icon-roulette-card:before {
+  content:"\f167"
+}
+.icon-rewind:before {
+  content:"\f168"
+}
+.icon-restricted-territories:before {
+  content:"\f169"
+}
+.icon-responsible-solid:before {
+  content:"\f16a"
+}
+.icon-repeat:before {
+  content:"\f16b"
+}
+.icon-remove:before {
+  content:"\f16c"
+}
+.icon-remove-thin:before {
+  content:"\f16d"
+}
+.icon-remove-solid:before {
+  content:"\f16e"
+}
+.icon-remove-sign:before {
+  content:"\f16f"
+}
+.icon-refresh:before {
+  content:"\f170"
+}
+.icon-refresh-recommended:before {
+  content:"\f171"
+}
+.icon-recommended-new:before {
+  content:"\f172"
+}
+.icon-racing-new:before {
+  content:"\f173"
+}
+.icon-promotions:before {
+  content:"\f174"
+}
+.icon-promotions-solid:before {
+  content:"\f175"
+}
+.icon-promotions-old:before {
+  content:"\f176"
+}
+.icon-profile:before {
+  content:"\f177"
+}
+.icon-profile-solid:before {
+  content:"\f178"
+}
+.icon-profile-lite:before {
+  content:"\f179"
+}
+.icon-profile-filled:before {
+  content:"\f17a"
+}
+.icon-pre-match:before {
+  content:"\f17b"
+}
+.icon-popular-new:before {
+  content:"\f17c"
+}
+.icon-politics-field:before {
+  content:"\f17d"
+}
+.icon-poker-casino-tab:before {
+  content:"\f17e"
+}
+.icon-poker-cards:before {
+  content:"\f17f"
+}
+.icon-poker-card:before {
+  content:"\f180"
+}
+.icon-pnl-solid:before {
+  content:"\f181"
+}
+.icon-pnl-exchange:before {
+  content:"\f182"
+}
+.icon-plus:before {
+  content:"\f183"
+}
+.icon-plus-second:before {
+  content:"\f184"
+}
+.icon-play:before {
+  content:"\f185"
+}
+.icon-play-second:before {
+  content:"\f186"
+}
+.icon-play-o:before {
+  content:"\f187"
+}
+.icon-pen-edit:before {
+  content:"\f188"
+}
+.icon-password-unlock:before {
+  content:"\f189"
+}
+.icon-page:before {
+  content:"\f18a"
+}
+.icon-page-active:before {
+  content:"\f18b"
+}
+.icon-outline-info:before {
+  content:"\f18c"
+}
+.icon-openbets:before {
+  content:"\f18d"
+}
+.icon-openbets-active:before {
+  content:"\f18e"
+}
+.icon-open-bet-express:before {
+  content:"\f18f"
+}
+.icon-ooops-status:before {
+  content:"\f190"
+}
+.icon-one-click-betting:before {
+  content:"\f191"
+}
+.icon-one-click-betting-off:before {
+  content:"\f192"
+}
+.icon-north-east-square-fill:before {
+  content:"\f193"
+}
+.icon-next-up:before {
+  content:"\f194"
+}
+.icon-next-down:before {
+  content:"\f195"
+}
+.icon-new-version:before {
+  content:"\f196"
+}
+.icon-new-settings-solid:before {
+  content:"\f197"
+}
+.icon-new-logout:before {
+  content:"\f198"
+}
+.icon-navigate-to-link:before {
+  content:"\f199"
+}
+.icon-my-markets-solid:before {
+  content:"\f19a"
+}
+.icon-my-bets-ticker:before {
+  content:"\f19b"
+}
+.icon-my-bets-solid:before {
+  content:"\f19c"
+}
+.icon-my-bets-lite:before {
+  content:"\f19d"
+}
+.icon-more-vertical:before {
+  content:"\f19e"
+}
+.icon-money:before {
+  content:"\f19f"
+}
+.icon-mixedmartialarts-field:before {
+  content:"\f1a0"
+}
+.icon-minus:before {
+  content:"\f1a1"
+}
+.icon-market-play:before {
+  content:"\f1a2"
+}
+.icon-mark-recommended:before {
+  content:"\f1a3"
+}
+.icon-mark-cross:before {
+  content:"\f1a4"
+}
+.icon-mark-check:before {
+  content:"\f1a5"
+}
+.icon-mark-check-in-circle:before {
+  content:"\f1a6"
+}
+.icon-lucky-swipe:before {
+  content:"\f1a7"
+}
+.icon-ls-pointer:before {
+  content:"\f1a8"
+}
+.icon-lottery:before {
+  content:"\f1a9"
+}
+.icon-login-now:before {
+  content:"\f1aa"
+}
+.icon-lock2:before {
+  content:"\f1ab"
+}
+.icon-lock:before {
+  content:"\f1ac"
+}
+.icon-lock-3:before {
+  content:"\f1ad"
+}
+.icon-live:before {
+  content:"\f1ae"
+}
+.icon-live-video:before {
+  content:"\f1af"
+}
+.icon-live-new:before {
+  content:"\f1b0"
+}
+.icon-live-bg:before {
+  content:"\f1b1"
+}
+.icon-live-active:before {
+  content:"\f1b2"
+}
+.icon-list2:before {
+  content:"\f1b3"
+}
+.icon-list:before {
+  content:"\f1b4"
+}
+.icon-lightning:before {
+  content:"\f1b5"
+}
+.icon-ladder:before {
+  content:"\f1b6"
+}
+.icon-kyc-solid:before {
+  content:"\f1b7"
+}
+.icon-kabaddi-field:before {
+  content:"\f1b8"
+}
+.icon-instant-games:before {
+  content:"\f1b9"
+}
+.icon-instant-games-casino-tab:before {
+  content:"\f1ba"
+}
+.icon-info-sign:before {
+  content:"\f1bb"
+}
+.icon-info-second:before {
+  content:"\f1bc"
+}
+.icon-info-new:before {
+  content:"\f1bd"
+}
+.icon-info-circle:before {
+  content:"\f1be"
+}
+.icon-indian-games-casino-tab:before {
+  content:"\f1bf"
+}
+.icon-indian-games-card:before {
+  content:"\f1c0"
+}
+.icon-indent:before {
+  content:"\f1c1"
+}
+.icon-in-play-simple:before {
+  content:"\f1c2"
+}
+.icon-in-play-button:before {
+  content:"\f1c3"
+}
+.icon-icons:before {
+  content:"\f1c4"
+}
+.icon-ic-payments:before {
+  content:"\f1c5"
+}
+.icon-hot:before {
+  content:"\f1c6"
+}
+.icon-hot-active:before {
+  content:"\f1c7"
+}
+.icon-home-menu:before {
+  content:"\f1c8"
+}
+.icon-home-menu-active:before {
+  content:"\f1c9"
+}
+.icon-home-lite:before {
+  content:"\f1ca"
+}
+.icon-holdem-hand:before {
+  content:"\f1cb"
+}
+.icon-history-rounded:before {
+  content:"\f1cc"
+}
+.icon-hide:before {
+  content:"\f1cd"
+}
+.icon-hide-password:before {
+  content:"\f1ce"
+}
+.icon-hide-keyboard:before {
+  content:"\f1cf"
+}
+.icon-help-filled:before {
+  content:"\f1d0"
+}
+.icon-heart:before {
+  content:"\f1d1"
+}
+.icon-hand-up:before {
+  content:"\f1d2"
+}
+.icon-group:before {
+  content:"\f1d3"
+}
+.icon-group-active:before {
+  content:"\f1d4"
+}
+.icon-grade-up:before {
+  content:"\f1d5"
+}
+.icon-golf-field:before {
+  content:"\f1d6"
+}
+.icon-going:before {
+  content:"\f1d7"
+}
+.icon-gift-card:before {
+  content:"\f1d8"
+}
+.icon-genie-stroke:before {
+  content:"\f1d9"
+}
+.icon-gamepad-shadow:before {
+  content:"\f1da"
+}
+.icon-game-shows-casino-tab:before {
+  content:"\f1db"
+}
+.icon-game-shows-card:before {
+  content:"\f1dc"
+}
+.icon-gamcare:before {
+  content:"\f1dd"
+}
+.icon-forbidden:before {
+  content:"\f1de"
+}
+.icon-footer-sport:before {
+  content:"\f1df"
+}
+.icon-footer-sport-lite:before {
+  content:"\f1e0"
+}
+.icon-footer-profile:before {
+  content:"\f1e1"
+}
+.icon-footer-open-bets:before {
+  content:"\f1e2"
+}
+.icon-footer-casino:before {
+  content:"\f1e3"
+}
+.icon-footer-casino-lite:before {
+  content:"\f1e4"
+}
+.icon-folder-close:before {
+  content:"\f1e5"
+}
+.icon-fire2:before {
+  content:"\f1e6"
+}
+.icon-fire:before {
+  content:"\f1e7"
+}
+.icon-fire-empty-outline:before {
+  content:"\f1e8"
+}
+.icon-fire-empty-main:before {
+  content:"\f1e9"
+}
+.icon-fire-empty-border:before {
+  content:"\f1ea"
+}
+.icon-fire-clock:before {
+  content:"\f1eb"
+}
+.icon-filter:before {
+  content:"\f1ec"
+}
+.icon-fast:before {
+  content:"\f1ed"
+}
+.icon-express-betting-greyhound:before {
+  content:"\f1ee"
+}
+.icon-express-bet-tennis:before {
+  content:"\f1ef"
+}
+.icon-express-bet-table-tennis:before {
+  content:"\f1f0"
+}
+.icon-express-bet-kabaddi:before {
+  content:"\f1f1"
+}
+.icon-express-bet-golf:before {
+  content:"\f1f2"
+}
+.icon-express-bet-football:before {
+  content:"\f1f3"
+}
+.icon-express-bet-esports:before {
+  content:"\f1f4"
+}
+.icon-express-bet-cricket:before {
+  content:"\f1f5"
+}
+.icon-express-bet-basketball:before {
+  content:"\f1f6"
+}
+.icon-expand:before {
+  content:"\f1f7"
+}
+.icon-exclusion-policy-solid:before {
+  content:"\f1f8"
+}
+.icon-exchange-indicator:before {
+  content:"\f1f9"
+}
+.icon-exchange-games:before {
+  content:"\f1fa"
+}
+.icon-exchange-games-card:before {
+  content:"\f1fb"
+}
+.icon-exchange-casino-tab:before {
+  content:"\f1fc"
+}
+.icon-evolution:before {
+  content:"\f1fd"
+}
+.icon-evolution-casino-tab:before {
+  content:"\f1fe"
+}
+.icon-esports-field:before {
+  content:"\f1ff"
+}
+.icon-empty-search1:before {
+  content:"\f200"
+}
+.icon-empty-search:before {
+  content:"\f201"
+}
+.icon-edit:before {
+  content:"\f202"
+}
+.icon-edit-microbetting:before {
+  content:"\f203"
+}
+.icon-dragon-tiger-casino-tab:before {
+  content:"\f204"
+}
+.icon-dragon-tiger-card:before {
+  content:"\f205"
+}
+.icon-download-solid:before {
+  content:"\f206"
+}
+.icon-download-app:before {
+  content:"\f207"
+}
+.icon-double-play:before {
+  content:"\f208"
+}
+.icon-documents:before {
+  content:"\f209"
+}
+.icon-deposit:before {
+  content:"\f20a"
+}
+.icon-delete:before {
+  content:"\f20b"
+}
+.icon-dashboard:before {
+  content:"\f20c"
+}
+.icon-danger:before {
+  content:"\f20d"
+}
+.icon-crown:before {
+  content:"\f20e"
+}
+.icon-cross:before {
+  content:"\f20f"
+}
+.icon-cross-video:before {
+  content:"\f210"
+}
+.icon-cross-circle:before {
+  content:"\f211"
+}
+.icon-cricket-field:before {
+  content:"\f212"
+}
+.icon-coupon:before {
+  content:"\f213"
+}
+.icon-contract:before {
+  content:"\f214"
+}
+.icon-contacts:before {
+  content:"\f215"
+}
+.icon-contacts-empty:before {
+  content:"\f216"
+}
+.icon-confirm:before {
+  content:"\f217"
+}
+.icon-cog-filled:before {
+  content:"\f218"
+}
+.icon-clock2:before {
+  content:"\f219"
+}
+.icon-clock:before {
+  content:"\f21a"
+}
+.icon-clear:before {
+  content:"\f21b"
+}
+.icon-chevron-up:before {
+  content:"\f21c"
+}
+.icon-chevron-down:before {
+  content:"\f21d"
+}
+.icon-check:before {
+  content:"\f21e"
+}
+.icon-check-second:before {
+  content:"\f21f"
+}
+.icon-change-password-solid:before {
+  content:"\f220"
+}
+.icon-category:before {
+  content:"\f221"
+}
+.icon-cashout-arrow:before {
+  content:"\f222"
+}
+.icon-cards-dice:before {
+  content:"\f223"
+}
+.icon-calendar:before {
+  content:"\f224"
+}
+.icon-calendar-2:before {
+  content:"\f225"
+}
+.icon-burger:before {
+  content:"\f226"
+}
+.icon-burger-lite:before {
+  content:"\f227"
+}
+.icon-bullseye:before {
+  content:"\f228"
+}
+.icon-boxing-field:before {
+  content:"\f229"
+}
+.icon-book:before {
+  content:"\f22a"
+}
+.icon-board-games:before {
+  content:"\f22b"
+}
+.icon-board-games-casino-tab:before {
+  content:"\f22c"
+}
+.icon-blackjack-casino-tab:before {
+  content:"\f22d"
+}
+.icon-blackjack-card:before {
+  content:"\f22e"
+}
+.icon-big-finger:before {
+  content:"\f22f"
+}
+.icon-betting:before {
+  content:"\f230"
+}
+.icon-betslip:before {
+  content:"\f231"
+}
+.icon-bell:before {
+  content:"\f232"
+}
+.icon-basketball-field:before {
+  content:"\f233"
+}
+.icon-baseball-field:before {
+  content:"\f234"
+}
+.icon-bar-chart:before {
+  content:"\f235"
+}
+.icon-bar-chart-active:before {
+  content:"\f236"
+}
+.icon-baccarat-casino-tab:before {
+  content:"\f237"
+}
+.icon-baccarat-cards:before {
+  content:"\f238"
+}
+.icon-baccarat-card:before {
+  content:"\f239"
+}
+.icon-authentication-password-lock:before {
+  content:"\f23a"
+}
+.icon-arrow-with-cols:before {
+  content:"\f23b"
+}
+.icon-arrow-up:before {
+  content:"\f23c"
+}
+.icon-arrow-turn-right:before {
+  content:"\f23d"
+}
+.icon-arrow-left:before {
+  content:"\f23e"
+}
+.icon-arrow-down:before {
+  content:"\f23f"
+}
+.icon-arrow-down-new:before {
+  content:"\f240"
+}
+.icon-arrow-cashout:before {
+  content:"\f241"
+}
+.icon-arrow-back-thin:before {
+  content:"\f242"
+}
+.icon-app:before {
+  content:"\f243"
+}
+.icon-angle-up:before {
+  content:"\f244"
+}
+.icon-angle-right:before {
+  content:"\f245"
+}
+.icon-angle-left:before {
+  content:"\f246"
+}
+.icon-angle-down:before {
+  content:"\f247"
+}
+.icon-angle-down-second:before {
+  content:"\f248"
+}
+.icon-americanfootball-field:before {
+  content:"\f249"
+}
+.icon-all-casino-cards:before {
+  content:"\f24a"
+}
+.icon-alert-circle:before {
+  content:"\f24b"
+}
+.icon-age-limit:before {
+  content:"\f24c"
+}
+.icon-age-limit-updated:before {
+  content:"\f24d"
+}
+.icon-account-statements:before {
+  content:"\f24e"
+}
+.icon-account-statement:before {
+  content:"\f24f"
+}
+.icon-account-statement-solid:before {
+  content:"\f250"
+}

@@ -1,0 +1,777 @@
+<div class="casino-page">
+
+  <aside class="provider-panel">
+
+    <div class="provider-title">
+      <span>Providers</span>
+    </div>
+
+    <div class="provider-subtitle">
+      Top Providers
+    </div>
+
+    <nav class="provider-list">
+      @for (provider of providers; track provider.slug) {
+      <a class="provider-item" [routerLink]="['/casino', provider.slug]" routerLinkActive="selected">
+        <img [src]="provider.img" [alt]="provider.name" class="casino-sidenav-icons"/>
+        <span class="provider-name">
+          {{ provider.name }}
+        </span>
+        <span class="provider-count">
+          {{ provider.count }}
+        </span>
+      </a>
+      }
+    </nav>
+  </aside>
+
+  <main class="casino-main">
+
+    <section id="casinoBannerCarousel" class="casino-banners carousel slide" data-bs-ride="carousel"
+      data-bs-interval="5000" data-bs-pause="hover" aria-label="Featured casino banners">
+      <div class="carousel-inner">
+
+        @for (bannerPage of bannerPages; track $index) {
+        <div class="carousel-item" [class.active]="$first">
+          <div class="casino-banner-page">
+
+            @for (banner of bannerPage; track banner.id) {
+            <article class="casino-banner" [class.red-banner]="banner.theme === 'red'"
+              [class.green-banner]="banner.theme === 'green'">
+              <img class="banner-image" [src]="banner.image" [alt]="banner.name" />
+            </article>
+            }
+
+          </div>
+        </div>
+        }
+
+      </div>
+
+      <button class="carousel-control-prev" type="button" data-bs-target="#casinoBannerCarousel" data-bs-slide="prev"
+        aria-label="Previous casino banners">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#casinoBannerCarousel" data-bs-slide="next"
+        aria-label="Next casino banners">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      </button>
+    </section>
+
+    <section class="category-wrapper">
+
+      @if (canScrollLeft()) {
+      <button type="button" class="category-arrow category-prev" (click)="scrollCategories(-1)"
+        aria-label="Previous categories">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      </button>
+      }
+
+      <!-- Scrollable category list -->
+      <div #categoryList class="category-list" (scroll)="updateCategoryArrows()">
+
+        @for (category of categories; track category.slug) {
+
+        <a class="category-card" [routerLink]="['/casino', category.slug]" routerLinkActive="selected"
+          [routerLinkActiveOptions]="{ exact: true }">
+
+          <div class="category-image-wrapper">
+
+            @if (category.image) {
+            <img class="category-image" [src]="category.image" [alt]="category.name" />
+            } @else {
+            <span class="category-fallback">
+              {{ category.icon }}
+            </span>
+            }
+
+          </div>
+
+          <span class="category-name">
+            {{ category.name }}
+          </span>
+
+        </a>
+
+        }
+
+      </div>
+
+      <!-- Right arrow: visible initially -->
+      @if (canScrollRight()) {
+      <button type="button" class="category-arrow category-next" (click)="scrollCategories(1)"
+        aria-label="Next categories">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      </button>
+      }
+
+    </section>
+
+    <!-- New Releases -->
+    <section class="releases-section">
+      <div class="section-header">
+        <span class="card-header">
+          <img src="../../../assets/casino1.png" alt="">
+          New Releases
+        </span>
+      </div>
+
+      <div class="game-grid">
+        @for (game of newReleases; track game.id) {
+        @if (game?.category === 'new-release') {
+        <a class="game-card" href="#">
+          <img class="game-image" [src]="game.image" [alt]="'New release ' + game.id" loading="lazy" />
+          <!--  -->
+
+
+          <div class="action">
+            <button class="play-now-button button" aria-label="Play Now"><i class="fa-solid fa-play-circle"></i> Play
+              Now</button>
+          </div>
+        </a>
+        }
+        }
+
+        @if (showMoreReleasesCard) {
+        <a class="more-releases-card" routerLink="/casino/new-releases" aria-label="View more releases">
+          <div class="more-releases-content">
+
+            <div class="more-releases-title">
+              More Releases <i class="fa-solid fa-angle-right"></i>
+            </div>
+
+          </div>
+        </a>
+        }
+      </div>
+    </section>
+
+    <section class="releases-section">
+      <div class="section-header">
+        <span class="card-header">
+          <img src="../../../assets/casino2.png" alt="">
+          Trending Now
+        </span>
+
+      </div>
+
+      <!-- GAME GRID -->
+      <div class="game-grid">
+        @for (game of newReleases; track game.id) {
+        @if (game?.category === 'trending') {
+        <a class="game-card" href="#">
+          <img class="game-image" [src]="game.image" [alt]="'New release ' + game.id" loading="lazy" />
+
+        </a>
+        }
+        }
+
+        @if (showMoreReleasesCard) {
+        <a class="more-releases-card" routerLink="/casino/new-releases" aria-label="View more releases">
+          <div class="more-releases-content">
+
+            <div class="more-releases-title">
+              More Releases <i class="fa-solid fa-angle-right"></i>
+            </div>
+
+          </div>
+        </a>
+        }
+      </div>
+    </section>
+
+    <section class="releases-section">
+      <div class="section-header">
+        <span class="card-header">
+          <img src="../../../assets/casino3.png" alt="">
+          Editor's Choice
+        </span>
+
+      </div>
+
+      <!-- GAME GRID -->
+      <div class="game-grid">
+        @for (game of newReleases; track game.id) {
+        @if (game?.category === 'editor') {
+        <a class="game-card" href="#">
+          <img class="game-image" [src]="game.image" [alt]="'Editor' + game.id" loading="lazy" />
+
+        </a>
+        }
+        }
+
+        @if (showMoreReleasesCard) {
+        <a class="more-releases-card" routerLink="/casino/new-releases" aria-label="View more releases">
+          <div class="more-releases-content">
+
+            <div class="more-releases-title">
+              More Releases <i class="fa-solid fa-angle-right"></i>
+            </div>
+
+          </div>
+        </a>
+        }
+      </div>
+    </section>
+
+    <section class="releases-section">
+      <div class="section-header">
+        <span class="card-header">
+          <img src="../../../assets/casino4.webp" alt="">
+          Evolution
+        </span>
+
+      </div>
+
+      <!-- GAME GRID -->
+      <div class="game-grid">
+        @for (game of newReleases; track game.id) {
+        @if (game?.category === 'evolution') {
+        <a class="game-card" href="#">
+          <img class="game-image" [src]="game.image" [alt]="'Evolution' + game.id" loading="lazy" />
+
+        </a>
+        }
+        }
+        @if (showMoreReleasesCard) {
+        <a class="more-releases-card" routerLink="/casino/new-releases" aria-label="View more releases">
+          <div class="more-releases-content">
+
+            <div class="more-releases-title">
+              More Releases <i class="fa-solid fa-angle-right"></i>
+            </div>
+
+          </div>
+        </a>
+        }
+      </div>
+    </section>
+
+    <section class="releases-section">
+      <div class="section-header">
+        <span class="card-header">
+          <img src="../../../assets/casino5.webp" alt="">
+          Indian Games
+        </span>
+
+      </div>
+
+      <!-- GAME GRID -->
+      <div class="game-grid">
+        @for (game of newReleases; track game.id) {
+        @if (game?.category === 'indian') {
+        <a class="game-card" href="#">
+          <img class="game-image" [src]="game.image" [alt]="'Indian' + game.id" loading="lazy" />
+
+        </a>
+        }
+        }
+
+        <!-- MORE RELEASES -->
+        @if (showMoreReleasesCard) {
+        <a class="more-releases-card" routerLink="/casino/new-releases" aria-label="View more releases">
+          <div class="more-releases-content">
+            <div class="more-releases-title">
+              More Releases <i class="fa-solid fa-angle-right"></i>
+            </div>
+          </div>
+        </a>
+        }
+      </div>
+    </section>
+
+    <section class="releases-section">
+      <div class="section-header">
+        <span class="card-header">
+          <img src="../../../assets/casino5.webp" alt="">
+          Teen Patti
+        </span>
+
+      </div>
+
+      <!-- GAME GRID -->
+      <div class="game-grid">
+        @for (game of newReleases; track game.id) {
+        @if (game?.category === 'teen') {
+        <a class="game-card" href="#">
+          <img class="game-image" [src]="game.image" [alt]="'Teen Patti' + game.id" loading="lazy" />
+
+        </a>
+        }
+        }
+
+        <!-- MORE RELEASES -->
+        @if (showMoreReleasesCard) {
+        <a class="more-releases-card" routerLink="/casino/new-releases" aria-label="View more releases">
+          <div class="more-releases-content">
+
+            <div class="more-releases-title">
+              More Releases <i class="fa-solid fa-angle-right"></i>
+            </div>
+
+          </div>
+        </a>
+        }
+      </div>
+    </section>
+
+    <section class="releases-section">
+      <div class="section-header">
+        <span class="card-header">
+          <img src="../../../assets/casino6.webp" alt="">
+          Roulette
+        </span>
+
+      </div>
+
+      <!-- GAME GRID -->
+      <div class="game-grid">
+        @for (game of newReleases; track game.id) {
+        @if (game?.category === 'roulette') {
+        <a class="game-card" href="#">
+          <img class="game-image" [src]="game.image" [alt]="'Roulette' + game.id" loading="lazy" />
+
+        </a>
+        }
+        }
+
+        <!-- MORE RELEASES -->
+        @if (showMoreReleasesCard) {
+        <a class="more-releases-card" routerLink="/casino/new-releases" aria-label="View more releases">
+          <div class="more-releases-content">
+
+            <div class="more-releases-title">
+              More Releases <i class="fa-solid fa-angle-right"></i>
+            </div>
+
+          </div>
+        </a>
+        }
+      </div>
+    </section>
+
+    <section class="releases-section">
+      <div class="section-header">
+        <span class="card-header">
+          <img src="../../../assets/casino7.webp" alt="">
+          Baccarat
+        </span>
+
+      </div>
+
+      <!-- GAME GRID -->
+      <div class="game-grid">
+        @for (game of newReleases; track game.id) {
+        @if (game?.category === 'baccarat') {
+        <a class="game-card" href="#">
+          <img class="game-image" [src]="game.image" [alt]="'Baccarat' + game.id" loading="lazy" />
+
+        </a>
+        }
+        }
+
+        <!-- MORE RELEASES -->
+        @if (showMoreReleasesCard) {
+        <a class="more-releases-card" routerLink="/casino/new-releases" aria-label="View more releases">
+          <div class="more-releases-content">
+
+            <div class="more-releases-title">
+              More Releases <i class="fa-solid fa-angle-right"></i>
+            </div>
+
+          </div>
+        </a>
+        }
+      </div>
+    </section>
+
+    <section class="releases-section">
+      <div class="section-header">
+        <span class="card-header">
+          <img src="../../../assets/casino8.webp" alt="">
+          Instant Games
+        </span>
+
+      </div>
+
+      <!-- GAME GRID -->
+      <div class="game-grid">
+        @for (game of newReleases; track game.id) {
+        @if (game?.category === 'teen') {
+        <a class="game-card" href="#">
+          <img class="game-image" [src]="game.image" [alt]="'Teen Patti' + game.id" loading="lazy" />
+
+        </a>
+        }
+        }
+
+        <!-- MORE RELEASES -->
+        @if (showMoreReleasesCard) {
+        <a class="more-releases-card" routerLink="/casino/new-releases" aria-label="View more releases">
+          <div class="more-releases-content">
+
+            <div class="more-releases-title">
+              More Releases <i class="fa-solid fa-angle-right"></i>
+            </div>
+
+          </div>
+        </a>
+        }
+      </div>
+    </section>
+
+    <section class="releases-section">
+      <div class="section-header">
+        <span class="card-header">
+          <img src="../../../assets/casino9.webp" alt="">
+          Game Shows
+        </span>
+
+      </div>
+
+      <!-- GAME GRID -->
+      <div class="game-grid">
+        @for (game of newReleases; track game.id) {
+        @if (game?.category === 'game') {
+        <a class="game-card" href="#">
+          <img class="game-image" [src]="game.image" [alt]="'Game' + game.id" loading="lazy" />
+
+        </a>
+        }
+        }
+
+        <!-- MORE RELEASES -->
+        @if (showMoreReleasesCard) {
+        <a class="more-releases-card" routerLink="/casino/new-releases" aria-label="View more releases">
+          <div class="more-releases-content">
+
+            <div class="more-releases-title">
+              More Releases <i class="fa-solid fa-angle-right"></i>
+            </div>
+
+          </div>
+        </a>
+        }
+      </div>
+    </section>
+
+    <section class="releases-section">
+      <div class="section-header">
+        <span class="card-header">
+          <img src="../../../assets/casino10.webp" alt="">
+          Dragon Tiger
+        </span>
+
+      </div>
+
+      <!-- GAME GRID -->
+      <div class="game-grid">
+        @for (game of newReleases; track game.id) {
+        @if (game?.category === 'dragon-tiger') {
+        <a class="game-card" href="#">
+          <img class="game-image" [src]="game.image" [alt]="'Dragon Tiger' + game.id" loading="lazy" />
+
+        </a>
+        }
+        }
+
+        <!-- MORE RELEASES -->
+        @if (showMoreReleasesCard) {
+        <a class="more-releases-card" routerLink="/casino/new-releases" aria-label="View more releases">
+          <div class="more-releases-content">
+
+            <div class="more-releases-title">
+              More Releases <i class="fa-solid fa-angle-right"></i>
+            </div>
+
+          </div>
+        </a>
+        }
+      </div>
+    </section>
+
+    <section class="releases-section">
+      <div class="section-header">
+        <span class="card-header">
+          <img src="../../../assets/casino11.webp" alt="">
+          Blackjack
+        </span>
+
+      </div>
+
+      <!-- GAME GRID -->
+      <div class="game-grid">
+        @for (game of newReleases; track game.id) {
+        @if (game?.category === 'blackjack') {
+        <a class="game-card" href="#">
+          <img class="game-image" [src]="game.image" [alt]="'Blackjack' + game.id" loading="lazy" />
+
+        </a>
+        }
+        }
+
+        <!-- MORE RELEASES -->
+        @if (showMoreReleasesCard) {
+        <a class="more-releases-card" routerLink="/casino/new-releases" aria-label="View more releases">
+          <div class="more-releases-content">
+
+            <div class="more-releases-title">
+              More Releases <i class="fa-solid fa-angle-right"></i>
+            </div>
+
+          </div>
+        </a>
+        }
+      </div>
+    </section>
+
+    <section class="releases-section">
+      <div class="section-header">
+        <span class="card-header">
+          <img src="../../../assets/casino12.webp" alt="">
+          Poker
+        </span>
+
+      </div>
+
+      <!-- GAME GRID -->
+      <div class="game-grid">
+        @for (game of visibleGames; track game.id) {
+        @if (game?.category === 'poker') {
+        <a class="game-card" href="#">
+          <img class="game-image" [src]="game.image" [alt]="'Poker' + game.id" loading="lazy" />
+        </a>
+        }
+        }
+
+        <!-- MORE RELEASES -->
+        @if (showMoreReleasesCard) {
+        <a class="more-releases-card" routerLink="/casino/new-releases" aria-label="View more releases">
+          <div class="more-releases-content">
+
+            <div class="more-releases-title">
+              More Releases <i class="fa-solid fa-angle-right"></i>
+            </div>
+
+          </div>
+        </a>
+        }
+      </div>
+    </section>
+
+    <section class="releases-section">
+      <div class="section-header">
+        <span class="card-header">
+          <img src="../../../assets/casino13.webp" alt="">
+          Slots
+        </span>
+
+      </div>
+
+      <!-- GAME GRID -->
+      <div class="game-grid">
+        @for (game of visibleGames; track game.id) {
+        @if (game?.category === 'slots') {
+        <a class="game-card" href="#">
+          <img class="game-image" [src]="game.image" [alt]="'Slots' + game.id" loading="lazy" />
+
+        </a>
+        }
+        }
+
+        <!-- MORE RELEASES -->
+        @if (showMoreReleasesCard) {
+        <a class="more-releases-card" routerLink="/casino/new-releases" aria-label="View more releases">
+          <div class="more-releases-content">
+
+            <div class="more-releases-title">
+              More Releases <i class="fa-solid fa-angle-right"></i>
+            </div>
+
+          </div>
+        </a>
+        }
+      </div>
+    </section>
+
+    <section class="releases-section">
+      <div class="section-header">
+        <span class="card-header">
+          <img src="../../../assets/casino14.webp" alt="">
+          Sicbo
+        </span>
+
+      </div>
+
+      <!-- GAME GRID -->
+      <div class="game-grid">
+        @for (game of visibleGames; track game.id) {
+        @if (game?.category === 'sicbo') {
+        <a class="game-card" href="#">
+          <img class="game-image" [src]="game.image" [alt]="'Sicbo' + game.id" loading="lazy" />
+        </a>
+        }
+        }
+
+        <!-- MORE RELEASES -->
+        @if (showMoreReleasesCard) {
+        <a class="more-releases-card" routerLink="/casino/new-releases" aria-label="View more releases">
+          <div class="more-releases-content">
+            <div class="more-releases-title">
+              More Releases <i class="fa-solid fa-angle-right"></i>
+            </div>
+          </div>
+        </a>
+        }
+      </div>
+    </section>
+
+    <section class="releases-section">
+      <div class="section-header">
+        <span class="card-header">
+          <img src="../../../assets/casino15.webp" alt="">
+          Lottery
+        </span>
+      </div>
+
+      <!-- GAME GRID -->
+      <div class="game-grid">
+        @for (game of visibleGames; track game.id) {
+        @if (game?.category === 'lottery') {
+        <a class="game-card" href="#">
+          <img class="game-image" [src]="game.image" [alt]="'Lottery' + game.id" loading="lazy" />
+        </a>
+        }
+        }
+
+        <!-- MORE RELEASES -->
+        @if (showMoreReleasesCard) {
+        <a class="more-releases-card" routerLink="/casino/new-releases" aria-label="View more releases">
+          <div class="more-releases-content">
+            <div class="more-releases-title">
+              More Releases <i class="fa-solid fa-angle-right"></i>
+            </div>
+          </div>
+        </a>
+        }
+      </div>
+    </section>
+
+    <section class="releases-section">
+      <div class="section-header">
+        <span class="card-header">
+          <img src="../../../assets/casino16.webp" alt="">
+          Virtuals
+        </span>
+      </div>
+
+      <!-- GAME GRID -->
+      <div class="game-grid">
+        @for (game of visibleGames; track game.id) {
+        @if (game?.category === 'virtuals') {
+        <a class="game-card" href="#">
+          <img class="game-image" [src]="game.image" [alt]="'Virtuals' + game.id" loading="lazy" />
+        </a>
+        }
+        }
+
+        <!-- MORE RELEASES -->
+        @if (showMoreReleasesCard) {
+        <a class="more-releases-card" routerLink="/casino/new-releases" aria-label="View more releases">
+          <div class="more-releases-content">
+            <div class="more-releases-title">
+              More Releases <i class="fa-solid fa-angle-right"></i>
+            </div>
+          </div>
+        </a>
+        }
+      </div>
+    </section>
+
+    <section class="releases-section">
+      <div class="section-header">
+        <span class="card-header">
+          <img src="../../../assets/casino18.svg" alt="">
+          Sport Games
+        </span>
+      </div>
+
+      <!-- GAME GRID -->
+      <div class="game-grid">
+        @for (game of visibleGames; track game.id) {
+        @if (game?.category === 'sport') {
+        <a class="game-card" href="#">
+          <img class="game-image" [src]="game.image" [alt]="'Sport' + game.id" loading="lazy" />
+        </a>
+        }
+        }
+
+        <!-- MORE RELEASES -->
+        @if (showMoreReleasesCard) {
+        <a class="more-releases-card" routerLink="/casino/new-releases" aria-label="View more releases">
+          <div class="more-releases-content">
+            <div class="more-releases-title">
+              More Releases <i class="fa-solid fa-angle-right"></i>
+            </div>
+          </div>
+        </a>
+        }
+      </div>
+    </section>
+
+    <footer class="casino-footer">
+      <div class="footer-content">
+        <div class="footer-area">
+          <div class="footer-div">
+            <a href="">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-joystick"
+                viewBox="0 0 16 16">
+                <path
+                  d="M10 2a2 2 0 0 1-1.5 1.937v5.087c.863.083 1.5.377 1.5.726 0 .414-.895.75-2 .75s-2-.336-2-.75c0-.35.637-.643 1.5-.726V3.937A2 2 0 1 1 10 2" />
+                <path
+                  d="M0 9.665v1.717a1 1 0 0 0 .553.894l6.553 3.277a2 2 0 0 0 1.788 0l6.553-3.277a1 1 0 0 0 .553-.894V9.665c0-.1-.06-.19-.152-.23L9.5 6.715v.993l5.227 2.178a.125.125 0 0 1 .001.23l-5.94 2.546a2 2 0 0 1-1.576 0l-5.94-2.546a.125.125 0 0 1 .001-.23L6.5 7.708l-.013-.988L.152 9.435a.25.25 0 0 0-.152.23" />
+              </svg>
+              <span class="footer-link-text">&nbsp;Gambling Support&nbsp;</span>
+              <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            </a>
+          </div>
+
+          <div class="footer-div">
+            <a href="">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-explicit"
+                viewBox="0 0 16 16">
+                <path d="M6.826 10.88H10.5V12h-5V4.002h5v1.12H6.826V7.4h3.457v1.073H6.826z" />
+                <path
+                  d="M2.5 0A2.5 2.5 0 0 0 0 2.5v11A2.5 2.5 0 0 0 2.5 16h11a2.5 2.5 0 0 0 2.5-2.5v-11A2.5 2.5 0 0 0 13.5 0zM1 2.5A1.5 1.5 0 0 1 2.5 1h11A1.5 1.5 0 0 1 15 2.5v11a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 1 13.5z" />
+              </svg>
+              <span class="footer-link-text">&nbsp;Under age gambling is an offence</span>
+            </a>
+          </div>
+
+          <div class="footer-div">
+            <a href="">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                class="bi bi-globe-americas" viewBox="0 0 16 16">
+                <path
+                  d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0M2.04 4.326c.325 1.329 2.532 2.54 3.717 3.19.48.263.793.434.743.484q-.121.12-.242.234c-.416.396-.787.749-.758 1.266.035.634.618.824 1.214 1.017.577.188 1.168.38 1.286.983.082.417-.075.988-.22 1.52-.215.782-.406 1.48.22 1.48 1.5-.5 3.798-3.186 4-5 .138-1.243-2-2-3.5-2.5-.478-.16-.755.081-.99.284-.172.15-.322.279-.51.216-.445-.148-2.5-2-1.5-2.5.78-.39.952-.171 1.227.182.078.099.163.208.273.318.609.304.662-.132.723-.633.039-.322.081-.671.277-.867.434-.434 1.265-.791 2.028-1.12.712-.306 1.365-.587 1.579-.88A7 7 0 1 1 2.04 4.327Z" />
+              </svg>
+              <span class="footer-link-text">&nbsp;Restricted territories</span>
+            </a>
+          </div>
+
+          <div class="footer-div">
+            <a href="">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-c-circle"
+                viewBox="0 0 16 16">
+                <path
+                  d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.146 4.992c-1.212 0-1.927.92-1.927 2.502v1.06c0 1.571.703 2.462 1.927 2.462.979 0 1.641-.586 1.729-1.418h1.295v.093c-.1 1.448-1.354 2.467-3.03 2.467-2.091 0-3.269-1.336-3.269-3.603V7.482c0-2.261 1.201-3.638 3.27-3.638 1.681 0 2.935 1.054 3.029 2.572v.088H9.875c-.088-.879-.768-1.512-1.729-1.512" />
+              </svg>
+              <span class="footer-link-text">&nbsp;2016-2026</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+  </main>
+</div>

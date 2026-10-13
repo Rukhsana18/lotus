@@ -1,0 +1,128 @@
+<div class="search-page" [class.casino-mode]="casinoMode()">
+  <aside class="search-sidebar">
+    @if (casinoMode()) {
+      <section class="provider-panel" aria-label="Casino providers">
+        <h2>Providers</h2>
+        <p>Top Providers</p>
+        <nav class="provider-list">
+          @for (provider of providers; track provider.route) {
+            <a class="provider-item" [routerLink]="['/casino', provider.route]">
+              <img [src]="provider.image" [alt]="provider.name" class="casino-sidenav-icons" />
+              <strong>{{ provider.name }}</strong>
+              <span>{{ provider.count }}</span>
+            </a>
+          }
+        </nav>
+      </section>
+    } @else {
+      <app-sidebar />
+    }
+  </aside>
+
+  <main class="search-main">
+    <a class="back-bar" [routerLink]="casinoMode() ? '/casino' : '/sports'">
+      <span class="back-arrow" aria-hidden="true"><i class="icon icon-angle-left"></i></span>
+      <span class="back">Back</span>
+    </a>
+
+    <div class="search-content">
+      <h1>Search</h1>
+
+      <label class="search-field">
+        <i class="icon icon-search-new" aria-hidden="true"></i>
+        <input type="search" [placeholder]="casinoMode() ? 'Type a Game name' : 'Search across Sports & Casino'"
+          [attr.aria-label]="casinoMode() ? 'Search casino games' : 'Search across sports and casino'"
+          [value]="query()" (input)="updateQuery($event)" />
+      </label>
+
+      @if (casinoMode()) {
+        <section class="lucky-banner" aria-label="Feeling lucky today">
+          <div>
+            <h2>Feeling Lucky Today?</h2>
+            <p>Surprise Game For You!!!</p>
+          </div>
+          <span class="lucky-coins" aria-hidden="true">🪙 🪙 🪙</span>
+          <button type="button">Try Your Luck</button>
+        </section>
+
+        @if (!query().trim()) {
+          <h2 class="section-title casino-most-searched">
+            <i class="icon icon-search-new" aria-hidden="true"></i> Most Searched
+          </h2>
+        }
+
+        @if (filteredGames().length) {
+          <section class="results-section casino-section" aria-label="Casino games">
+            <div class="game-grid casino-game-grid">
+              @for (game of filteredGames(); track game.name) {
+                <a class="game-card" routerLink="/casino" [attr.aria-label]="game.name">
+                  <img [src]="game.image" [alt]="game.name" />
+                </a>
+              }
+            </div>
+          </section>
+        }
+      } @else {
+      @if (!query().trim()) {
+      <h2 class="section-title mb-1"><span aria-hidden="true">🔥</span> Hot Searches</h2>
+      }
+
+      @if (filteredEvents().length) {
+      <section class="results-section" aria-labelledby="sports-title">
+        <span id="sports-title">Sports</span>
+        <div class="event-grid">
+          @for (event of filteredEvents(); track event.name) {
+          <a class="event-card" routerLink="/sports">
+            <span class="event-icon" [class.live]="event.live">
+              @if (!query().trim()) { <span class="hot-flame" aria-hidden="true">🔥</span> }
+              <i [class]="'icon ' + event.icon" aria-hidden="true"></i>
+            </span>
+            <span class="event-details">
+              <strong>{{ event.name }}</strong>
+              <span>{{ event.competition }}</span>
+            </span>
+            @if (event.live) {
+            <span class="live-badge">In Play</span>
+            } @else {
+            <span class="event-time">{{ event.time }}</span>
+            }
+          </a>
+          }
+        </div>
+      </section>
+      }
+
+      @if (!query().trim()) {
+      <h2 class="section-title most-searched mb-1"><span aria-hidden="true">🏆</span> Most Searched</h2>
+      }
+
+      @if (filteredGames().length) {
+      <section class="results-section casino-section" aria-labelledby="casino-title">
+        <span id="section-title">Casino</span>
+        <div class="game-grid">
+          @for (game of filteredGames(); track game.name) {
+          <a class="game-card" routerLink="/casino" [attr.aria-label]="game.name">
+            <img [src]="game.image" [alt]="game.name" />
+          </a>
+          }
+        </div>
+      </section>
+      }
+      }
+
+      @if (casinoMode() ? !filteredGames().length : !filteredEvents().length && !filteredGames().length) {
+      <p class="mb-0">Result(s): {{ casinoMode() ? filteredGames().length : filteredEvents().length }}</p>
+      <div class="text-center">
+        <img src="assets/no-result.svg" alt="">
+        <p class="no-results">No results found for “{{ query() }}”.</p>
+      </div>
+      }
+    </div>
+  </main>
+
+  @if (!casinoMode()) {
+    <aside class="search-betslip">
+      <app-betslip />
+    </aside>
+  }
+</div>

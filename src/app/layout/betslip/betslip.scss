@@ -1,0 +1,126 @@
+.bets-panel {
+  overflow: hidden;
+  border-radius: 11px;
+  background: #fff;
+  box-shadow: 0 1px 5px #25383a12;
+}
+
+.bet-tabs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 48px;
+}
+
+.tab {
+  border: 0;
+  border-bottom: 3px solid transparent;
+  background: transparent;
+  color: #888;
+  font-weight: 600;
+  font-size: 11px;
+  font-family: lato, sans-serif;
+  padding: 12px 0;
+  max-height: 38px;
+  text-align: center;
+
+}
+
+.tab.active {
+  border-color: #294f58;
+  color: #202526;
+}
+
+.empty-slip {
+  min-height: 500px;
+  padding: 23px 20px 0 20px;
+  text-align: center;
+}
+
+.empty-slip h6,
+.popular-bets h6 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.empty-slip p {
+  margin-top: 4px;
+  color: #828889;
+  font-size: 12px;
+  font-weight:400;
+}
+
+.empty-slip button {
+  width: 131px;
+  border: 0;
+  border-radius: 11px;
+  background: #2b5059;
+  color: white;
+  font-weight: 700;
+  height: 36px;
+  font-size: 12px;
+}
+
+.ticket-art {
+  display: flex;
+  width: 172px;
+  height: 240px;
+  flex-direction: column;
+  justify-content: center;
+  gap: 8px;
+  margin: 42px auto 0;
+  padding: 12px;
+  transform: rotate(5deg);
+  border: 1px solid #e7eaec;
+  border-radius: 8px;
+  background: #fafbfc;
+  box-shadow: 0 15px 40px #1c38350d;
+}
+
+.ticket-row {
+  height: 58px;
+  border: 5px solid #d2e8fb;
+  border-radius: 7px;
+  background: linear-gradient(#fff 0 30%, #e4f1fc 30% 100%);
+}
+
+.ticket-row.pink {
+  border-color: #f2dce2;
+  background: linear-gradient(#fff 0 30%, #f9e9ed 30% 100%);
+}
+
+.popular-bets {
+  padding: 24px 10px;
+  border-top: 1px solid #eceeee;
+  text-align: center;
+}
+
+.popular-placeholder {
+  margin-top: 18px;
+  padding: 18px 10px;
+  border-radius: 9px;
+  background: #e5f3fb;
+  color: #647579;
+  font-size: 13px;
+}
+
+@media (max-width: 1100px) {
+  .bets-panel {
+    display: none;
+  }
+}
+
+@media (max-width: 720px) {
+  .bets-panel {
+    display: block;
+  }
+
+  .empty-slip {
+    min-height: 310px;
+  }
+
+  .ticket-art {
+    height: 120px;
+    margin-top: 22px;
+  }
+}
