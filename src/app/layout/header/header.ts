@@ -1,17 +1,20 @@
-import { Component, computed, inject } from '@angular/core';
+import { Component, HostListener, computed, inject, output } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { NavigationEnd, Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { filter, interval, map, startWith } from 'rxjs';
+import { Sidebar } from '../sidebar/sidebar';
 
 @Component({
-  imports: [DatePipe, RouterLink, RouterLinkActive],
+  imports: [DatePipe, RouterLink, RouterLinkActive, Sidebar],
   selector: 'app-header',
   styleUrl: './header.scss',
   templateUrl: './header.html',
 })
 export class Header {
   private readonly router = inject(Router);
+
+  readonly mobileMenuOpenChange = output<boolean>();
 
   protected mobileMenuOpen = false;
 
@@ -37,6 +40,20 @@ export class Header {
   );
 
   protected toggleMobileMenu(): void {
-    this.mobileMenuOpen = !this.mobileMenuOpen;
+    this.setMobileMenuOpen(!this.mobileMenuOpen);
+  }
+
+  protected closeMobileMenu(): void {
+    this.setMobileMenuOpen(false);
+  }
+
+  private setMobileMenuOpen(isOpen: boolean): void {
+    this.mobileMenuOpen = isOpen;
+    this.mobileMenuOpenChange.emit(isOpen);
+  }
+
+  @HostListener('document:keydown.escape')
+  protected closeMobileMenuOnEscape(): void {
+    this.closeMobileMenu();
   }
 }

@@ -42,20 +42,3 @@
     font-size: 18px !important;
    }
 }
-
-@media (max-width: 720px) {
-  .sports-sidebar {
-    flex-direction: row;
-    overflow-x: auto;
-    overflow-y: hidden;
-    padding: 4px;
-  }
-
-  .side-link {
-    min-width: max-content;
-    min-height: 42px;
-    gap: 7px;
-    padding: 0 10px;
-    font-size: 13px;
-  }
-}

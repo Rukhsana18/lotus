@@ -30,7 +30,7 @@
   </div>
 </section>
 
-<div class="sports-container">
+<div class="sports-feed">
   <div class="mobile-category-tabs" role="group" aria-label="Event schedule">
     @for (category of categories; track category.name) {
     <button
@@ -50,6 +50,8 @@
     </button>
     }
   </div>
+
+<div class="sports-container">
   @for (category of categories; track category.name) {
   <div class="category-group" [class.mobile-inactive]="activeCategory !== category.name">
     <!-- Category Header -->
@@ -102,7 +104,11 @@
           </div>
 
           <!-- Match -->
-          <article class="event" [class.live-event]="event.isLive">
+          <article
+            class="event"
+            [class.live-event]="event.isLive"
+            [class.three-way]="event.odds.length === 6"
+          >
 
             <!-- LIVE ICON -->
             <div class="live-indicator">
@@ -253,6 +259,7 @@
     }
   </div>
 </section>
+</div>
   </main>
   <aside class="sports-betslip">
     <app-betslip />

@@ -18,6 +18,76 @@ app-header {
   overflow: hidden;
 }
 
+.mobile-bottom-nav {
+  display: none;
+}
+
+@media (max-width: 760px) {
+  .mobile-bottom-nav {
+    position: fixed;
+    z-index: 15;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: grid;
+    height: 48px;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    padding: 4px 0 max(4px, env(safe-area-inset-bottom));
+    background: #0f2327;
+    box-shadow: 0 -2px 8px rgb(0 0 0 / 16%);
+  }
+
+  .mobile-bottom-nav a,
+  .mobile-bottom-nav button {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    border: 0;
+    padding: 0;
+    background: transparent;
+    color: #f1f5f5;
+    font: inherit;
+    text-decoration: none;
+  }
+
+  .mobile-bottom-nav i {
+    font-size: 24px;
+    line-height: 1;
+  }
+
+  .mobile-bottom-nav span {
+    font-size: 9px;
+    line-height: 1;
+  }
+
+  .mobile-bottom-nav .active {
+    color: #61b881;
+  }
+}
+
+@media (max-width: 760px) {
+  .route-content {
+    transition: transform 250ms ease;
+  }
+
+  .route-content > app-sports-page {
+    padding-bottom: 48px;
+  }
+
+  .route-content.menu-open {
+    transform: translateX(min(268px, 65vw));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .route-content {
+    transition: none;
+  }
+}
+
 .route-content > app-sports-page,
 .route-content > app-casino-page,
 .route-content > app-search-page {

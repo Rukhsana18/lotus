@@ -1,4 +1,22 @@
-<app-header />
-<main class="route-content">
+<app-header (mobileMenuOpenChange)="setMobileMenuOpen($event)" />
+<main class="route-content" [class.menu-open]="mobileMenuOpen()">
   <router-outlet />
 </main>
+<nav class="mobile-bottom-nav" aria-label="Mobile navigation">
+  <a routerLink="/home" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+    <i class="icon icon-home-menu-active" aria-hidden="true"></i>
+    <span>Home</span>
+  </a>
+  <a routerLink="/sports" routerLinkActive="active">
+    <i class="icon icon-footer-sport-lite" aria-hidden="true"></i>
+    <span>Sports</span>
+  </a>
+  <a routerLink="/casino" routerLinkActive="active">
+    <i class="icon icon-footer-casino-lite" aria-hidden="true"></i>
+    <span>Casino</span>
+  </a>
+  <button type="button">
+    <i class="icon icon-footer-profile" aria-hidden="true"></i>
+    <span>Profile</span>
+  </button>
+</nav>

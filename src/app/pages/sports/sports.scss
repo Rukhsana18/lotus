@@ -606,7 +606,7 @@
 }
 
 .fa-circle-play {
-  color: #03b859;
+  color: #03b859 !important;
 }
 
 @media (max-width: 640px) {
@@ -632,7 +632,7 @@
       .promotion-slide {
         width: 82%;
         max-width: none;
-        height: 130px;
+        height: 92px;
         flex: 0 0 82%;
         aspect-ratio: auto;
         border-radius: 8px;
@@ -643,20 +643,25 @@
   }
 
   .sports-container {
-    gap: 8px;
-    margin: 8px auto;
+    gap: 6px;
+    margin: 6px auto;
   }
 
   .mobile-category-tabs {
+    position: sticky;
+    top: 0;
+    z-index: 10;
     display: flex;
     gap: 8px;
     width: 100%;
+    padding: 4px 0;
+    background: #f2f5f5;
   }
 
   .mobile-category-tabs button {
     display: flex;
     min-width: 0;
-    height: 40px;
+    height: 32px;
     flex: 1 1 0;
     align-items: center;
     justify-content: center;
@@ -702,7 +707,7 @@
   }
 
   .sport-heading {
-    height: 40px;
+    height: 36px;
     padding: 0 12px;
   }
 
@@ -728,8 +733,8 @@
 
   .league-section-header {
     grid-template-columns: minmax(0, 1fr);
-    min-height: 34px;
-    padding: 0 12px;
+    min-height: 26px;
+    padding: 0 9px;
   }
 
   .league-name {
@@ -742,9 +747,9 @@
 
   .event {
     grid-template-columns: 20px minmax(0, 1fr) 52px minmax(0, 1fr);
-    grid-template-rows: 28px 42px;
-    min-height: 82px;
-    padding: 8px 9px;
+    grid-template-rows: 24px 36px;
+    min-height: 68px;
+    padding: 4px 7px;
   }
 
   .live-indicator {
@@ -814,11 +819,25 @@
     grid-column: 1 / -1;
     grid-row: 2;
     width: 100%;
-    gap: 4px;
+    gap: 3px;
+  }
+
+  .event.three-way .odds-container {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
   }
 
   .odd-button {
-    height: 42px;
+    height: 34px;
+    padding: 2px;
+  }
+
+  .odd-button strong {
+    font-size: 12px;
+  }
+
+  .odd-button small {
+    margin-top: 2px;
+    font-size: 8px;
   }
 
   .extra-markets {
