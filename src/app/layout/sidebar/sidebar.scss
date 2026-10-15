@@ -10,10 +10,16 @@
   background: #fff;
   box-shadow: 0 1px 5px #25383a12;
   scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
 
-.sports-sidebar::-webkit-scrollbar {
-  display: none;
+.sidebar-group {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 }
 
 .side-link {
@@ -21,13 +27,58 @@
   min-height: 40px;
   align-items: center;
   gap: 5px;
-  padding: 8px 5px;
+  padding: 8px 10px;
   border-radius: 7px;
+
+  // Default inactive appearance
+  background: transparent;
   color: #121a1b;
+
   font-size: 14px !important;
   font-weight: 600;
   text-decoration: none;
-  font-family: lato, sans-serif;
+  font-family: 'Lato', sans-serif;
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
+
+  .link-title {
+    flex: 1;
+  }
+
+  .dropdown-arrow {
+    margin-left: auto;
+    font-size: 12px;
+    color: inherit;
+  }
+
+  // Gradient applies only to active navigation links
+  &.active {
+    background:
+      linear-gradient(
+        248deg,
+        rgba(231, 72, 72, 0.18) 5.51%,
+        rgba(231, 72, 72, 0) 74.36%
+      ),
+      linear-gradient(
+        125deg,
+        rgba(43, 87, 199, 0.2) 1.91%,
+        rgba(58, 149, 255, 0) 78.8%
+      ),
+      rgba(25, 25, 25, 0.96);
+
+    color: #fff;
+
+    .side-icon {
+      color: #fff;
+    }
+
+    .dropdown-arrow {
+      color: #fff;
+    }
+  }
 }
 
 .side-icon {
@@ -37,8 +88,57 @@
   align-items: center;
   justify-content: center;
   color: #786d60;
-  // font-size: 21px !important;
-   .icon {
+
+  .icon {
     font-size: 18px !important;
-   }
+  }
+}
+
+/* Sub-leagues dropdown */
+.sub-leagues-list {
+  display: flex;
+  flex-direction: column;
+  padding: 6px 0 6px 12px;
+
+  .sub-league-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 8px 10px;
+
+    color: #151c1d;
+    background: transparent;
+
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 5px;
+
+    transition:
+      background 0.15s ease,
+      color 0.15s ease;
+
+    &:hover {
+      background: #f2f5f5;
+    }
+
+    &.active-sub-league {
+      background: #eef3ff;
+      color: #2857c7;
+    }
+
+    .sub-name {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 150px;
+    }
+
+    .sub-count {
+      flex-shrink: 0;
+      font-weight: 500;
+      color: #333;
+    }
+  }
 }

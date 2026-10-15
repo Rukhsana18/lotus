@@ -2,11 +2,19 @@ import { RenderMode, ServerRoute } from '@angular/ssr';
 
 export const serverRoutes: ServerRoute[] = [
   {
-    path: 'sports/:sport/:competition',
+    path: 'sports',
     renderMode: RenderMode.Server,
   },
   {
-    path: 'sports/:sport',
+    path: 'sports/league/:leagueId',
+    renderMode: RenderMode.Server,
+  },
+  {
+    path: 'sports/league/:leagueId/match/:matchId',
+    renderMode: RenderMode.Server,
+  },
+  {
+    path: 'casino',
     renderMode: RenderMode.Server,
   },
   {

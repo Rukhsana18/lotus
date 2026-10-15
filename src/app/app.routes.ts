@@ -1,26 +1,48 @@
 import { Routes } from '@angular/router';
-import { SportsPage } from './pages/sports/sports';
-import { CasinoPage } from './pages/casino/casino';
-import { SearchPage } from './pages/search/search';
 
 export const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
-  { path: 'home', component: SportsPage, title: 'Home | Lotus' },
-  { path: 'search', component: SearchPage, title: 'Search | Lotus' },
-  {
-    path: 'sports',
-    children: [
-      { path: '', component: SportsPage, title: 'Sports | Lotus' },
-      { path: ':sport', component: SportsPage, title: 'Sports | Lotus' },
-      { path: ':sport/:competition', component: SportsPage, title: 'Sports | Lotus' },
-    ],
+  { 
+    path: 'home', 
+    loadComponent: () => import('./pages/home/home').then((m) => m.Home), 
+    title: 'Home | Lotus' 
+  },
+  { 
+    path: 'search', 
+    loadComponent: () => import('./pages/search/search').then((m) => m.SearchPage), 
+    title: 'Search | Lotus' 
   },
   {
     path: 'casino',
+    loadComponent: () => import('./pages/casino/casino').then((m) => m.CasinoPage),
+    title: 'Casino | Lotus',
+  },
+  {
+    path: 'casino/:category',
+    loadComponent: () => import('./pages/casino/casino').then((m) => m.CasinoPage),
+    title: 'Casino | Lotus',
+  },
+  {
+    path: 'casino/:category/:gameId',
+    loadComponent: () => import('./pages/casino/casino').then((m) => m.CasinoPage),
+    title: 'Casino | Lotus',
+  },
+  {
+    path: 'sports',
+    loadComponent: () => import('./pages/sports/sports').then((m) => m.Sports),
     children: [
-      { path: '', component: CasinoPage, title: 'Casino | Lotus' },
-      { path: ':category', component: CasinoPage, title: 'Casino | Lotus' },
-      { path: ':category/:gameId', component: CasinoPage, title: 'Casino | Lotus' },
+      {
+        path: 'league/:leagueId',
+        title: 'League Details | Lotus',
+        loadComponent: () =>
+          import('./pages/league-detail/league-detail').then((m) => m.LeagueDetail),
+      },
+      {
+        path: 'league/:leagueId/match/:matchId',
+        title: 'Match Details | Lotus',
+        loadComponent: () =>
+          import('./pages/match-detail/match-detail').then((m) => m.MatchDetail),
+      },
     ],
   },
   { path: '**', redirectTo: 'home' },

@@ -1,0 +1,417 @@
+.match-detail-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  background: #f2f5f5;
+
+  .detail-header {
+    background: #0f2327;
+    color: #ffffff;
+
+    .top-bar {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      height: 48px;
+      padding: 0 16px;
+
+      .back-icon {
+        cursor: pointer;
+        padding-right: 8px;
+        border-right: 1px solid rgba(255, 255, 255, 0.2);
+      }
+
+      .breadcrumb {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 12px;
+        font-weight: 700;
+        flex: 1;
+
+        .sep {
+          opacity: 0.4;
+        }
+      }
+
+      .info-icon {
+        font-size: 12px;
+        cursor: pointer;
+      }
+    }
+
+    .market-sub-nav {
+      display: flex;
+      justify-content: center;
+      height: 40px;
+
+      .sub-nav-btn {
+        background: none;
+        border: none;
+        color: #ffffff;
+        font-size: 11px;
+        font-weight: 700;
+        padding: 0 20px;
+      }
+    }
+  }
+
+  .match-content {
+    flex: 1;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  /* Filter Pills Bar & Wrapper */
+  .filter-pills-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+
+    .filter-pills-bar {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      overflow-x: auto;
+      scroll-behavior: smooth;
+      padding: 4px 40px 4px 0;
+      scrollbar-width: none; /* Firefox */
+
+      &::-webkit-scrollbar {
+        display: none; /* Chrome, Safari, Opera */
+      }
+
+      .pill-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        height: 38px;
+        padding: 0 18px;
+        border: none;
+        border-radius: 20px;
+        background: #ffffff;
+        color: #111111;
+        font-size: 14px;
+        font-weight: 700;
+        white-space: nowrap;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+
+        /* Special Active Black Pill for "All" */
+        &.all-pill {
+          background: #181818;
+          color: #ffffff;
+          padding: 0 20px;
+
+          i {
+            font-size: 11px;
+            color: #ffffff;
+          }
+
+          &.active {
+            background: #181818;
+            color: #ffffff;
+          }
+        }
+
+        &.active:not(.all-pill) {
+          background: #181818;
+          color: #ffffff;
+
+          .count-badge {
+            background: #333333;
+            color: #ffffff;
+          }
+        }
+
+        .pill-title {
+          font-weight: 700;
+        }
+
+        /* Light Gray Pill Counter Badges */
+        .count-badge {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          min-width: 24px;
+          height: 24px;
+          padding: 0 6px;
+          border-radius: 12px;
+          background: #e4e4e4;
+          color: #222222;
+          font-size: 12px;
+          font-weight: 600;
+        }
+      }
+    }
+
+    /* Floating Right Scroll Arrow Button */
+    .scroll-arrow-btn {
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: none;
+      background: #ffffff;
+      color: #111111;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 10;
+      transition: background 0.15s ease;
+
+      &:hover {
+        background: #f0f0f0;
+      }
+
+      i {
+        font-size: 12px;
+      }
+    }
+  }
+
+  /* Schedule Card */
+  .match-schedule-card {
+    background: #ffffff;
+    border-bottom-right-radius: 8px;
+    border-bottom-left-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+
+    .teams-versus-banner {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      padding: 10px;
+
+      .team-block {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+
+        .flag {
+          font-size: 32px;
+        }
+
+        .team-name {
+          font-size: 15px;
+          font-weight: 700;
+        }
+      }
+
+      .schedule-time {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        font-size: 14px;
+        color: #666666;
+
+        strong {
+          color: #111111;
+          font-weight: 700;
+        }
+      }
+    }
+  }
+
+  /* Odds Card & Accordion Styling */
+  .odds-card {
+    background: #ffffff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+
+    .odds-table {
+      padding: 12px;
+
+      .back-lay-headers {
+        display: flex;
+        justify-content: flex-end;
+        gap: 80px;
+        padding-right: 70px;
+        font-size: 12px;
+        font-weight: 700;
+        color: #666666;
+        margin-bottom: 6px;
+      }
+
+      .runner-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 6px 0;
+
+        .runner-name {
+          font-size: 14px;
+          font-weight: 700;
+        }
+
+        .odds-grid {
+          display: flex;
+          gap: 4px;
+
+          .cell {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 52px;
+            height: 38px;
+            border: none;
+            border-radius: 4px;
+            font-size: 13px;
+            cursor: pointer;
+
+            &.back-light {
+              background: #e3f3fe;
+              opacity: 0.8;
+            }
+            &.back-main {
+              background: #cbe3f9;
+              font-weight: 700;
+            }
+            &.lay-main {
+              background: #fbd3e0;
+              font-weight: 700;
+            }
+            &.lay-light {
+              background: #fde8f0;
+              opacity: 0.8;
+            }
+
+            small {
+              font-size: 9px;
+              color: #555555;
+            }
+          }
+        }
+      }
+    }
+
+    /* Fancy Table */
+    .fancy-table {
+      padding: 12px;
+
+      .no-yes-headers {
+        display: flex;
+        justify-content: flex-end;
+        gap: 40px;
+        padding-right: 75px;
+        font-size: 12px;
+        font-weight: 700;
+        color: #666666;
+        margin-bottom: 6px;
+      }
+
+      .fancy-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 8px 0;
+        border-bottom: 1px solid #f0f2f4;
+
+        .fancy-title {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          font-size: 14px;
+          font-weight: 700;
+
+          .ladder-icon {
+            color: #888888;
+          }
+        }
+
+        .fancy-grid {
+          display: flex;
+          gap: 4px;
+
+          .cell {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 56px;
+            height: 38px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+
+            &.lay-main {
+              background: #fbd3e0;
+            }
+            &.back-main {
+              background: #b5d8fb;
+            }
+
+            strong {
+              font-size: 13px;
+            }
+            small {
+              font-size: 9px;
+              color: #555555;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+.sport,
+.league {
+  color: white;
+  opacity: 0.7;
+}
+
+.accordion-button {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  background: #ffffff !important;
+  box-shadow: none !important;
+
+  .accordion-title {
+    font-weight: 700;
+    color: black;
+    font-size: 12px;
+    flex-grow: 1; /* Pushes play button and chevron arrow to the far right */
+  }
+
+  .play-btn {
+    font-size: 16px;
+    color: #9d9c9d;
+    cursor: pointer;
+  }
+
+  .chevron-icon {
+    font-size: 13px;
+    color: #555555;
+    margin-left: 8px;
+    transition: transform 0.2s ease;
+  }
+
+  /* Disable Bootstrap's built-in pseudo chevron */
+  &::after {
+    display: none !important;
+  }
+}
+
+.accordion-item {
+  margin-block: 16px;
+}

@@ -1,0 +1,63 @@
+<div class="league-detail-page">
+  <!-- Top Dark Header Breadcrumb -->
+  <header class="detail-header">
+    <div class="top-bar">
+      <i class="fa-solid fa-chevron-left back-icon" (click)="goBack()"></i>
+      <div class="breadcrumb">
+        <span class="sport" [routerLink]="['/sports']">Cricket</span>
+        <span class="sep">/</span>
+        <span class="current">{{ leagueTitle }}</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Fixtures Accordion -->
+  <main class="content-feed">
+    <div class="fixture-card">
+      <div class="fixture-header" (click)="toggleAccordion()">
+        <span>Fixtures 17th Oct</span>
+        
+        <i class="fa-solid" [class.fa-chevron-up]="isExpanded" [class.fa-chevron-down]="!isExpanded"></i>
+      </div>
+
+      @if (isExpanded) {
+        <div class="fixture-body">
+          <div class="market-labels">
+            <span>1</span>
+            <span>2</span>
+          </div>
+
+          <article class="match-row">
+            <div class="teams-col">
+              <div class="team">
+                <span class="flag">🇮🇳</span>
+                <span class="name">India</span>
+              </div>
+              <div class="team">
+                <span class="flag">🇭🇹</span>
+                <span class="name">West Indies</span>
+              </div>
+            </div>
+
+            <div class="time-col">
+              <strong>17/10/2026</strong>
+              <small>19:00</small>
+            </div>
+
+            <div class="action-col">
+              <button type="button" class="more-markets-btn" (click)="openMatchDetail('ind-vs-wi')">
+                More Markets <i class="fa-solid fa-chevron-right"></i>
+              </button>
+            </div>
+
+            <div class="extra-count">
+              +53 <i class="fa-solid fa-chevron-right"></i>
+            </div>
+          </article>
+        </div>
+      }
+    </div>
+  </main>
+
+ <app-footer></app-footer>
+</div>

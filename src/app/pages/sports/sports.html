@@ -1,266 +1,157 @@
 <div class="sports-layout">
+  <!-- Sidebar Remains Fixed -->
   <aside class="sports-sidebar">
     <app-sidebar />
   </aside>
+
+  <!-- Content Container -->
   <main class="sports-content">
-    <section class="promotions" aria-label="Featured promotions">
-  <div id="promotionCarousel" class="desktop-promotion-carousel carousel slide" data-bs-interval="5000">
-    <div class="carousel-inner">
-      @for (page of promotionPages; track $index) {
-      <div class="carousel-item" [class.active]="$first">
-        <div class="promotion-page">
-          @for (promotion of page; track promotion.src) {
-          <img [src]="promotion.src" [alt]="promotion.alt" class="promotion-slide" />
-          }
-        </div>
-      </div>
-      }
-    </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#promotionCarousel" data-bs-slide="prev">
-      <span class="bi bi-chevron-left"></span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#promotionCarousel" data-bs-slide="next">
-      <span class="icon-rounded-arrow-up"></span>
-    </button>
-  </div>
-  <div class="mobile-promotion-track" aria-label="Featured promotions">
-    @for (promotion of promotions; track promotion.src) {
-    <img [src]="promotion.src" [alt]="promotion.alt" class="promotion-slide" />
-    }
-  </div>
-</section>
-
-<div class="sports-feed">
-  <div class="mobile-category-tabs" role="group" aria-label="Event schedule">
-    @for (category of categories; track category.name) {
-    <button
-      type="button"
-      [class.active]="activeCategory === category.name"
-      [attr.aria-pressed]="activeCategory === category.name"
-      (click)="selectCategory(category.name)"
-    >
-      <span class="category-icon" [class.live-dot]="category.name === 'Live'">
-        @if (category.name === 'Live') {
-        <i class="fa-solid fa-circle-play"></i>
-        } @else {
-        <i class="icon-popular-new"></i>
-        }
-      </span>
-      {{ category.name }}
-    </button>
-    }
-  </div>
-
-<div class="sports-container">
-  @for (category of categories; track category.name) {
-  <div class="category-group" [class.mobile-inactive]="activeCategory !== category.name">
-    <!-- Category Header -->
-    <header class="category-header">
-      <span class="category-icon" [class.live-dot]="category.name === 'Live'">
-        @if (category.name === 'Live') {
-        <i class="fa-solid fa-circle-play"></i>
-        } @else {
-        <i class="icon-popular-new"></i>
-        }
-      </span>
-      <h2>{{ category.name }}</h2>
-    </header>
-
-    <!-- Accordion Container -->
-    <div class="accordion-card-group">
-      @for (section of category.sections; track section.id) {
-      <div class="sport-accordion">
-        <!-- Header Strip -->
-        <div class="sport-heading" (click)="toggleSection(section)">
-          <div class="sport-title">
-            <span class="sport-icon icon {{ section.icon }}"></span>
-            <strong>{{ section.title }}</strong>
-          </div>
-          
-          <div class="header-actions">
-            <a routerLink="/sports" (click)="$event.stopPropagation()">See All</a>
-            <span class="divider">|</span>
-            <i class="fa-solid fa-angle-up" [class.fa-angle-down]="!section.isExpanded"></i>
-          </div>
-        </div>
-
-        <!-- Match Events Body -->
-        @if (section.isExpanded) {
-        <div class="accordion-body">
-
-          @for (event of section.events; track event.league + event.playerOne) {
-
-          <!-- League Header -->
-          <div class="league-section-header">
-
-            <span class="league-name">
-              {{ event.league }}
-            </span>
-
-            <div class="market-headers">
-              <span>1</span>
-              <span>2</span>
-            </div>
+    @if (isChildRouteActive) {
+      <!-- Render Child Components (LeagueDetail / MatchDetail) Here -->
+      <router-outlet></router-outlet>
+    } @else {
+      <!-- Default Sports Main Feed (Live & Upcoming / Leagues Tab) -->
+      <div class="sports-detail-container">
+        <!-- Top Dark Navigation Header -->
+        <header class="detail-header">
+          <div class="top-bar">
+            <i class="fa-solid fa-chevron-left back" (click)="goBack()"></i>
+            <h1 class="page-title">Cricket</h1>
           </div>
 
-          <!-- Match -->
-          <article
-            class="event"
-            [class.live-event]="event.isLive"
-            [class.three-way]="event.odds.length === 6"
-          >
+          <!-- Segmented Tabs -->
+          <nav class="segment-tabs">
+            <button
+              type="button"
+              class="tab-btn"
+              [class.active]="activeMainTab === 'live'"
+              (click)="setMainTab('live')"
+            >
+              LIVE & UPCOMING
+            </button>
+            <button
+              type="button"
+              class="tab-btn"
+              [class.active]="activeMainTab === 'leagues'"
+              (click)="setMainTab('leagues')"
+            >
+              LEAGUES
+            </button>
+          </nav>
+        </header>
 
-            <!-- LIVE ICON -->
-            <div class="live-indicator">
-              @if (event.isLive) {
-              <i class="icon-fire"></i>
+        <!-- LEAGUES TAB CONTENT -->
+        @if (activeMainTab === 'leagues') {
+          <main class="leagues-container">
+            <div class="leagues-card">
+              @for (item of leagueList; track item.id) {
+                <div class="league-row-item" [routerLink]="['/sports', 'league', item.id]">
+                  <div class="league-title">
+                    @if (item.isVirtual) {
+                      <i class="fa-solid fa-bolt virtual-icon"></i>
+                    }
+                    <span>{{ item.name }}</span>
+                  </div>
+                  <div class="league-count-group">
+                    <span class="match-count">{{ item.matchCount }}</span>
+                    <i class="fa-solid fa-chevron-right arrow-icon"></i>
+                  </div>
+                </div>
               }
             </div>
+          </main>
+        }
 
+        <!-- LIVE & UPCOMING TAB CONTENT -->
+        @if (activeMainTab === 'live') {
+          <div class="filter-pills-bar">
+            <!-- Filter Pills Buttons -->
+            <button type="button" class="pill-btn live-pill" [class.active]="activeFilter === 'live'" (click)="setFilter('live')">
+              <i class="fa-solid fa-circle-play"></i> Live
+            </button>
+            <button type="button" class="pill-btn" [class.active]="activeFilter === 'popular'" (click)="setFilter('popular')">
+              <i class="icon-popular-new fire-icon"></i> Popular
+            </button>
+            <button type="button" class="pill-btn" [class.active]="activeFilter === 'upcoming'" (click)="setFilter('upcoming')">
+              <i class="fa-regular fa-calendar"></i> Upcoming
+            </button>
+            <button type="button" class="pill-btn" [class.active]="activeFilter === 'virtual'" (click)="setFilter('virtual')">
+              <i class="fa-solid fa-bolt"></i> Virtual Cricket
+            </button>
+          </div>
 
-            <!-- PLAYERS -->
-            <div class="players">
+          <main class="matches-feed">
+            @for (league of leagueGroups; track league.id) {
+              <div class="league-accordion-card">
+                <div class="league-header" (click)="toggleLeague(league)">
+                  <div class="league-title-group">
+                    @if (league.isLive) {
+                      <span class="live-tag">LIVE</span>
+                    }
+                    <span class="league-name">{{ league.name }}</span>
+                  </div>
 
-              <div class="player-row">
+                  <div class="header-right">
+                    <a [routerLink]="['/sports', 'league', league.id]" class="see-all-link" (click)="$event.stopPropagation()">
+                      See All
+                    </a>
+                    <span class="divider">|</span>
+                    <i class="fa-solid" [class.fa-chevron-up]="league.isExpanded" [class.fa-chevron-down]="!league.isExpanded"></i>
+                  </div>
+                </div>
 
-                @if (event.playerOneImage) {
-                <img [src]="event.playerOneImage" [alt]="event.playerOne" class="player-avatar" />
-                } @else {
-                <span class="player-avatar placeholder-avatar">
-                  {{ event.playerOne.charAt(0) }}
-                </span>
+                @if (league.isExpanded) {
+                  <div class="league-body">
+                    <div class="market-column-labels">
+                      <span>1</span>
+                      <span>2</span>
+                    </div>
+
+                    @for (match of league.events; track match.id) {
+                      <article class="match-row" [routerLink]="['/sports', 'league', league.id, 'match', match.id]">
+                        <div class="teams-col">
+                          <div class="team-line">
+                            @if (match.isPopular) { <i class="icon-popular-new match-fire"></i> }
+                            @if (match.teamOneLogo) { <img [src]="match.teamOneLogo" [alt]="match.teamOne" class="team-flag" /> }
+                            <span class="team-name">{{ match.teamOne }}</span>
+                          </div>
+                          <div class="team-line">
+                            @if (match.teamTwoLogo) { <img [src]="match.teamTwoLogo" [alt]="match.teamTwo" class="team-flag" /> }
+                            <span class="team-name">{{ match.teamTwo }}</span>
+                          </div>
+                        </div>
+
+                        <div class="status-col">
+                          @if (match.isInPlay) { <span class="in-play-badge">In Play</span> }
+                        </div>
+
+                        <div class="odds-col" (click)="$event.stopPropagation()">
+                          @for (odd of match.odds; track $index) {
+                            <button type="button" class="odd-box" [class.pink]="$index % 2 === 1">
+                              <strong>{{ odd.val }}</strong>
+                              <small>{{ odd.vol }}</small>
+                            </button>
+                          }
+                          <span class="extra-markets" [routerLink]="['/sports', 'league', league.id, 'match', match.id]">
+                            {{ match.extraMarkets }} <i class="fa-solid fa-chevron-right"></i>
+                          </span>
+                        </div>
+                      </article>
+                    }
+                  </div>
                 }
-
-                <span class="player-name">
-                  {{ event.playerOne }}
-                </span>
-
               </div>
-
-
-              <div class="player-row">
-
-                @if (event.playerTwoImage) {
-                <img [src]="event.playerTwoImage" [alt]="event.playerTwo" class="player-avatar" />
-                } @else {
-                <span class="player-avatar placeholder-avatar">
-                  {{ event.playerTwo.charAt(0) }}
-                </span>
-                }
-
-                <span class="player-name">
-                  {{ event.playerTwo }}
-                </span>
-
-              </div>
-
-            </div>
-
-
-            <!-- SCORE / TIME -->
-            <div class="match-score">
-
-              @if (event.isLive) {
-
-              <span class="text text1">{{ event.score }}</span>
-
-              <span class="text text2">{{ event.setInfo }}</span>
-
-              } @else {
-
-              <span class="text text1">{{ event.dateStr }}</span>
-
-              <span class="text text2">{{ event.timeStr }}</span>
-
-              }
-
-            </div>
-
-            @if (event.isLive) {
-            <span class="live-status">In Play</span>
             }
-
-            <!-- ODDS -->
-            <div class="odds-container">
-
-              @for (odd of event.odds; track $index) {
-
-              <button type="button" class="odd-button" [class.pink]="$index % 2 === 1">
-
-                <strong>{{ odd.val }}</strong>
-
-                <small>{{ odd.vol }}</small>
-
-              </button>
-
-              }
-
-            </div>
-
-
-            <!-- EXTRA MARKETS -->
-            <div class="extra-markets">
-              <span>{{ event.extra }}</span>
-              <i class="fa-solid fa-angle-right"></i>
-            </div>
-
-          </article>
-
-          }
-
-        </div>
+          </main>
         }
+
+        <!-- Compliance Footer -->
+        <app-footer />
       </div>
-      }
-    </div>
-
-    <!-- Casino Ribbon directly below Live section -->
-    @if (category.name === 'Live') {
-    <div class="standalone-casino-carousel">
-      <button class="scroll-btn prev" type="button" (click)="scrollGames(gamesContainer, -200)">
-        <i class="bi bi-chevron-left"></i>
-      </button>
-
-      <div class="games-scroll" #gamesContainer>
-        @for (game of casinoGames; track game.title) {
-        <div class="game-card">
-          <img [src]="game.img" [alt]="game.title" />
-          <span>{{ game.title }}</span>
-        </div>
-        }
-      </div>
-
-      <button class="scroll-btn next" type="button" (click)="scrollGames(gamesContainer, 200)">
-        <i class="bi bi-chevron-right"></i>
-      </button>
-    </div>
     }
-  </div>
-  }
-</div>
-
-<!-- Top Casino Games Section (Appears after accordion) -->
-<section class="top-casino-section">
-  <div class="section-header">
-    <div class="header-title">
-      <span class="heart-icon">❤️</span>
-      <h3>Top Casino Games</h3>
-    </div>
-    <a routerLink="/casino" class="more-link">
-      More <i class="bi bi-chevron-right"></i>
-    </a>
-  </div>
-
-  <div class="casino-grid">
-    @for (game of topCasinoGames; track game.id) {
-    <div class="casino-card">
-      <img [src]="game.image" [alt]="game.title" loading="lazy" />
-    </div>
-    }
-  </div>
-</section>
-</div>
   </main>
+
+  <!-- Betslip Remains Fixed -->
   <aside class="sports-betslip">
     <app-betslip />
   </aside>

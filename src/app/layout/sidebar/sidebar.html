@@ -1,13 +1,61 @@
 <aside class="sports-sidebar" aria-label="Sports categories">
-  <a class="side-link" routerLink="/casino"><span class="side-icon"><i class="icon icon-exchange-games" aria-hidden="true"></i></span> Live Casino</a>
-  <a class="side-link" routerLink="/sports"><span class="side-icon"><i class="icon icon-sport-cricket" aria-hidden="true"></i></span> Cricket</a>
-  <a class="side-link" routerLink="/sports"><span class="side-icon"><i class="icon icon-virtual-sports" aria-hidden="true"></i></span> Virtual Sports</a>
-  <a class="side-link" routerLink="/sports"><span class="side-icon"><i class="icon icon-sport-football" aria-hidden="true"></i></span> Football</a>
-  <a class="side-link" routerLink="/sports"><span class="side-icon"><i class="icon icon-sport-tennis" aria-hidden="true"></i></span> Tennis</a>
-  <a class="side-link" routerLink="/sports"><span class="side-icon"><i class="icon icon-sport-americanfootball" aria-hidden="true"></i></span> American Football</a>
-  <a class="side-link" routerLink="/sports"><span class="side-icon"><i class="icon icon-sport-basketball" aria-hidden="true"></i></span> Basketball</a>
-  <a class="side-link" routerLink="/sports"><span class="side-icon"><i class="icon icon-sport-horseracing" aria-hidden="true"></i></span> Horse Racing</a>
-  <a class="side-link" routerLink="/sports"><span class="side-icon"><i class="icon icon-sport-greyhoundracing" aria-hidden="true"></i></span> Greyhound Racing</a>
-  <a class="side-link" routerLink="/sports"><span class="side-icon"><i class="icon icon-sport-baseball" aria-hidden="true"></i></span> Baseball</a>
-  <a class="side-link" routerLink="/sports"><span class="side-icon"><i class="icon icon-sport-mixedmartialarts" aria-hidden="true"></i></span> Mixed Martial Arts</a>
+
+  <!-- Live Casino is hidden on sports routes -->
+  @if (!isSportsRoute) {
+  <a class="side-link" routerLink="/casino" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+    <span class="side-icon">
+      <i class="icon icon-exchange-games" aria-hidden="true"></i>
+    </span>
+
+    <span class="link-title">Live Casino</span>
+  </a>
+  }
+
+  @for (category of categories; track category.id) {
+  <div class="sidebar-group">
+
+    <!-- Main category navigation -->
+    <a class="side-link" [routerLink]="category.route" [class.active]="
+          category.id === 'cricket' &&
+          isSportsRoute &&
+          !isLeagueTabActive
+        " (click)="toggleCategory(category.id, $event)">
+      <span class="side-icon">
+        <i class="icon {{ category.icon }}" aria-hidden="true"></i>
+      </span>
+
+      <span class="link-title">
+        {{ category.title }}
+      </span>
+
+      <!-- Cricket dropdown arrow -->
+      @if (
+      category.id === 'cricket' &&
+      showCricketDropdown()
+      ) {
+      <i class="fa-solid dropdown-arrow" [class.fa-chevron-up]="expandedCategoryMap[category.id]"
+        [class.fa-chevron-down]="!expandedCategoryMap[category.id]" aria-hidden="true"></i>
+      }
+    </a>
+
+    <!-- Cricket sub-leagues -->
+    @if (
+    category.id === 'cricket' &&
+    showCricketDropdown() &&
+    expandedCategoryMap[category.id] &&
+    !isLeagueTabActive
+    ) {
+    <div class="sub-leagues-list">
+      @for (sub of category.subLeagues; track sub.id) {
+      <a class="sub-league-item" [routerLink]="['/sports', 'league', sub.id]" routerLinkActive="active-sub-league">
+        <span class="sub-name">{{ sub.name }}</span>
+        <span class="sub-count">{{ sub.count }}</span>
+      </a>
+      }
+    </div>
+    }
+
+  </div>
+  }
+
 </aside>

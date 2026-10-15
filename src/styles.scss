@@ -604,14 +604,88 @@ a {
   }
 }
 
+// @media (max-width: 640px) {
+//   .sports-content {
+//     overflow-x: hidden;
+//     padding-bottom: calc(clamp(120px, 18dvh, 140px) + 48px);
+//   }
+
+//   .sports-content .sports-container {
+//     gap: 6px;
+//     margin: 0;
+//   }
+
+//   .sports-content .header-title h3 {
+//     font-size: 17px;
+//   }
+
+//   .sports-content .casino-grid {
+//     display: grid;
+//     grid-template-columns: repeat(3, minmax(0, 1fr));
+//     gap: 8px;
+//   }
+
+//   .sports-content .top-casino-section {
+//     position: fixed;
+//     z-index: 14;
+//     right: 0;
+//     bottom: 48px;
+//     left: 0;
+//     height: clamp(120px, 18dvh, 140px);
+//     padding: 12px;
+//     margin-top: 0;
+//     overflow-x: hidden;
+//     overflow-y: auto;
+//     overscroll-behavior: contain;
+//     border-radius: 12px 12px 0 0;
+//     background: #ffffff;
+//     box-shadow: 0 -3px 12px rgb(0 0 0 / 12%);
+//     display: flex;
+//     flex-direction: column;
+//     transition: height 360ms cubic-bezier(0.22, 0.61, 0.36, 1);
+//     scrollbar-width: none;
+//     touch-action: pan-y;
+//     -webkit-overflow-scrolling: touch;
+//   }
+
+//   .sports-content .top-casino-section::-webkit-scrollbar {
+//     display: none;
+//   }
+
+//   .sports-content .top-casino-section.casino-expanded {
+//     height: calc(100dvh - 108px);
+//   }
+
+//   .sports-content .top-casino-section .casino-grid {
+//     flex: 0 0 auto;
+//     align-content: start;
+//     grid-auto-rows: max-content;
+//     overflow: visible;
+//   }
+
+//   .sports-content .top-casino-section .casino-card {
+//     width: 100%;
+//     aspect-ratio: 1.6 / 1;
+//   }
+
+//   .sports-content .section-header {
+//     flex: 0 0 auto;
+//     margin-bottom: 8px;
+//   }
+
+//   .sports-content .header-title h3 {
+//     font-size: 17px;
+//   }
+// }
 @media (max-width: 640px) {
-  .sports-content .sports-container {
-    gap: 10px;
+  .sports-content {
+    overflow-x: hidden;
+    padding-bottom: calc(clamp(120px, 18dvh, 140px) + 48px);
   }
 
-  .sports-content .top-casino-section {
-    padding: 12px;
-    background: #ffffff;
+  .sports-content .sports-container {
+    gap: 6px;
+    margin: 0;
   }
 
   .sports-content .header-title h3 {
@@ -619,19 +693,97 @@ a {
   }
 
   .sports-content .casino-grid {
+    display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
   }
 
   .sports-content .top-casino-section {
-    padding: 12px;
+    position: fixed;
+    z-index: 100; /* Higher z-index to smoothly overlap over section 1 content */
+    right: 0;
+    bottom: 48px;
+    left: 0;
+    height: clamp(120px, 18dvh, 140px);
+    padding: 12px 14px;
+    margin-top: 0;
+    
+    /* Hardware acceleration for 60fps smooth animation */
+    will-change: height, transform;
+    transform: translateZ(0); 
+
+    /* Smooth physics cubic-bezier curve matching native sheet expansion */
+    transition: height 380ms cubic-bezier(0.16, 1, 0.3, 1), 
+                box-shadow 380ms ease-in-out;
+
+    /* Overlap glassmorphism look */
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    
+    border-radius: 16px 16px 0 0;
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.16);
+
+    display: flex;
+    flex-direction: column;
+
+    /* Momentum scrolling configuration */
+    overflow-x: hidden;
+    overflow-y: auto;
+    overscroll-behavior-y: contain;
+    touch-action: pan-y;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    /* Pull handle indicator at the top center of sheet */
+    &::before {
+      content: '';
+      display: block;
+      width: 36px;
+      height: 4px;
+      border-radius: 2px;
+      background: #d0d4dc;
+      margin: 0 auto 8px auto;
+      flex-shrink: 0;
+    }
+  }
+
+  .sports-content .top-casino-section.casino-expanded {
+    /* Full expanded sheet height overlapping Section 1 */
+    height: calc(100dvh - 96px);
+    box-shadow: 0 -8px 28px rgba(0, 0, 0, 0.28);
+  }
+
+  .sports-content .top-casino-section .casino-grid {
+    flex: 0 0 auto;
+    align-content: start;
+    grid-auto-rows: max-content;
+    overflow: visible;
+  }
+
+  .sports-content .top-casino-section .casino-card {
+    width: 100%;
+    aspect-ratio: 1.6 / 1;
+    transition: transform 0.15s ease;
+
+    &:active {
+      transform: scale(0.97);
+    }
+  }
+
+  .sports-content .section-header {
+    flex: 0 0 auto;
+    margin-bottom: 8px;
   }
 
   .sports-content .header-title h3 {
     font-size: 17px;
   }
 }
-
-
 
 :root {
     --font-headline: 16px;
