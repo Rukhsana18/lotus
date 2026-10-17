@@ -1,41 +1,60 @@
 .match-detail-page {
   display: flex;
   flex-direction: column;
-  min-height: 100%;
-  background: #f2f5f5;
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: hidden;
+  /* Prevents global horizontal scrolling */
+  background: #eef2f3;
 
   .detail-header {
-    background: #0f2327;
+    background: #0d1e21;
     color: #ffffff;
+    width: 100%;
 
     .top-bar {
       display: flex;
       align-items: center;
-      gap: 12px;
-      height: 48px;
-      padding: 0 16px;
+      gap: 8px;
+      height: 38px;
+      padding: 0 10px;
+      background: #163439;
 
-      .back-icon {
-        cursor: pointer;
-        padding-right: 8px;
-        border-right: 1px solid rgba(255, 255, 255, 0.2);
+      .edit-icon {
+        font-size: 12px;
       }
 
       .breadcrumb {
-        display: flex;
-        align-items: center;
-        gap: 6px;
-        font-size: 12px;
+        flex: 1 1 auto;
+        min-width: 0;
+        font-size: 11px;
         font-weight: 700;
-        flex: 1;
+        overflow: hidden;
+
+        .breadcrumb-track {
+          display: flex;
+          width: max-content;
+          will-change: transform;
+        }
+
+        .breadcrumb-content {
+          display: flex;
+          flex: 0 0 auto;
+          align-items: center;
+          gap: 5px;
+          white-space: nowrap;
+        }
 
         .sep {
-          opacity: 0.4;
+          font-size: 9px;
+          opacity: 0.5;
         }
       }
 
+
+
       .info-icon {
-        font-size: 12px;
+        font-size: 13px;
         cursor: pointer;
       }
     }
@@ -43,7 +62,8 @@
     .market-sub-nav {
       display: flex;
       justify-content: center;
-      height: 40px;
+      height: 34px;
+      background: #081315;
 
       .sub-nav-btn {
         background: none;
@@ -51,71 +71,113 @@
         color: #ffffff;
         font-size: 11px;
         font-weight: 700;
-        padding: 0 20px;
+        border-bottom: 2px solid #00ba62;
       }
     }
   }
 
   .match-content {
     flex: 1;
-    padding: 16px;
     display: flex;
     flex-direction: column;
-    gap: 14px;
+    gap: 8px;
+    padding: 0;
+    width: 100%;
+    box-sizing: border-box;
   }
 
-  /* Filter Pills Bar & Wrapper */
+  /* Match Schedule Banner */
+  .match-schedule-card {
+    background: #ffffff;
+    border-radius: 0;
+    overflow: hidden;
+
+    .accordion-title {
+      font-size: 16px;
+    }
+
+    .teams-versus-banner {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      min-height: 76px;
+      padding: 8px 6px;
+
+      .team-block {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 4px;
+
+        .flag img {
+          width: 28px;
+          height: 28px;
+          border-radius: 50%;
+        }
+
+        .team-name {
+          font-size: 12px;
+          font-weight: 500;
+        }
+      }
+
+      .schedule-time {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .time-label {
+          font-size: 10px;
+          color: #777777;
+        }
+
+        strong {
+          font-size: 13px;
+          font-weight: 700;
+          color: #111111;
+        }
+      }
+    }
+  }
+
+  /* Filter Pills Carousel */
   .filter-pills-wrapper {
     position: relative;
-    display: flex;
-    align-items: center;
     width: 100%;
+    margin: 0;
+    padding: 0 8px;
 
     .filter-pills-bar {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 6px;
       overflow-x: auto;
-      scroll-behavior: smooth;
-      padding: 4px 40px 4px 0;
-      scrollbar-width: none; /* Firefox */
+      touch-action: pan-x;
+      scrollbar-width: none;
+      padding: 0 0 2px;
 
       &::-webkit-scrollbar {
-        display: none; /* Chrome, Safari, Opera */
+        display: none;
       }
 
       .pill-btn {
         display: inline-flex;
         align-items: center;
-        gap: 8px;
-        height: 38px;
-        padding: 0 18px;
+        gap: 5px;
+        height: 32px;
+        padding: 0 12px;
         border: none;
-        border-radius: 20px;
+        border-radius: 16px;
         background: #ffffff;
         color: #111111;
-        font-size: 14px;
+        font-size: 12px;
         font-weight: 700;
         white-space: nowrap;
-        cursor: pointer;
-        transition: all 0.2s ease;
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+        flex-shrink: 0;
 
-        /* Special Active Black Pill for "All" */
         &.all-pill {
           background: #181818;
           color: #ffffff;
-          padding: 0 20px;
-
-          i {
-            font-size: 11px;
-            color: #ffffff;
-          }
-
-          &.active {
-            background: #181818;
-            color: #ffffff;
-          }
         }
 
         &.active:not(.all-pill) {
@@ -128,255 +190,110 @@
           }
         }
 
-        .pill-title {
-          font-weight: 700;
-        }
-
-        /* Light Gray Pill Counter Badges */
         .count-badge {
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          min-width: 24px;
-          height: 24px;
-          padding: 0 6px;
-          border-radius: 12px;
-          background: #e4e4e4;
-          color: #222222;
-          font-size: 12px;
-          font-weight: 600;
+          padding: 1px 5px;
+          border-radius: 10px;
+          background: #e2e8f0;
+          font-size: 10px;
         }
       }
     }
 
-    /* Floating Right Scroll Arrow Button */
-    .scroll-arrow-btn {
-      position: absolute;
-      right: 0;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      border: none;
+  }
+
+  /* Fluid Mobile Card Grid Structure */
+  .match-accordion {
+    margin: 0 8px;
+    background: transparent;
+
+    .odds-card {
       background: #ffffff;
-      color: #111111;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      z-index: 10;
-      transition: background 0.15s ease;
+      border: 0;
+      border-radius: 8px;
+      overflow: hidden;
+      width: 100%;
+      margin-bottom: 6px;
 
-      &:hover {
-        background: #f0f0f0;
-      }
+      .mobile-odds-box,
+      .mobile-fancy-box {
+        padding: 6px 8px;
+        width: 100%;
+        box-sizing: border-box;
 
-      i {
-        font-size: 12px;
-      }
-    }
-  }
-
-  /* Schedule Card */
-  .match-schedule-card {
-    background: #ffffff;
-    border-bottom-right-radius: 8px;
-    border-bottom-left-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
-
-    .teams-versus-banner {
-      display: flex;
-      align-items: center;
-      justify-content: space-around;
-      padding: 10px;
-
-      .team-block {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 8px;
-
-        .flag {
-          font-size: 32px;
-        }
-
-        .team-name {
-          font-size: 15px;
-          font-weight: 700;
-        }
-      }
-
-      .schedule-time {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        font-size: 14px;
-        color: #666666;
-
-        strong {
-          color: #111111;
-          font-weight: 700;
-        }
-      }
-    }
-  }
-
-  /* Odds Card & Accordion Styling */
-  .odds-card {
-    background: #ffffff;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
-
-    .odds-table {
-      padding: 12px;
-
-      .back-lay-headers {
-        display: flex;
-        justify-content: flex-end;
-        gap: 80px;
-        padding-right: 70px;
-        font-size: 12px;
-        font-weight: 700;
-        color: #666666;
-        margin-bottom: 6px;
-      }
-
-      .runner-row {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 6px 0;
-
-        .runner-name {
-          font-size: 14px;
-          font-weight: 700;
-        }
-
-        .odds-grid {
+        .back-lay-headers,
+        .no-yes-headers {
           display: flex;
-          gap: 4px;
-
-          .cell {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            width: 52px;
-            height: 38px;
-            border: none;
-            border-radius: 4px;
-            font-size: 13px;
-            cursor: pointer;
-
-            &.back-light {
-              background: #e3f3fe;
-              opacity: 0.8;
-            }
-            &.back-main {
-              background: #cbe3f9;
-              font-weight: 700;
-            }
-            &.lay-main {
-              background: #fbd3e0;
-              font-weight: 700;
-            }
-            &.lay-light {
-              background: #fde8f0;
-              opacity: 0.8;
-            }
-
-            small {
-              font-size: 9px;
-              color: #555555;
-            }
-          }
+          justify-content: flex-end;
+          gap: 32px;
+          padding-right: 20px;
+          font-size: 9px;
+          font-weight: 700;
+          color: #555555;
+          margin-bottom: 2px;
         }
-      }
-    }
 
-    /* Fancy Table */
-    .fancy-table {
-      padding: 12px;
-
-      .no-yes-headers {
-        display: flex;
-        justify-content: flex-end;
-        gap: 40px;
-        padding-right: 75px;
-        font-size: 12px;
-        font-weight: 700;
-        color: #666666;
-        margin-bottom: 6px;
-      }
-
-      .fancy-row {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 8px 0;
-        border-bottom: 1px solid #f0f2f4;
-
-        .fancy-title {
+        .runner-row,
+        .fancy-row {
           display: flex;
           align-items: center;
-          gap: 8px;
-          font-size: 14px;
-          font-weight: 700;
+          justify-content: space-between;
+          min-height: 40px;
+          padding: 4px 0;
+          width: 100%;
+          border-top: 1px solid #eef0f2;
 
-          .ladder-icon {
-            color: #888888;
-          }
-        }
-
-        .fancy-grid {
-          display: flex;
-          gap: 4px;
-
-          .cell {
+          .runner-name,
+          .fancy-title {
+            font-size: 12px;
+            font-weight: 500;
+            color: #111111;
             display: flex;
-            flex-direction: column;
             align-items: center;
-            justify-content: center;
-            width: 56px;
-            height: 38px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
+            gap: 6px;
+            flex: 1;
+            padding-right: 8px;
+          }
 
-            &.lay-main {
-              background: #fbd3e0;
-            }
-            &.back-main {
-              background: #b5d8fb;
-            }
+          .odds-cells {
+            display: flex;
+            gap: 4px;
+            flex-shrink: 0;
 
-            strong {
-              font-size: 13px;
-            }
-            small {
-              font-size: 9px;
-              color: #555555;
+            .cell {
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              justify-content: center;
+              width: 56px;
+              height: 36px;
+              border: none;
+              border-radius: 4px;
+
+              &.back-cell {
+                background: #d8ecf8;
+                color: #0d4b75;
+              }
+
+              &.lay-cell {
+                background: #fbdce5;
+                color: #8c1d40;
+              }
+
+              strong {
+                font-size: 12px;
+                font-weight: 700;
+              }
+
+              small {
+                font-size: 8px;
+                opacity: 0.8;
+              }
             }
           }
         }
       }
     }
   }
-}
-
-a {
-  text-decoration: none;
-  color: white;
-}
-
-.sport,
-.league {
-  color: white;
-  opacity: 0.7;
 }
 
 .accordion-button {
@@ -385,33 +302,53 @@ a {
   width: 100%;
   background: #ffffff !important;
   box-shadow: none !important;
+  padding: 8px 10px !important;
 
   .accordion-title {
     font-weight: 700;
-    color: black;
+    color: #111111;
     font-size: 12px;
-    flex-grow: 1; /* Pushes play button and chevron arrow to the far right */
+    flex-grow: 1;
   }
 
   .play-btn {
-    font-size: 16px;
+    font-size: 15px;
     color: #9d9c9d;
-    cursor: pointer;
   }
 
   .chevron-icon {
-    font-size: 13px;
+    font-size: 12px;
     color: #555555;
-    margin-left: 8px;
-    transition: transform 0.2s ease;
+    margin-left: 6px;
   }
 
-  /* Disable Bootstrap's built-in pseudo chevron */
   &::after {
     display: none !important;
   }
 }
 
 .accordion-item {
-  margin-block: 16px;
+  margin-block: 0;
+}
+
+@keyframes breadcrumb-bounce {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(var(--breadcrumb-shift, 0px));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .breadcrumb.animate .breadcrumb-track {
+    animation: none;
+  }
+}
+
+@media(max-width: 640px) {
+  .breadcrumb.animate .breadcrumb-track {
+    animation: breadcrumb-bounce 3s ease-in-out alternate infinite;
+  }
 }

@@ -1,17 +1,21 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { CommonModule, Location } from '@angular/common';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { Footer } from '../../layout/footer/footer';
+import { BootstrapTooltipDirective } from '../../shared/bootstrap-tooltip.directive';
 
 @Component({
   selector: 'app-match-detail',
   standalone: true,
-  imports: [CommonModule, RouterLink, Footer],
+  imports: [CommonModule, Footer, BootstrapTooltipDirective],
   templateUrl: './match-detail.html',
   styleUrl: './match-detail.scss',
 })
-export class MatchDetail implements OnInit {
-  @ViewChild('filterContainer') filterContainer!: ElementRef<HTMLDivElement>;
+export class MatchDetail implements AfterViewInit, OnDestroy, OnInit {
+  @ViewChild('breadcrumb') private breadcrumb!: ElementRef<HTMLElement>;
+  @ViewChild('breadcrumbTrack') private breadcrumbTrack!: ElementRef<HTMLElement>;
+
+  private breadcrumbResizeObserver?: ResizeObserver;
 
   leagueId = '';
   matchId = '';
@@ -44,6 +48,28 @@ export class MatchDetail implements OnInit {
     });
   }
 
+  ngAfterViewInit(): void {
+    if (typeof ResizeObserver === 'undefined') {
+      return;
+    }
+
+    const updateBreadcrumbShift = (): void => {
+      const containerWidth = this.breadcrumb.nativeElement.clientWidth;
+      const textWidth = this.breadcrumbTrack.nativeElement.scrollWidth;
+      const shift = containerWidth - textWidth;
+      this.breadcrumbTrack.nativeElement.style.setProperty('--breadcrumb-shift', `${shift}px`);
+    };
+
+    this.breadcrumbResizeObserver = new ResizeObserver(updateBreadcrumbShift);
+    this.breadcrumbResizeObserver.observe(this.breadcrumb.nativeElement);
+    this.breadcrumbResizeObserver.observe(this.breadcrumbTrack.nativeElement);
+    updateBreadcrumbShift();
+  }
+
+  ngOnDestroy(): void {
+    this.breadcrumbResizeObserver?.disconnect();
+  }
+
   goBack(): void {
     this.location.back();
   }
@@ -70,13 +96,4 @@ export class MatchDetail implements OnInit {
     }
   }
 
-  // Scroll pill container to the right
-  scrollRight(): void {
-    if (this.filterContainer) {
-      this.filterContainer.nativeElement.scrollBy({
-        left: 200,
-        behavior: 'smooth',
-      });
-    }
-  }
 }

@@ -27,14 +27,23 @@
             <span>2</span>
           </div>
 
-          <article class="match-row">
+          <a
+            class="match-row"
+            [routerLink]="['/sports', 'league', leagueId, 'match', 'ind-vs-wi']"
+            aria-label="Open India v West Indies match details"
+          >
             <div class="teams-col">
               <div class="team">
-                <span class="flag">🇮🇳</span>
+                <span class="flag">
+                  <img src="../../../assets/flags/india.png" alt="">
+                </span>
                 <span class="name">India</span>
               </div>
               <div class="team">
-                <span class="flag">🇭🇹</span>
+                <span class="flag">
+                  <img src="../../../assets/flags/west-indies.png" alt="">
+
+                </span>
                 <span class="name">West Indies</span>
               </div>
             </div>
@@ -45,15 +54,15 @@
             </div>
 
             <div class="action-col">
-              <button type="button" class="more-markets-btn" (click)="openMatchDetail('ind-vs-wi')">
+              <span class="more-markets-btn">
                 More Markets <i class="fa-solid fa-chevron-right"></i>
-              </button>
+              </span>
             </div>
 
             <div class="extra-count">
               +53 <i class="fa-solid fa-chevron-right"></i>
             </div>
-          </article>
+          </a>
         </div>
       }
     </div>

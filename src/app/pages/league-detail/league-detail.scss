@@ -38,7 +38,7 @@
 
   .content-feed {
     flex: 1;
-    padding: 16px;
+    margin: 8px 0;
 
     .fixture-card {
       background: #ffffff;
@@ -50,11 +50,11 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        height: 42px;
+        height: 36px;
         padding: 0 16px;
         background: #504447;
         color: #ffffff;
-        font-size: 14px;
+        font-size: 12px;
         font-weight: 700;
         cursor: pointer;
       }
@@ -77,6 +77,9 @@
           align-items: center;
           justify-content: space-between;
           padding: 8px 0;
+          color: inherit;
+          text-decoration: none;
+          cursor: pointer;
 
           .teams-col {
             display: flex;
@@ -150,4 +153,9 @@ a {
   color: white;
   opacity: .7;
   cursor: pointer
+}
+
+.flag img {
+  width: 24px;
+  height: 24px;
 }

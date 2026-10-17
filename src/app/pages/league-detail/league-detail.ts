@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule, Location } from '@angular/common';
-import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { Footer } from '../../layout/footer/footer';
 
 @Component({
@@ -19,7 +19,6 @@ export class LeagueDetail implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private router: Router,
     private location: Location
   ) {}
 
@@ -37,7 +36,4 @@ export class LeagueDetail implements OnInit {
     this.isExpanded = !this.isExpanded;
   }
 
-  openMatchDetail(matchId: string): void {
-    this.router.navigate(['/sports', 'league', this.leagueId, 'match', matchId]);
-  }
 }

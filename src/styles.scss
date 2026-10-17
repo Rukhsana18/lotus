@@ -87,6 +87,10 @@ body {
     padding: 0 9px;
   }
 
+  .sports-layout:has(app-match-detail) {
+    padding: 0;
+  }
+
   .sports-layout > .sports-sidebar {
     display: none;
   }

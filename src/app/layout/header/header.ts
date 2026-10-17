@@ -1,22 +1,23 @@
-import { Component, HostListener, computed, inject, output } from '@angular/core';
-import { DatePipe } from '@angular/common';
+import { Component, computed, inject, output } from '@angular/core';
+import { DatePipe, Location } from '@angular/common';
 import { NavigationEnd, Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { filter, interval, map, startWith } from 'rxjs';
-import { Sidebar } from '../sidebar/sidebar';
+import { SPORTS_SIDEBAR_DATA } from '../../data/sports-sidebar.data';
 
 @Component({
-  imports: [DatePipe, RouterLink, RouterLinkActive, Sidebar],
+  imports: [DatePipe, RouterLink, RouterLinkActive],
   selector: 'app-header',
   styleUrl: './header.scss',
   templateUrl: './header.html',
 })
 export class Header {
   private readonly router = inject(Router);
+  private readonly location = inject(Location);
 
   readonly mobileMenuOpenChange = output<boolean>();
-
   protected mobileMenuOpen = false;
+  protected readonly sportsCategories = SPORTS_SIDEBAR_DATA;
 
   private readonly currentUrl = toSignal(
     this.router.events.pipe(
@@ -32,6 +33,8 @@ export class Header {
     return path.startsWith('/casino') || new URLSearchParams(query).get('mode') === 'casino';
   });
 
+  protected readonly isSportsRoute = computed(() => this.currentUrl().startsWith('/sports'));
+
   protected readonly currentDate = new Date();
 
   protected readonly currentTime = toSignal(
@@ -39,21 +42,8 @@ export class Header {
     { initialValue: new Date() }
   );
 
-  protected toggleMobileMenu(): void {
-    this.setMobileMenuOpen(!this.mobileMenuOpen);
+  protected goBack(): void {
+    this.location.back();
   }
 
-  protected closeMobileMenu(): void {
-    this.setMobileMenuOpen(false);
-  }
-
-  private setMobileMenuOpen(isOpen: boolean): void {
-    this.mobileMenuOpen = isOpen;
-    this.mobileMenuOpenChange.emit(isOpen);
-  }
-
-  @HostListener('document:keydown.escape')
-  protected closeMobileMenuOnEscape(): void {
-    this.closeMobileMenu();
-  }
 }

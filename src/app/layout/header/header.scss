@@ -26,13 +26,7 @@
   font-size: 19px;
   letter-spacing: 5px;
   text-decoration: none;
-  margin-left: 4px
-}
-
-.brand-mark {
-  color: #d5b653;
-  font-size: 30px;
-  letter-spacing: 0;
+  margin-left: 4px;
 }
 
 .primary-nav {
@@ -43,7 +37,7 @@
   margin-left: 90px;
 }
 
-.menu-button {
+.back-button {
   display: none;
   border: 0;
   padding: 0;
@@ -68,7 +62,6 @@
 
 .primary-nav a .nav-icon {
   display: inline-flex;
-  // width: 28px;
   flex: 0 0 28px;
   align-items: center;
   justify-content: center;
@@ -78,22 +71,14 @@
 
 .primary-nav a.active {
   color: #61b881 !important;
-  min-width: 64px;
   font-weight: 500;
-  font-size: 12px;
-  font-family: lato, sans-serif;
 
   .nav-icon {
-    color: #61b881 !important
+    color: #61b881 !important;
   }
 }
 
 .primary-nav a.active::after {
-  // position: absolute;
-  // right: 0;
-  // bottom: 0;
-  // left: 0;
-  // height: 5px;
   background: #61b881;
   content: "";
   position: absolute;
@@ -101,7 +86,6 @@
   height: 4px;
   border-radius: 4px;
   width: 90%;
-  left: auto;
 }
 
 .header-actions {
@@ -115,7 +99,6 @@
   white-space: nowrap;
   font-weight: 600;
   font-size: 12px;
-  line-height: 16px;
 }
 
 .search-button,
@@ -131,7 +114,6 @@
   justify-content: center;
   background: transparent;
   font-size: 20px;
-  line-height: 1;
   text-decoration: none;
 }
 
@@ -139,42 +121,34 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 6px;
   padding: 0 10px;
   background: #2b5059;
   border-radius: 4px;
-  font-weight: 400;
   font-size: 12px;
   height: 40px;
 }
 
-.login-icon {
-  font-size: 16px;
+.mobile-sports-carousel-wrapper {
+  display: none;
 }
 
+/* Mobile Responsive Slider Navigation */
 @media (max-width: 760px) {
   .site-header {
-    height: 60px;
-    min-height: 60px;
-    flex: 0 0 60px;
-    flex-wrap: nowrap;
-    gap: 14px;
+    height: 50px;
+    min-height: 50px;
+    flex: 0 0 50px;
+    gap: 10px;
     padding: 0 10px;
-    transition: transform 250ms ease;
+    background: #163439;;
   }
 
-  .site-header.menu-open {
-    transform: translateX(min(268px, 65vw));
-  }
-
-  .menu-button {
+  .back-button {
     display: inline-flex;
-    width: 30px;
-    height: 40px;
-    flex: 0 0 30px;
     align-items: center;
     justify-content: center;
-    font-size: 12px;
+    font-size: 16px;
+    color: #ffffff;
   }
 
   .primary-nav {
@@ -182,85 +156,83 @@
   }
 
   .brand {
-    min-width: 0;
-    flex: 1 1 auto;
-    font-size: 22px;
     margin: 0;
   }
 
   .brand img {
-    display: block;
-    width: min(130px, 30vw);
-    height: auto;
+    height: 22px;
+    width: auto;
   }
 
-  .header-actions time {
-    display: none;
-  }
-
-  .header-actions {
-    flex: 0 0 auto;
-    gap: 14px;
-  }
-
+  .header-actions time,
   .header-actions .border-1 {
     display: none;
   }
 
-  .search-button {
-    flex: 0 0 20px;
-    font-size: 20px;
+  .header-actions {
+    gap: 10px;
   }
 
   .login-button {
-    flex: 0 0 auto;
-    height: 40px;
-    padding: 0 12px;
+    height: 30px;
+    padding: 0 10px;
+    font-size: 11px;
   }
-}
 
-@media (prefers-reduced-motion: reduce) {
-  .site-header {
-    transition: none;
+  /* Slider Bar Container */
+  .mobile-sports-carousel-wrapper {
+    display: flex;
+    align-items: center;
+    background: #0b1a1c;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    position: relative;
+    padding: 6px 4px;
+
+    .mobile-sports-subnav {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      overflow-x: auto;
+      scroll-behavior: smooth;
+      width: 100%;
+      touch-action: pan-x;
+      scrollbar-width: none;
+      
+
+      &::-webkit-scrollbar {
+        display: none; /* Hide Chrome/Safari scrollbar */
+      }
+
+      .subnav-item {
+        display: flex;
+        min-width: 0;
+        flex: 0 0 20%;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 3px;
+        padding: 2px 0;
+        color: #8b9fa3;
+        text-decoration: none;
+        font-size: 9px;
+        font-weight: 600;
+        line-height: 1.1;
+        text-align: center;
+        overflow-wrap: anywhere;
+
+        .side-icon {
+          font-size: 17px;
+          flex-shrink: 0;
+        }
+
+        &.active {
+          color: #38b6ff;
+
+          .side-icon {
+            color: #38b6ff;
+          }
+        }
+      }
+    }
   }
-}
-
-.mobile-navigation {
-  position: fixed;
-  z-index: 1000;
-  inset: 0;
-}
-
-.mobile-navigation-backdrop {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  padding: 0;
-  border: 0;
-  background: rgb(0 0 0 / 60%);
-  cursor: pointer;
-}
-
-.mobile-drawer {
-  position: absolute;
-  inset: 0 auto 0 0;
-  width: min(268px, 65vw);
-  overflow: hidden;
-  background: #ffffff;
-  box-shadow: 2px 0 12px rgb(0 0 0 / 18%);
-}
-
-.mobile-drawer app-sidebar {
-  display: block;
-  width: 100%;
-  height: 100%;
-  min-height: 0;
-}
-
-.border-1 {
-  width: 2px;
-  height: 26px;
-  background: #3c5355;
-  // margin: 0 15px;
 }
