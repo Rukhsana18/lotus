@@ -1,11 +1,30 @@
+/* ==========================================
+   DESKTOP DEFAULT STYLES (Unchanged)
+   ========================================== */
 .league-detail-page {
   display: flex;
   flex-direction: column;
   min-height: 100%;
   background: #f2f5f5;
 
+  .mobile-only {
+    display: none !important;
+  }
+
+  .desktop-only {
+    display: inline-flex;
+  }
+
+  .mobile-fixture-view {
+    display: none !important;
+  }
+
+  .desktop-fixture-view {
+    display: block;
+  }
+
   .detail-header {
-    background: #0f2327;
+    background: #163439;
     color: #ffffff;
     padding: 0 16px;
 
@@ -31,6 +50,18 @@
 
         .sep {
           opacity: 0.5;
+        }
+
+        .sport,
+        .league {
+          color: #ffffff;
+          opacity: 0.7;
+          cursor: pointer;
+          text-decoration: none;
+        }
+
+        .current {
+          color: #ffffff;
         }
       }
     }
@@ -93,6 +124,11 @@
               font-size: 14px;
               font-weight: 700;
               color: #111111;
+
+              .flag img {
+                width: 24px;
+                height: 24px;
+              }
             }
           }
 
@@ -142,20 +178,156 @@
   }
 }
 
-a {
-  text-decoration: none;
-  color: white;
-  cursor: pointer
-}
+/* ==========================================
+   MOBILE ONLY OVERRIDES (Max Width 760px)
+   Matching Attachment Reference Design
+   ========================================== */
+@media (max-width: 760px) {
+  .league-detail-page {
+    background: #eef2f3;
 
-.sport,
-.league {
-  color: white;
-  opacity: .7;
-  cursor: pointer
-}
+    .mobile-only {
+      display: inline-flex !important;
+    }
 
-.flag img {
-  width: 24px;
-  height: 24px;
+    .desktop-only {
+      display: none !important;
+    }
+
+    .desktop-fixture-view {
+      display: none !important;
+    }
+
+    .mobile-fixture-view {
+      display: flex !important;
+    }
+
+    /* Sub-header on Mobile */
+    .detail-header {
+      background: #0d1e21;
+      padding: 0 12px;
+
+      .top-bar {
+        height: 40px;
+        gap: 10px;
+
+        .edit-icon {
+          font-size: 13px;
+          color: #ffffff;
+        }
+
+        .breadcrumb {
+          .current {
+            font-size: 13px;
+            font-weight: 700;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+          }
+        }
+      }
+    }
+
+    .content-feed {
+      margin: 8px !important;
+
+      .fixture-card {
+        border-radius: 8px;
+
+        .fixture-header {
+          height: 38px;
+          padding: 0 12px;
+          background: #504447;
+          font-size: 13px;
+        }
+
+        .fixture-body {
+          padding: 10px;
+
+          /* Mobile Banner Layout */
+          .match-banner-card {
+            flex-direction: column;
+            gap: 10px;
+            text-decoration: none;
+            color: #111111;
+
+            .teams-versus-banner {
+              position: relative;
+              display: flex;
+              align-items: center;
+              justify-content: space-around;
+              padding: 8px 0;
+
+              .hot-indicator {
+                position: absolute;
+                left: 4px;
+                top: 50%;
+                transform: translateY(-50%);
+
+                .flame-icon {
+                  color: #e25822;
+                  font-size: 14px;
+                }
+              }
+
+              .team-block {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 6px;
+
+                .flag img {
+                  width: 32px;
+                  height: 32px;
+                  border-radius: 50%;
+                  object-fit: cover;
+                }
+
+                .team-name {
+                  font-size: 12px;
+                  font-weight: 700;
+                  color: #111111;
+                }
+              }
+
+              .schedule-time {
+                display: flex;
+                align-items: center;
+                gap: 4px;
+                font-size: 13px;
+
+                .day-label {
+                  font-weight: 700;
+                  color: #111111;
+                }
+
+                .time-val {
+                  font-weight: 400;
+                  color: #111111;
+                }
+              }
+            }
+
+            /* Full Width Button for Mobile */
+            .more-markets-bar {
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              gap: 6px;
+              height: 36px;
+              background: #f0f2f2;
+              border-radius: 6px;
+              color: #2378c6;
+              font-size: 13px;
+              font-weight: 600;
+
+              i {
+                font-size: 11px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
 }

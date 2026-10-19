@@ -140,7 +140,8 @@
     flex: 0 0 50px;
     gap: 10px;
     padding: 0 10px;
-    background: #163439;;
+    background: #163439;
+    ;
   }
 
   .back-button {
@@ -160,8 +161,8 @@
   }
 
   .brand img {
-    height: 22px;
-    width: auto;
+    height: 29px;
+    width: 135px;
   }
 
   .header-actions time,
@@ -197,10 +198,11 @@
       width: 100%;
       touch-action: pan-x;
       scrollbar-width: none;
-      
+
 
       &::-webkit-scrollbar {
-        display: none; /* Hide Chrome/Safari scrollbar */
+        display: none;
+        /* Hide Chrome/Safari scrollbar */
       }
 
       .subnav-item {

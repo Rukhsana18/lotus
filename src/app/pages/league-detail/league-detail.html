@@ -1,72 +1,122 @@
 <div class="league-detail-page">
-  <!-- Top Dark Header Breadcrumb -->
+  <!-- Top Sub-Header -->
   <header class="detail-header">
     <div class="top-bar">
-      <i class="fa-solid fa-chevron-left back-icon" (click)="goBack()"></i>
+      <!-- Back Chevron (Desktop View) -->
+      <i class="fa-solid fa-chevron-left back-icon desktop-only" (click)="goBack()"></i>
+      
+      <!-- Pencil Icon (Mobile View) -->
+      <i class="fa-solid fa-pencil edit-icon mobile-only"></i>
+
       <div class="breadcrumb">
-        <span class="sport" [routerLink]="['/sports']">Cricket</span>
-        <span class="sep">/</span>
+        <span class="sport desktop-only" [routerLink]="['/sports']">Cricket</span>
+        <span class="sep desktop-only">/</span>
         <span class="current">{{ leagueTitle }}</span>
       </div>
     </div>
   </header>
 
-  <!-- Fixtures Accordion -->
+  <!-- Fixtures Accordion Stream -->
   <main class="content-feed">
     <div class="fixture-card">
       <div class="fixture-header" (click)="toggleAccordion()">
         <span>Fixtures 17th Oct</span>
-        
         <i class="fa-solid" [class.fa-chevron-up]="isExpanded" [class.fa-chevron-down]="!isExpanded"></i>
       </div>
 
       @if (isExpanded) {
         <div class="fixture-body">
-          <div class="market-labels">
-            <span>1</span>
-            <span>2</span>
+          
+          <!-- DESKTOP MATCH ROW LAYOUT -->
+          <div class="desktop-fixture-view">
+            <div class="market-labels">
+              <span>1</span>
+              <span>2</span>
+            </div>
+
+            <a
+              class="match-row"
+              [routerLink]="['/sports', 'league', leagueId, 'match', 'ind-vs-wi']"
+              aria-label="Open India v West Indies match details"
+            >
+              <div class="teams-col">
+                <div class="team">
+                  <span class="flag">
+                    <img src="../../../assets/flags/india.png" alt="India">
+                  </span>
+                  <span class="name">India</span>
+                </div>
+                <div class="team">
+                  <span class="flag">
+                    <img src="../../../assets/flags/west-indies.png" alt="West Indies">
+                  </span>
+                  <span class="name">West Indies</span>
+                </div>
+              </div>
+
+              <div class="time-col">
+                <strong>17/10/2026</strong>
+                <small>19:00</small>
+              </div>
+
+              <div class="action-col">
+                <span class="more-markets-btn">
+                  More Markets <i class="fa-solid fa-chevron-right"></i>
+                </span>
+              </div>
+
+              <div class="extra-count">
+                +53 <i class="fa-solid fa-chevron-right"></i>
+              </div>
+            </a>
           </div>
 
+          <!-- MOBILE MATCH BANNER CARD (Mirrors Screenshot) -->
           <a
-            class="match-row"
+            class="mobile-fixture-view match-banner-card"
             [routerLink]="['/sports', 'league', leagueId, 'match', 'ind-vs-wi']"
             aria-label="Open India v West Indies match details"
           >
-            <div class="teams-col">
-              <div class="team">
-                <span class="flag">
-                  <img src="../../../assets/flags/india.png" alt="">
-                </span>
-                <span class="name">India</span>
+            <div class="teams-versus-banner">
+              <!-- Flame / Hot Match Indicator Icon -->
+              <div class="hot-indicator">
+                <i class="fa-solid fa-fire flame-icon"></i>
               </div>
-              <div class="team">
-                <span class="flag">
-                  <img src="../../../assets/flags/west-indies.png" alt="">
 
+              <!-- Home Team -->
+              <div class="team-block">
+                <span class="flag">
+                  <img src="../../../assets/flags/india.png" alt="India">
                 </span>
-                <span class="name">West Indies</span>
+                <span class="team-name">India</span>
+              </div>
+
+              <!-- Match Schedule Center Label -->
+              <div class="schedule-time">
+                <span class="day-label">Today</span>
+                <span class="time-val">19:00</span>
+              </div>
+
+              <!-- Away Team -->
+              <div class="team-block">
+                <span class="flag">
+                  <img src="../../../assets/flags/west-indies.png" alt="West Indies">
+                </span>
+                <span class="team-name">West Indies</span>
               </div>
             </div>
 
-            <div class="time-col">
-              <strong>17/10/2026</strong>
-              <small>19:00</small>
-            </div>
-
-            <div class="action-col">
-              <span class="more-markets-btn">
-                More Markets <i class="fa-solid fa-chevron-right"></i>
-              </span>
-            </div>
-
-            <div class="extra-count">
-              +53 <i class="fa-solid fa-chevron-right"></i>
+            <!-- Mobile Full-Width More Markets Bar -->
+            <div class="more-markets-bar">
+              <span>More Markets</span>
+              <i class="fa-solid fa-chevron-right"></i>
             </div>
           </a>
+
         </div>
       }
     </div>
   </main>
 
- <app-footer></app-footer>
+  <app-footer></app-footer>
 </div>
