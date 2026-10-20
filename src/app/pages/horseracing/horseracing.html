@@ -1,0 +1,8 @@
+<main class="sports-detail-container">
+  <app-sports-header
+    [pageTitle]="'Horse Racing'"
+    [activeTab]="activeMainTab"
+    (activeTabChange)="setMainTab($event)"
+    (back)="goBack()"
+  ></app-sports-header>
+</main>

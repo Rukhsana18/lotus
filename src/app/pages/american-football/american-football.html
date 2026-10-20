@@ -1,0 +1,123 @@
+<div class="sports-layout">
+  <!-- Sidebar Remains Fixed -->
+  <aside class="sports-sidebar">
+    <app-sidebar />
+  </aside>
+
+  <!-- Content Container -->
+  <main class="sports-content">
+    @if (isChildRouteActive) {
+    <!-- Render Child Components (LeagueDetail / MatchDetail) Here -->
+    <router-outlet></router-outlet>
+    } @else {
+    <!-- Default Sports Main Feed (Live & Upcoming / Leagues Tab) -->
+    <div class="sports-detail-container">
+      <!-- Top Dark Navigation Header -->
+      <app-sports-header [pageTitle]="'American Football'" [activeTab]="activeMainTab" (activeTabChange)="setMainTab($event)"
+        (back)="goBack()"></app-sports-header>
+
+      <!-- LEAGUES TAB CONTENT -->
+      @if (activeMainTab === 'leagues') {
+      <app-leagues [sportRoute]="'/american-football'" />
+      }
+
+      <!-- LIVE & UPCOMING TAB CONTENT -->
+      @if (activeMainTab === 'live') {
+      <div class="filter-pills-bar">
+        <!-- Filter Pills Buttons -->
+        <button type="button" class="pill-btn live-pill" [class.active]="activeFilter === 'live'"
+          (click)="setFilter('live')">
+          <i class="fa-solid fa-circle-play"></i> Live
+        </button>
+        <button type="button" class="pill-btn" [class.active]="activeFilter === 'popular'"
+          (click)="setFilter('popular')">
+          <i class="icon-popular-new fire-icon"></i> Popular
+        </button>
+        <button type="button" class="pill-btn" [class.active]="activeFilter === 'upcoming'"
+          (click)="setFilter('upcoming')">
+          <i class="fa-regular fa-calendar"></i> Upcoming
+        </button>
+        <button type="button" class="pill-btn" [class.active]="activeFilter === 'virtual'"
+          (click)="setFilter('virtual')">
+          <i class="fa-solid fa-bolt"></i> American Football
+        </button>
+      </div>
+
+      <main class="matches-feed">
+        @for (league of leagueGroups; track league.id) {
+        <div class="league-accordion-card">
+          <div class="league-header" (click)="toggleLeague(league)">
+            <div class="league-title-group">
+              @if (league.isLive) {
+              <span class="live-tag">LIVE</span>
+              }
+              <span class="league-name">{{ league.name }}</span>
+            </div>
+
+            <div class="header-right">
+              <a [routerLink]="['/american-football', league.id]" class="see-all-link"
+                (click)="$event.stopPropagation()">
+                See All
+              </a>
+              <span class="divider">|</span>
+              <i class="fa-solid" [class.fa-chevron-up]="league.isExpanded"
+                [class.fa-chevron-down]="!league.isExpanded"></i>
+            </div>
+          </div>
+
+          @if (league.isExpanded) {
+          <div class="league-body">
+            <div class="market-column-labels">
+              <span>1</span>
+              <span>2</span>
+            </div>
+
+            @for (match of league.events; track match.id) {
+            <article class="match-row" [routerLink]="['/american-football', league.id, 'match', match.id]">
+              <div class="teams-col">
+                <div class="team-line">
+                  @if (match.isPopular) { <i class="icon-popular-new match-fire"></i> }
+                  @if (match.teamOneLogo) { <img [src]="match.teamOneLogo" [alt]="match.teamOne" class="team-flag" /> }
+                  <span class="team-name">{{ match.teamOne }}</span>
+                </div>
+                <div class="team-line">
+                  @if (match.teamTwoLogo) { <img [src]="match.teamTwoLogo" [alt]="match.teamTwo" class="team-flag" /> }
+                  <span class="team-name">{{ match.teamTwo }}</span>
+                </div>
+              </div>
+
+              <div class="status-col">
+                @if (match.isInPlay) { <span class="in-play-badge">In Play</span> }
+              </div>
+
+              <div class="odds-col" (click)="$event.stopPropagation()">
+                @for (odd of match.odds; track $index) {
+                <button type="button" class="odd-box" [class.pink]="$index % 2 === 1">
+                  <strong>{{ odd.val }}</strong>
+                  <small>{{ odd.vol }}</small>
+                </button>
+                }
+                <span class="extra-markets" [routerLink]="['/american-football', league.id, 'match', match.id]">
+                  {{ match.extraMarkets }} <i class="fa-solid fa-chevron-right"></i>
+                </span>
+              </div>
+            </article>
+            }
+          </div>
+          }
+        </div>
+        }
+      </main>
+      }
+
+      <!-- Compliance Footer -->
+      <app-footer />
+    </div>
+    }
+  </main>
+
+  <!-- Betslip Remains Fixed -->
+  <aside class="sports-betslip">
+    <app-betslip />
+  </aside>
+</div>

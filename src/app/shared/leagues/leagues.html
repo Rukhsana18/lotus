@@ -1,0 +1,20 @@
+<main class="leagues-container">
+  <div class="leagues-card">
+    @if (category; as activeCategory) {
+      @for (league of activeCategory.subLeagues; track league.id) {
+        <a class="league-row-item" [routerLink]="leagueRoute(activeCategory, league.id)">
+          <span class="league-title">
+            @if (league.isVirtual) {
+              <i class="fa-solid fa-bolt virtual-icon" aria-hidden="true"></i>
+            }
+            {{ league.name }}
+          </span>
+          <span class="league-count-group">
+            <span class="match-count">{{ league.count }}</span>
+            <i class="fa-solid fa-chevron-right arrow-icon" aria-hidden="true"></i>
+          </span>
+        </a>
+      }
+    }
+  </div>
+</main>

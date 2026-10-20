@@ -26,6 +26,7 @@ import {
 })
 export class Sidebar implements OnInit, OnDestroy {
   isSportsRoute = false;
+  isHomeRoute = false;
   isLeagueTabActive = false;
 
   categories: SidebarCategory[] = SPORTS_SIDEBAR_DATA;
@@ -71,6 +72,7 @@ export class Sidebar implements OnInit, OnDestroy {
     const path = url.split(/[?#]/)[0];
 
     this.isSportsRoute = path === '/sports' || path.startsWith('/sports/');
+    this.isHomeRoute = path === '/' || path === '/home';
     this.isLeagueTabActive = path.includes('/league/') || url.includes('tab=leagues');
   }
 

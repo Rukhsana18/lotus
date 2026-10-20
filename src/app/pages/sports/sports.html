@@ -42,24 +42,7 @@
 
         <!-- LEAGUES TAB CONTENT -->
         @if (activeMainTab === 'leagues') {
-          <main class="leagues-container">
-            <div class="leagues-card">
-              @for (item of leagueList; track item.id) {
-                <div class="league-row-item" [routerLink]="['/sports', 'league', item.id]">
-                  <div class="league-title">
-                    @if (item.isVirtual) {
-                      <i class="fa-solid fa-bolt virtual-icon"></i>
-                    }
-                    <span>{{ item.name }}</span>
-                  </div>
-                  <div class="league-count-group">
-                    <span class="match-count">{{ item.matchCount }}</span>
-                    <i class="fa-solid fa-chevron-right arrow-icon"></i>
-                  </div>
-                </div>
-              }
-            </div>
-          </main>
+          <app-leagues [sportRoute]="'/sports'" />
         }
 
         <!-- LIVE & UPCOMING TAB CONTENT -->

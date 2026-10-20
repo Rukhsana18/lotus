@@ -24,7 +24,7 @@ export class LeagueDetail implements OnInit {
 
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
-      this.leagueId = params['leagueId'] || '1';
+      this.leagueId = params['leagueId'] || params['tennisId'] || params['footballId'] || '1';
     });
   }
 

@@ -43,7 +43,7 @@ export class MatchDetail implements AfterViewInit, OnDestroy, OnInit {
 
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
-      this.leagueId = params['leagueId'];
+      this.leagueId = params['leagueId'] || params['tennisId'] || params['footballId'];
       this.matchId = params['matchId'];
     });
   }

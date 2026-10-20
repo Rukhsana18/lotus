@@ -5,13 +5,7 @@ import { filter, Subscription } from 'rxjs';
 import { Sidebar } from '../../layout/sidebar/sidebar';
 import { Betslip } from '../../layout/betslip/betslip';
 import { Footer } from '../../layout/footer/footer';
-
-export interface LeagueListItem {
-  id: string;
-  name: string;
-  matchCount: number;
-  isVirtual?: boolean;
-}
+import { Leagues } from '../../shared/leagues/leagues';
 
 export interface OddItem {
   val: string;
@@ -42,7 +36,7 @@ export interface LeagueGroup {
   selector: 'app-sports',
   standalone: true,
   imports: [CommonModule, RouterOutlet, RouterLink, Sidebar,
-    Footer, Betslip],
+    Footer, Betslip, Leagues],
   templateUrl: './sports.html',
   styleUrl: './sports.scss',
 })
@@ -52,16 +46,6 @@ export class Sports implements OnInit, OnDestroy {
   protected isChildRouteActive = false;
 
   private routeSub?: Subscription;
-
-  protected leagueList: LeagueListItem[] = [
-    { id: '1', name: 'International Twenty20 Matches', matchCount: 1 },
-    { id: '2', name: 'One Day Internationals', matchCount: 1 },
-    { id: '3', name: 'Test Matches', matchCount: 1 },
-    { id: '4', name: 'Womens International Twenty20 Matches', matchCount: 1 },
-    { id: '5', name: 'South Africa T20 Challenge', matchCount: 5 },
-    { id: '6', name: 'World Championship of Legends T20', matchCount: 1 },
-    { id: '7', name: 'Quantum Cricket League', matchCount: 6, isVirtual: true },
-  ];
 
   protected leagueGroups: LeagueGroup[] = [
     {

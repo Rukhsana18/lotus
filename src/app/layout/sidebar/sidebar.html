@@ -1,7 +1,7 @@
 <aside class="sports-sidebar" aria-label="Sports categories">
 
-  <!-- Live Casino is hidden on sports routes -->
-  @if (!isSportsRoute) {
+  <!-- Live Casino is available from the home route only. -->
+  @if (isHomeRoute) {
   <a class="side-link" routerLink="/casino" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
     <span class="side-icon">
       <i class="icon icon-exchange-games" aria-hidden="true"></i>
@@ -15,11 +15,12 @@
   <div class="sidebar-group">
 
     <!-- Main category navigation -->
-    <a class="side-link" [routerLink]="category.route" [class.active]="
-          category.id === 'cricket' &&
-          isSportsRoute &&
-          !isLeagueTabActive
-        " (click)="toggleCategory(category.id, $event)">
+    <a
+      class="side-link"
+      [routerLink]="category.route"
+      routerLinkActive="active"
+      (click)="toggleCategory(category.id, $event)"
+    >
       <span class="side-icon">
         <i class="icon {{ category.icon }}" aria-hidden="true"></i>
       </span>

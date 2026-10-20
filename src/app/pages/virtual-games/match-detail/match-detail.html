@@ -1,0 +1,131 @@
+<div class="virtual-match-layout">
+  <!-- Center Main Details Content -->
+  <div class="virtual-match-page">
+    <header class="detail-header">
+      <div class="top-bar">
+        <button type="button" class="back-btn" (click)="goBack()" aria-label="Go back">
+          <i class="fa-solid fa-chevron-left"></i>
+        </button>
+        <div class="breadcrumb">
+          <span class="sport" [routerLink]="['/virtual']">Cricket</span>
+          <span class="sep">/</span>
+          <span class="league" [routerLink]="['/virtual', virtualId]">{{ matchDetails.leagueName }}</span>
+          <span class="sep">/</span>
+          <i class="fa-regular fa-circle-play play-icon"></i>
+          <span class="current">
+            {{ matchDetails.team1 }} v {{ matchDetails.team2 }}, Match {{ matchDetails.matchNumber }}
+          </span>
+        </div>
+        <i class="icon-info-second info-icon ms-auto"></i>
+      </div>
+
+      <nav class="market-sub-nav">
+        <button type="button" class="sub-nav-btn active">MARKET</button>
+      </nav>
+    </header>
+
+    <main class="match-content">
+      <!-- 1. Scoreboard Card -->
+      <div class="accordion-item scoreboard-card">
+        <h2 class="accordion-header">
+          <button class="accordion-button" type="button" (click)="toggleSection('scoreboard')">
+            <i class="fa-solid fa-bars-staggered me-2"></i>
+            <span class="accordion-title">Scoreboard</span>
+            <i
+              class="fa-solid chevron-icon"
+              [class.fa-chevron-up]="accordionStates['scoreboard']"
+              [class.fa-chevron-down]="!accordionStates['scoreboard']"
+            ></i>
+          </button>
+        </h2>
+
+        @if (accordionStates['scoreboard']) {
+          <div class="accordion-collapse collapse show">
+            <div class="scoreboard-body">
+              <div class="team-side">
+                <span class="bat-icon-circle"><i class="fa-solid fa-pencil"></i></span>
+                <span class="dot green-dot"></span>
+                <span class="team-name">{{ matchDetails.team1 }}</span>
+              </div>
+
+              <div class="score-center">
+                <span class="in-play-badge">In Play</span>
+                <strong class="score-text">{{ matchDetails.currentScore }}</strong>
+              </div>
+
+              <div class="team-side">
+                <span class="bat-icon-circle"><i class="fa-solid fa-pencil"></i></span>
+                <span class="team-name">{{ matchDetails.team2 }}</span>
+              </div>
+            </div>
+          </div>
+        }
+      </div>
+
+      <h3 class="section-heading">All Markets</h3>
+
+      <!-- 2. Match Winner Section -->
+      <div class="accordion-item market-card">
+        <h2 class="accordion-header">
+          <button class="accordion-button" type="button" (click)="toggleSection('matchWinner')">
+            <span class="accordion-title">Match Winner</span>
+            <i class="fa-regular fa-circle-play play-btn me-2"></i>
+            <i
+              class="fa-solid chevron-icon"
+              [class.fa-chevron-up]="accordionStates['matchWinner']"
+              [class.fa-chevron-down]="!accordionStates['matchWinner']"
+            ></i>
+          </button>
+        </h2>
+
+        @if (accordionStates['matchWinner']) {
+          <div class="accordion-collapse collapse show">
+            <div class="odds-table">
+              <div class="back-lay-headers">
+                <span>Back</span>
+                <span>Lay</span>
+              </div>
+
+              <div class="runner-row">
+                <span class="runner-name">{{ matchDetails.team1 }}</span>
+                <div class="odds-grid">
+                  <button class="cell back-main"><strong>{{ matchDetails.winnerOdds.team1Back }}</strong></button>
+                  <button class="cell lay-main"><strong>{{ matchDetails.winnerOdds.team1Lay }}</strong></button>
+                </div>
+              </div>
+
+              <div class="runner-row">
+                <span class="runner-name">{{ matchDetails.team2 }}</span>
+                <div class="odds-grid">
+                  <button class="cell back-main"><strong>{{ matchDetails.winnerOdds.team2Back }}</strong></button>
+                  <button class="cell lay-main"><strong>{{ matchDetails.winnerOdds.team2Lay }}</strong></button>
+                </div>
+              </div>
+            </div>
+          </div>
+        }
+      </div>
+
+      <!-- 3. Over Market Section -->
+      <div class="accordion-item market-card">
+        <h2 class="accordion-header">
+          <button class="accordion-button" type="button" (click)="toggleSection('overMarket')">
+            <span class="accordion-title">{{ matchDetails.team1 }}, 0.5 Runs off Delivery 12.2</span>
+            <i
+              class="fa-solid chevron-icon"
+              [class.fa-chevron-up]="accordionStates['overMarket']"
+              [class.fa-chevron-down]="!accordionStates['overMarket']"
+            ></i>
+          </button>
+        </h2>
+      </div>
+
+      <app-footer />
+    </main>
+  </div>
+
+  <!-- Right Fixed Betslip -->
+  <aside class="sports-betslip">
+    <app-betslip />
+  </aside>
+</div>

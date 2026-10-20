@@ -1,16 +1,18 @@
 import { Routes } from '@angular/router';
+import { Football } from './pages/football/football';
+import { Tennis } from './pages/tennis/tennis';
 
 export const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
-  { 
-    path: 'home', 
-    loadComponent: () => import('./pages/home/home').then((m) => m.Home), 
-    title: 'Home | Lotus' 
+  {
+    path: 'home',
+    loadComponent: () => import('./pages/home/home').then((m) => m.Home),
+    title: 'Home | Lotus'
   },
-  { 
-    path: 'search', 
-    loadComponent: () => import('./pages/search/search').then((m) => m.SearchPage), 
-    title: 'Search | Lotus' 
+  {
+    path: 'search',
+    loadComponent: () => import('./pages/search/search').then((m) => m.SearchPage),
+    title: 'Search | Lotus'
   },
   {
     path: 'casino',
@@ -45,5 +47,154 @@ export const routes: Routes = [
       },
     ],
   },
+
+  {
+    path: 'virtual',
+    loadComponent: () => import('./pages/virtual-games/virtual-games').then((m) => m.VirtualGames),
+    children: [
+      {
+        path: ':virtualId',
+        title: 'Virtual League Details | Lotus',
+        loadComponent: () =>
+          import('./pages/virtual-games/league-details/league-details').then((m) => m.LeagueDetails),
+      },
+      {
+        path: ':virtualId/match/:matchId',
+        title: 'Virtual Match Details | Lotus',
+        loadComponent: () =>
+          import('./pages/virtual-games/match-detail/match-detail').then((m) => m.MatchDetail),
+      },
+    ],
+  },
+
+  {
+    path: 'football',
+    component: Football,
+    title: 'Football | Lotus',
+    children: [
+      {
+        path: ':footballId',
+        title: 'Football League Details | Lotus',
+        loadComponent: () =>
+          import('./pages/league-detail/league-detail').then((m) => m.LeagueDetail),
+      },
+      {
+        path: ':footballId/match/:matchId',
+        title: 'Football Match Details | Lotus',
+        loadComponent: () =>
+          import('./pages/match-detail/match-detail').then((m) => m.MatchDetail),
+      },
+    ],
+  },
+
+  {
+    path: 'tennis',
+    component: Tennis,
+    title: 'Tennis | Lotus',
+    children: [
+      {
+        path: ':tennisId',
+        title: 'Tennis League Details | Lotus',
+        loadComponent: () =>
+          import('./pages/league-detail/league-detail').then((m) => m.LeagueDetail),
+      },
+      {
+        path: ':tennisId/match/:matchId',
+        title: 'Tennis Match Details | Lotus',
+        loadComponent: () =>
+          import('./pages/match-detail/match-detail').then((m) => m.MatchDetail),
+      },
+    ],
+  },
+  {
+    path: 'american-football',
+    loadComponent: () =>
+      import('./pages/american-football/american-football').then((m) => m.AmericanFootball),
+    title: 'American Football | Lotus',
+    children: [
+      {
+        path: ':leagueId',
+        title: 'American Football League Details | Lotus',
+        loadComponent: () =>
+          import('./pages/league-detail/league-detail').then((m) => m.LeagueDetail),
+      },
+      {
+        path: ':leagueId/match/:matchId',
+        title: 'American Football Match Details | Lotus',
+        loadComponent: () =>
+          import('./pages/match-detail/match-detail').then((m) => m.MatchDetail),
+      },
+    ],
+  },
+  {
+    path: 'basketball',
+    loadComponent: () => import('./pages/basketball/basketball').then((m) => m.Basketball),
+    title: 'Basketball | Lotus',
+    children: [
+      {
+        path: ':leagueId',
+        title: 'Basketball League Details | Lotus',
+        loadComponent: () =>
+          import('./pages/league-detail/league-detail').then((m) => m.LeagueDetail),
+      },
+      {
+        path: ':leagueId/match/:matchId',
+        title: 'Basketball Match Details | Lotus',
+        loadComponent: () =>
+          import('./pages/match-detail/match-detail').then((m) => m.MatchDetail),
+      },
+    ],
+  },
+  {
+    path: 'baseball',
+    loadComponent: () => import('./pages/baseball/baseball').then((m) => m.Baseball),
+    title: 'Baseball | Lotus',
+    children: [
+      {
+        path: ':leagueId',
+        title: 'Baseball League Details | Lotus',
+        loadComponent: () =>
+          import('./pages/league-detail/league-detail').then((m) => m.LeagueDetail),
+      },
+      {
+        path: ':leagueId/match/:matchId',
+        title: 'Baseball Match Details | Lotus',
+        loadComponent: () =>
+          import('./pages/match-detail/match-detail').then((m) => m.MatchDetail),
+      },
+    ],
+  },
+  {
+    path: 'horse-racing',
+    loadComponent: () => import('./pages/horseracing/horseracing').then((m) => m.Horseracing),
+    title: 'Horse Racing | Lotus',
+  },
+  {
+    path: 'greyhound-racing',
+    loadComponent: () =>
+      import('./pages/greyhound-racing/greyhound-racing').then((m) => m.GreyhoundRacing),
+    title: 'Greyhound Racing | Lotus',
+  },
+  {
+    path: 'mixed-martial-arts',
+    loadComponent: () =>
+      import('./pages/mixed-martial-arts/mixed-martial-arts').then((m) => m.MixedMartialArts),
+    title: 'Mixed Martial Arts | Lotus',
+    children: [
+      {
+        path: ':leagueId',
+        title: 'MMA League Details | Lotus',
+        loadComponent: () =>
+          import('./pages/league-detail/league-detail').then((m) => m.LeagueDetail),
+      },
+      {
+        path: ':leagueId/match/:matchId',
+        title: 'MMA Match Details | Lotus',
+        loadComponent: () =>
+          import('./pages/match-detail/match-detail').then((m) => m.MatchDetail),
+      },
+    ],
+  },
+
   { path: '**', redirectTo: 'home' },
 ];
