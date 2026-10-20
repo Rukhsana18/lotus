@@ -113,7 +113,7 @@ export const SPORTS_SIDEBAR_DATA: SidebarCategory[] = [
     id: 'horse-racing',
     title: 'Horse Racing',
     icon: 'icon-sport-horseracing',
-    route: '/horse-racing'
+    route: '/horse-racing',
   },
   {
     id: 'greyhound-racing',
