@@ -20,4 +20,13 @@ describe('Header', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('connects the login button to the login modal', () => {
+    const compiled = fixture.nativeElement as HTMLElement;
+    const loginButton = compiled.querySelector('.login-button');
+    const loginModal = compiled.querySelector('#loginModal');
+
+    expect(loginButton?.getAttribute('data-bs-target')).toBe('#loginModal');
+    expect(loginModal).toBeTruthy();
+  });
 });

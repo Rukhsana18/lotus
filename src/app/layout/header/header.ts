@@ -4,9 +4,10 @@ import { NavigationEnd, Router, RouterLink, RouterLinkActive } from '@angular/ro
 import { toSignal } from '@angular/core/rxjs-interop';
 import { filter, interval, map, startWith } from 'rxjs';
 import { SPORTS_SIDEBAR_DATA } from '../../data/sports-sidebar.data';
+import { LoginModal } from '../../shared/login-modal/login-modal';
 
 @Component({
-  imports: [DatePipe, RouterLink, RouterLinkActive],
+  imports: [DatePipe, RouterLink, RouterLinkActive, LoginModal],
   selector: 'app-header',
   styleUrl: './header.scss',
   templateUrl: './header.html',

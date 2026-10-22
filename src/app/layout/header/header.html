@@ -23,18 +23,22 @@
     <div class="header-actions">
         <time>{{ currentTime() | date: 'MMM d, yyyy' }} &nbsp; {{ currentTime() | date: 'HH:mm:ss' }}</time>
         <div class="border-1"></div>
-        <a class="search-button" routerLink="/search" [queryParams]="isCasinoRoute() ? { mode: 'casino' } : null" aria-label="Search">
+        <a class="search-button" routerLink="/search" [queryParams]="isCasinoRoute() ? { mode: 'casino' } : null"
+            aria-label="Search">
             <i class="icon icon-search-new" aria-hidden="true"></i>
         </a>
-        <button class="login-button" type="button">Login</button>
+        <button class="login-button" type="button" data-bs-toggle="modal" data-bs-target="#loginModal">Login</button>
     </div>
 </header>
+
+<app-login-modal />
 
 <!-- Header Sports Menu Carousel Bar (Mobile Only) -->
 <div class="mobile-sports-carousel-wrapper">
     <nav class="mobile-sports-subnav" aria-label="Sports menu slider">
         @for (category of sportsCategories; track category.id) {
-        <a class="subnav-item" [class.active]="category.id === 'cricket' && isSportsRoute()" [routerLink]="category.route">
+        <a class="subnav-item" [class.active]="category.id === 'cricket' && isSportsRoute()"
+            [routerLink]="category.route">
             <i class="icon {{ category.icon }} side-icon" aria-hidden="true"></i>
             <span>{{ category.title }}</span>
         </a>
