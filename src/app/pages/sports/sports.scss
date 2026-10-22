@@ -60,14 +60,14 @@
             background: none;
             border: none;
             border-bottom: 3px solid transparent;
-            color: #7d8c92;
+            color: #5bafc0;
             font-size: 11px;
             cursor: pointer;
             transition: color 0.2s, border-color 0.2s;
 
             &.active {
                 color: #ffffff;
-                border-bottom-color: #00ba62;
+                border-bottom: 3px solid #445f64;
             }
         }
     }
