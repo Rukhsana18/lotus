@@ -6,10 +6,9 @@
 
   <!-- Content Container -->
   <main class="sports-content">
-    @if (isChildRouteActive) {
-      <!-- Render Child Components (LeagueDetail / MatchDetail) Here -->
-      <router-outlet></router-outlet>
-    } @else {
+    <router-outlet></router-outlet>
+
+    @if (!isChildRouteActive) {
       <!-- Default Sports Main Feed (Live & Upcoming / Leagues Tab) -->
       <div class="sports-detail-container">
         <!-- Top Dark Navigation Header -->
