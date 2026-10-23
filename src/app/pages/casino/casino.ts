@@ -6,6 +6,7 @@ import {
   RouterLinkActive,
 } from '@angular/router';
 import { map } from 'rxjs';
+import { Footer } from '../../layout/footer/footer';
 
 
 /* =========================================================
@@ -69,6 +70,7 @@ interface CasinoCategory {
   imports: [
     RouterLink,
     RouterLinkActive,
+    Footer
   ],
   templateUrl: './casino.html',
   styleUrl: './casino.scss',
@@ -76,6 +78,13 @@ interface CasinoCategory {
 export class CasinoPage {
 
   private readonly route = inject(ActivatedRoute);
+
+  protected readonly activeBannerIndex = signal(0);
+  protected providersExpanded = false;
+
+  protected toggleProviders(): void {
+    this.providersExpanded = !this.providersExpanded;
+  }
 
 
   /* =======================================================
@@ -342,6 +351,22 @@ export class CasinoPage {
     return Array.from(
       { length: Math.ceil(this.banners.length / 2) },
       (_, index) => this.banners.slice(index * 2, index * 2 + 2),
+    );
+  }
+
+  protected isActiveBannerPage(pageIndex: number): boolean {
+    return Math.floor(this.activeBannerIndex() / 2) === pageIndex;
+  }
+
+  protected showPreviousBannerPage(): void {
+    this.activeBannerIndex.update(
+      (index) => (Math.floor(index / 2) * 2 - 2 + this.banners.length) % this.banners.length,
+    );
+  }
+
+  protected showNextBannerPage(): void {
+    this.activeBannerIndex.update(
+      (index) => (Math.floor(index / 2) * 2 + 2) % this.banners.length,
     );
   }
 

@@ -42,6 +42,14 @@
   display: none;
 }
 
+.mobile-casino-banners {
+  display: none;
+}
+
+.mobile-providers {
+  display: none;
+}
+
 .category-wrapper {
   position: relative;
   width: 100%;
@@ -412,10 +420,75 @@
     padding: 8px;
   }
 
+  .desktop-provider-panel {
+    display: none;
+  }
 
   .casino-main {
     flex: 1;
     min-height: 0;
+  }
+
+  .casino-banners:not(.mobile-casino-banners) {
+    display: none;
+  }
+
+  .mobile-casino-banners {
+    display: block;
+  }
+
+  .mobile-banner-track {
+    display: flex;
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  .mobile-banner-slide {
+    flex: 0 0 100%;
+    scroll-snap-align: start;
+  }
+
+  .mobile-providers {
+    display: block;
+    margin: 8px 0 0;
+  }
+
+  .mobile-providers-toggle {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 8px;
+    border: 0;
+    background: transparent;
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: 700;
+    text-align: left;
+  }
+
+  .mobile-providers-toggle i {
+    font-size: 16px;
+  }
+
+  .mobile-provider-list {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    padding: 6px 0;
+    scrollbar-width: none;
+  }
+
+  .mobile-provider-list::-webkit-scrollbar {
+    display: none;
   }
 
   .category-wrapper {
