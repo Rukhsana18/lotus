@@ -16,6 +16,7 @@
 
 .site-header.casino-header {
   background: #080808;
+  border-bottom: 1.5px solid #26262699;
 }
 
 .brand {
@@ -90,7 +91,7 @@
 .header-actions {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 10px;
   margin-left: auto;
 }
 
@@ -125,10 +126,18 @@
   border-radius: 4px;
   font-size: 12px;
   height: 40px;
+  margin-left: 5px;
 }
 
 .mobile-sports-carousel-wrapper {
   display: none;
+}
+
+.border-1 {
+  width: 2px;
+  height: 26px;
+  background-color: color-mix(in srgb, #ffffff 10%, transparent);
+  margin: 5px;
 }
 
 /* Mobile Responsive Slider Navigation */
