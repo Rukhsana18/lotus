@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { Sidebar } from '../../layout/sidebar/sidebar';
 import { Betslip } from '../../layout/betslip/betslip';
+import { Footer } from '../../layout/footer/footer';
+import { LoginModal } from '../../shared/login-modal/login-modal';
 
 export interface OddItem {
   val: string;
@@ -56,7 +58,7 @@ export interface CasinoGameItem {
 @Component({
   selector: 'app-home-page',
   standalone: true,
-  imports: [RouterLink, Sidebar, Betslip],
+  imports: [RouterLink, Sidebar, Betslip, Footer, LoginModal],
   templateUrl: './home.html',
   styleUrl: './home.scss',
 })
@@ -71,7 +73,9 @@ export class Home {
   }
 
   protected expandCasino(): void {
-    this.casinoExpanded = true;
+    if (this.isMobileViewport()) {
+      this.casinoExpanded = true;
+    }
   }
 
   protected startCasinoTouch(event: TouchEvent): void {
@@ -96,6 +100,10 @@ export class Home {
   }
 
   protected handleCasinoWheel(event: WheelEvent): void {
+    if (!this.isMobileViewport() || !this.casinoExpanded) {
+      return;
+    }
+
     const section = event.currentTarget as HTMLElement;
     const atTop = section.scrollTop <= 0;
     const atBottom = section.scrollTop + section.clientHeight >= section.scrollHeight - 1;
@@ -122,6 +130,10 @@ export class Home {
 
   private collapseCasino(section: HTMLElement): void {
     this.casinoExpanded = false;
+  }
+
+  private isMobileViewport(): boolean {
+    return typeof window !== 'undefined' && window.matchMedia('(max-width: 640px)').matches;
   }
 
   protected collapseCasinoOutside(event: PointerEvent): void {

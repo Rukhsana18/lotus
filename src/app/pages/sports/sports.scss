@@ -122,6 +122,20 @@
     }
 }
 
+@media (min-width: 761px) {
+    .sports-detail-container {
+        height: auto;
+        min-height: 100%;
+    }
+
+    .filter-pills-bar {
+        position: sticky;
+        z-index: 10;
+        top: 0;
+        background: #f2f5f5;
+    }
+}
+
 /* Matches Feed Container */
 .matches-feed {
     flex: 1;
