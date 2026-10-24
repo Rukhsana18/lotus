@@ -2382,6 +2382,59 @@ a {
   padding: 0 16px 24px 16px;
 }
 
+@media (max-width: 720px) {
+  .sports-layout:has(> .sports-content > .sports-detail-container) {
+    height: calc(100% - 48px);
+  }
+
+  .sports-layout > .sports-content > .sports-detail-container {
+    flex: 1 0 auto;
+    height: auto;
+    min-height: calc(100dvh - 50px - 47px - 48px);
+    overflow: visible;
+  }
+
+  .sports-content:has(> .sports-detail-container) {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .sports-content:has(> app-league-detail) {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .sports-content > app-league-detail {
+    display: flex;
+    flex: 1 0 auto;
+    flex-direction: column;
+    min-height: 100%;
+  }
+
+  .sports-detail-container > app-leagues {
+    flex: 1 0 auto;
+  }
+
+  .sports-detail-container > .filter-pills-bar {
+    position: sticky;
+    z-index: 20;
+    top: 0;
+    flex: 0 0 auto;
+    background: #f2f5f5;
+  }
+
+  .sports-detail-container > .matches-feed {
+    position: relative;
+    z-index: 0;
+    flex: 1 0 auto;
+  }
+
+  .sports-detail-container > app-footer {
+    display: block;
+    flex: 0 0 auto;
+  }
+}
+
 .league-accordion-card {
   border-radius: 12px;
   overflow: hidden;
