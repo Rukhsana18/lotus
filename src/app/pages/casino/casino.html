@@ -430,10 +430,10 @@
 
       <!-- GAME GRID -->
       <div class="game-grid">
-        @for (game of newReleases; track game.id) {
-        @if (game?.category === 'teen') {
+        @for (game of games; track game.id) {
+        @if (game.category === 'instant-games') {
         <a class="game-card" href="#">
-          <img class="game-image" [src]="game.image" [alt]="'Teen Patti' + game.id" loading="lazy" />
+          <img class="game-image" [src]="game.image" [alt]="game.name" loading="lazy" />
 
         </a>
         }
@@ -465,8 +465,8 @@
 
       <!-- GAME GRID -->
       <div class="game-grid">
-        @for (game of newReleases; track game.id) {
-        @if (game?.category === 'game') {
+        @for (game of games; track game.id) {
+        @if (game.category === 'game-shows') {
         <a class="game-card" href="#">
           <img class="game-image" [src]="game.image" [alt]="'Game' + game.id" loading="lazy" />
 
@@ -500,8 +500,8 @@
 
       <!-- GAME GRID -->
       <div class="game-grid">
-        @for (game of newReleases; track game.id) {
-        @if (game?.category === 'dragon-tiger') {
+        @for (game of games; track game.id) {
+        @if (game.category === 'dragon-tiger') {
         <a class="game-card" href="#">
           <img class="game-image" [src]="game.image" [alt]="'Dragon Tiger' + game.id" loading="lazy" />
 
@@ -535,8 +535,8 @@
 
       <!-- GAME GRID -->
       <div class="game-grid">
-        @for (game of newReleases; track game.id) {
-        @if (game?.category === 'blackjack') {
+        @for (game of games; track game.id) {
+        @if (game.category === 'blackjack') {
         <a class="game-card" href="#">
           <img class="game-image" [src]="game.image" [alt]="'Blackjack' + game.id" loading="lazy" />
 
@@ -570,8 +570,8 @@
 
       <!-- GAME GRID -->
       <div class="game-grid">
-        @for (game of visibleGames; track game.id) {
-        @if (game?.category === 'poker') {
+        @for (game of games; track game.id) {
+        @if (game.category === 'poker') {
         <a class="game-card" href="#">
           <img class="game-image" [src]="game.image" [alt]="'Poker' + game.id" loading="lazy" />
         </a>
@@ -604,8 +604,8 @@
 
       <!-- GAME GRID -->
       <div class="game-grid">
-        @for (game of visibleGames; track game.id) {
-        @if (game?.category === 'slots') {
+        @for (game of games; track game.id) {
+        @if (game.category === 'slots') {
         <a class="game-card" href="#">
           <img class="game-image" [src]="game.image" [alt]="'Slots' + game.id" loading="lazy" />
 
@@ -639,8 +639,8 @@
 
       <!-- GAME GRID -->
       <div class="game-grid">
-        @for (game of visibleGames; track game.id) {
-        @if (game?.category === 'sicbo') {
+        @for (game of games; track game.id) {
+        @if (game.category === 'sicbo') {
         <a class="game-card" href="#">
           <img class="game-image" [src]="game.image" [alt]="'Sicbo' + game.id" loading="lazy" />
         </a>
@@ -670,8 +670,8 @@
 
       <!-- GAME GRID -->
       <div class="game-grid">
-        @for (game of visibleGames; track game.id) {
-        @if (game?.category === 'lottery') {
+        @for (game of games; track game.id) {
+        @if (game.category === 'lottery') {
         <a class="game-card" href="#">
           <img class="game-image" [src]="game.image" [alt]="'Lottery' + game.id" loading="lazy" />
         </a>
@@ -701,8 +701,8 @@
 
       <!-- GAME GRID -->
       <div class="game-grid">
-        @for (game of visibleGames; track game.id) {
-        @if (game?.category === 'virtuals') {
+        @for (game of games; track game.id) {
+        @if (game.category === 'virtuals') {
         <a class="game-card" href="#">
           <img class="game-image" [src]="game.image" [alt]="'Virtuals' + game.id" loading="lazy" />
         </a>
@@ -732,8 +732,8 @@
 
       <!-- GAME GRID -->
       <div class="game-grid">
-        @for (game of visibleGames; track game.id) {
-        @if (game?.category === 'sport') {
+        @for (game of games; track game.id) {
+        @if (game.category === 'sport') {
         <a class="game-card" href="#">
           <img class="game-image" [src]="game.image" [alt]="'Sport' + game.id" loading="lazy" />
         </a>
