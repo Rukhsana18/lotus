@@ -94,7 +94,7 @@ export class Home {
     this.casinoTouchY = touchY;
 
     if ((section.scrollTop <= 0 && deltaY > 0) ||
-        (section.scrollTop + section.clientHeight >= section.scrollHeight - 1 && deltaY < 0)) {
+      (section.scrollTop + section.clientHeight >= section.scrollHeight - 1 && deltaY < 0)) {
       this.collapseCasino(section);
     }
   }
@@ -189,6 +189,33 @@ export class Home {
       title: 'BLACKJACK',
       img: '../../../assets/casino/6.webp',
     },
+    {
+      title: 'BLACKJACK',
+      img: '../../../assets/casino/7.webp',
+    },
+    {
+      title: 'BLACKJACK',
+      img: '../../../assets/casino/8.webp',
+    }, {
+      title: 'BLACKJACK',
+      img: '../../../assets/casino/9.webp',
+    }, {
+      title: 'BLACKJACK',
+      img: '../../../assets/casino/10.webp',
+    }, {
+      title: 'BLACKJACK',
+      img: '../../../assets/casino/11.webp',
+    }, {
+      title: 'BLACKJACK',
+      img: '../../../assets/casino/12.webp',
+    }, {
+      title: 'BLACKJACK',
+      img: '../../../assets/casino/13.webp',
+    },
+    {
+      title: 'BLACKJACK',
+      img: '../../../assets/casino/14.webp',
+    },
   ];
 
 
@@ -248,7 +275,7 @@ export class Home {
               playerOne: 'Jaume Munar',
               playerTwo: 'Jenson Brooksby',
 
-             playerOneImage: '../../../assets/players/1.png',
+              playerOneImage: '../../../assets/players/1.png',
               playerTwoImage: '../../../assets/players/2.png',
 
               dateStr: '',
