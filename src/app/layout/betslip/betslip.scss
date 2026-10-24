@@ -5,6 +5,25 @@
   box-shadow: 0 1px 5px #25383a12;
 }
 
+@media (min-width: 721px) {
+  :host {
+    display: block;
+    height: 100%;
+    min-height: 0;
+  }
+
+  .bets-panel {
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    scrollbar-width: none;
+  }
+
+  .bets-panel::-webkit-scrollbar {
+    display: none;
+  }
+}
+
 .bet-tabs {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -47,7 +66,7 @@
   margin-top: 4px;
   color: #828889;
   font-size: 12px;
-  font-weight:400;
+  font-weight: 400;
 }
 
 .empty-slip button {
@@ -90,18 +109,192 @@
 }
 
 .popular-bets {
-  padding: 24px 10px;
+  padding: 24px 10px 18px;
   border-top: 1px solid #eceeee;
   text-align: center;
 }
 
-.popular-placeholder {
-  margin-top: 18px;
-  padding: 18px 10px;
-  border-radius: 9px;
-  background: #e5f3fb;
-  color: #647579;
+.popular-bets h2 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin: 0 0 26px;
+  color: #111;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.popular-event {
+  overflow: hidden;
+  border-radius: 11px;
+  background: #e3f3fc;
+  text-align: left;
+}
+
+.popular-event-header {
+  display: flex;
+  min-height: 42px;
+  align-items: center;
+  gap: 12px;
+  padding: 6px 10px 0 0;
+}
+
+.live-badge {
+  display: flex;
+  flex: 0 0 86px;
+  height: 26px;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  border-radius: 0 5px 5px 0;
+  background: #168336;
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.live-badge i {
   font-size: 13px;
+}
+
+.popular-event-header h3 {
+  overflow: hidden;
+  margin: 0;
+  color: #111;
+  font-size: 12px;
+  font-weight: 500;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.popular-market {
+  display: grid;
+  grid-template-columns: 22px 40px minmax(50px, 1fr) 56px 66px;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px 14px;
+}
+
+.market-checkbox {
+  width: 16px;
+  height: 16px;
+  margin: 0;
+  accent-color: #168336;
+}
+
+.team-flag {
+  display: flex;
+  width: 24px;
+  height: 24px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: #fff;
+  font-size: 25px;
+  line-height: 1;
+  padding: 2px;
+}
+
+.market-selection {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.market-name {
+  overflow: hidden;
+  color: #59636a;
+  font-size: 10px;
+  font-weight: 400;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.market-selection strong {
+  color: #16191b;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.odds-button {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 2px;
+  border: 0;
+  color: #111;
+  line-height: 1.2;
+  width: 49px;
+  height: 39px;
+}
+
+.odds-button strong {
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.odds-button span {
+  font-size: 12px;
+}
+
+.back-odds {
+  outline: 3px solid #00ad5a;
+  outline-offset: 2px;
+  background: #d4eafa;
+  border-radius: 8px 3px 3px 8px;
+}
+
+.lay-odds {
+  background: #f4dbe2;
+  border-radius: 3px 8px 8px 3px
+}
+
+.popular-prompt {
+  margin: 26px 0 0;
+  color: #858585;
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+@media (max-width: 360px) {
+  .popular-market {
+    grid-template-columns: 20px 34px minmax(42px, 1fr) 56px 56px;
+    gap: 4px;
+    padding-right: 7px;
+    padding-left: 7px;
+  }
+
+  .team-flag {
+    width: 34px;
+    height: 34px;
+    font-size: 22px;
+  }
+
+  .market-name {
+    font-size: 11px;
+  }
+
+  .market-selection strong {
+    font-size: 16px;
+  }
+
+  .odds-button strong {
+    font-size: 14px;
+  }
+
+  .odds-button span {
+    font-size: 11px;
+  }
+
+  .popular-prompt {
+    font-size: 13px;
+    white-space: normal;
+  }
 }
 
 @media (max-width: 1100px) {

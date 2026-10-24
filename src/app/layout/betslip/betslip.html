@@ -14,7 +14,32 @@
     </div>
   </section>
   <section class="popular-bets">
-    <h2>🔥 &nbsp;Popular Bets</h2>
-    <div class="popular-placeholder">Select an event to see popular bets</div>
+    <h2><span aria-hidden="true">🔥</span> Popular Bets</h2>
+    <article class="popular-event">
+      <header class="popular-event-header">
+        <span class="live-badge">LIVE <i class="icon-sport-cricket" aria-hidden="true"></i></span>
+        <h3>New Zealand v India</h3>
+      </header>
+      <div class="popular-market">
+        <input class="market-checkbox" data-bs-toggle="modal" data-bs-target="#loginModal" type="checkbox" aria-label="Select India popular bet">
+        <img class="team-flag" data-bs-toggle="modal" data-bs-target="#loginModal" src="../../../assets/flags/india.png" alt="">
+        <div class="market-selection" data-bs-toggle="modal" data-bs-target="#loginModal">
+          <span class="market-name">Match Odds - Back</span>
+          <strong>India</strong>
+        </div>
+        <button class="odds-button back-odds"
+        data-bs-toggle="modal" data-bs-target="#loginModal" type="button" aria-label="Back India at odds 1.32, volume 500,000 plus">
+          <strong>1.32</strong>
+          <span>500,000+</span>
+        </button>
+        <button class="odds-button lay-odds" 
+        data-bs-toggle="modal" data-bs-target="#loginModal"
+         type="button" aria-label="Lay India at odds 1.33, volume 56,574">
+          <strong>1.33</strong>
+          <span>56,574</span>
+        </button>
+      </div>
+    </article>
+    <p class="popular-prompt">Log in to see more exciting bet offerings!</p>
   </section>
 </aside>
