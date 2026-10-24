@@ -155,15 +155,8 @@ h1 {
 }
 
 .event-card {
-  // display: flex;
-  // min-width: 0;
-  // min-height: 67px;
-  // align-items: center;
-  // gap: 10px;
-  // padding: 8px 12px;
-  // border-radius: 11px;
   color: #111819;
-  background: #f7f7f7;
+  background: #f9f9f9;
   text-decoration: none;
   border-radius: 8px;
   padding: 8px 12px;
@@ -337,7 +330,7 @@ h1 {
     background: #242424;
   }
 
-  .search-field > .icon,
+  .search-field>.icon,
   .search-field input {
     color: #c7c7c7;
   }
@@ -402,7 +395,7 @@ h1 {
   font-size: 22px;
 }
 
-.provider-panel > p {
+.provider-panel>p {
   margin: 0 0 18px;
   color: #9ba0a7;
   font-size: 14px;
@@ -435,7 +428,7 @@ h1 {
   font-size: 14px;
 }
 
-.provider-item > span {
+.provider-item>span {
   color: #aeb5c0;
   font-size: 14px;
 }
