@@ -7,6 +7,7 @@ import { Betslip } from '../../layout/betslip/betslip';
 import { Footer } from '../../layout/footer/footer';
 import { SportsHeader } from '../../shared/sports-header/sports-header';
 import { Leagues } from '../../shared/leagues/leagues';
+import { LoginModal } from '../../shared/login-modal/login-modal';
 
 export interface OddItem {
   val: string;
@@ -35,7 +36,7 @@ export interface LeagueGroup {
 
 @Component({
   imports: [CommonModule, RouterOutlet, RouterLink, Sidebar,
-    Footer, Betslip, SportsHeader, Leagues],
+    Footer, Betslip, SportsHeader, Leagues, LoginModal],
   selector: 'app-football',
   styleUrl: './football.scss',
   templateUrl: './football.html',

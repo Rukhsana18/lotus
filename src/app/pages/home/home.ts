@@ -70,6 +70,18 @@ export class Home {
 
   protected selectCategory(category: string): void {
     this.activeCategory = category;
+
+    if (!this.isMobileViewport()) {
+      return;
+    }
+
+    requestAnimationFrame(() => {
+      const target = document.getElementById(`category-${category.toLowerCase()}`);
+      target?.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+      });
+    });
   }
 
   protected expandCasino(): void {
@@ -367,11 +379,6 @@ export class Home {
 
       ],
     },
-
-
-    /* =========================================================
-       UPCOMING
-    ========================================================= */
 
     {
       name: 'Upcoming',

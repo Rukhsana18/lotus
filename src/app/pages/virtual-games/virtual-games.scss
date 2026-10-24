@@ -107,7 +107,7 @@
       img {
         width: 100%;
         height: 100%;
-        object-fit: cover;
+        object-fit: contain;
       }
 
       .card-overlay {
@@ -159,6 +159,7 @@
 
     .games-grid {
       padding: 12px;
+      grid-template-columns: repeat(3, 1fr);
     }
 
     .game-card {

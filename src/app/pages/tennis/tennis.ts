@@ -7,6 +7,7 @@ import { Footer } from '../../layout/footer/footer';
 import { Sidebar } from '../../layout/sidebar/sidebar';
 import { SportsHeader } from '../../shared/sports-header/sports-header';
 import { Leagues } from '../../shared/leagues/leagues';
+import { LoginModal } from '../../shared/login-modal/login-modal';
 
 interface OddItem {
   val: string;
@@ -34,7 +35,16 @@ interface LeagueGroup {
 }
 
 @Component({
-  imports: [CommonModule, RouterOutlet, RouterLink, Sidebar, Betslip, Footer, SportsHeader, Leagues],
+  imports: [CommonModule,
+    RouterOutlet,
+    RouterLink,
+    Sidebar,
+    Betslip,
+    Footer,
+    SportsHeader,
+    Leagues,
+    LoginModal
+  ],
   selector: 'app-tennis',
   styleUrl: './tennis.scss',
   templateUrl: './tennis.html',
@@ -71,7 +81,7 @@ export class Tennis implements OnInit, OnDestroy {
     },
   ];
 
-  constructor(private router: Router, private location: Location) {}
+  constructor(private router: Router, private location: Location) { }
 
   ngOnInit(): void {
     this.checkChildRoute(this.router.url);

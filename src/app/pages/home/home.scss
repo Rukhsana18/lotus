@@ -693,8 +693,8 @@
     color: #00c577;
   }
 
-  .category-group.mobile-inactive {
-    // display: none;
+  .category-group {
+    scroll-margin-top: 52px;
   }
 
   .category-group>.category-header {

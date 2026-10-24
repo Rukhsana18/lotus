@@ -90,7 +90,8 @@
 
                         <div class="odds-col" (click)="$event.stopPropagation()">
                           @for (odd of match.odds; track $index) {
-                            <button type="button" class="odd-box" [class.pink]="$index % 2 === 1">
+                            <button type="button" class="odd-box" [class.pink]="$index % 2 === 1" data-bs-toggle="modal"
+                  data-bs-target="#loginModal">
                               <strong>{{ odd.val }}</strong>
                               <small>{{ odd.vol }}</small>
                             </button>

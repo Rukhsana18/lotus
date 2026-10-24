@@ -7,6 +7,7 @@ import { Footer } from '../../layout/footer/footer';
 import { Sidebar } from '../../layout/sidebar/sidebar';
 import { SportsHeader } from '../../shared/sports-header/sports-header';
 import { Leagues } from '../../shared/leagues/leagues';
+import { LoginModal } from '../../shared/login-modal/login-modal';
 
 interface OddItem {
   val: string;
@@ -33,7 +34,7 @@ interface LeagueGroup {
   events: MatchEvent[];
 }
 @Component({
-  imports: [CommonModule, RouterOutlet, RouterLink, Sidebar, Betslip, Footer, SportsHeader, Leagues],
+  imports: [CommonModule, RouterOutlet, RouterLink, Sidebar, Betslip, Footer, SportsHeader, Leagues, LoginModal],
   selector: 'app-basketball',
   styleUrl: './basketball.scss',
   templateUrl: './basketball.html',
