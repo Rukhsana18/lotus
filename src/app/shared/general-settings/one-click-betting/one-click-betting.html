@@ -1,1 +1,53 @@
-<p>one-click-betting works!</p>
+<div class="one-click-container">
+  <div class="section-header">
+    <span class="section-title">One Click Betting</span>
+    <i class="icon-outline-info info-icon" title="Information about One Click Betting"></i>
+  </div>
+
+  <!-- Show Confirmation Popup Toggle -->
+  <div class="toggle-row">
+    <label class="switch">
+      <input type="checkbox" [(ngModel)]="showConfirmationPopup" />
+      <span class="slider">
+        <span class="status-text">{{ showConfirmationPopup ? 'ON' : 'OFF' }}</span>
+        <span class="knob"></span>
+      </span>
+    </label>
+    <span class="toggle-label">Show confirmation popup</span>
+  </div>
+
+  <!-- Edit Stakes Section -->
+  <div class="stakes-section">
+    <div class="stakes-title">Edit Stakes</div>
+    
+    <div class="stakes-grid">
+      @for (stake of stakes; track $index; let i = $index) {
+        <div class="input-wrapper">
+          <input 
+            type="text" 
+            class="stake-input"
+            [class.error-border]="isInputInvalid(i)"
+            [value]="stake"
+            (input)="onInputChange(i, $event)"
+            (focus)="onInputFocus(i, stake)"
+            inputmode="numeric"
+          />
+        </div>
+      }
+    </div>
+
+    <!-- Save Button (Appears when focused; turns grey/disabled if > 6 digits) -->
+    @if (activeInputIndex !== null) {
+      <div class="save-container">
+        <button 
+          type="button" 
+          class="save-btn" 
+          [class.disabled-btn]="hasLengthError()"
+          [disabled]="hasLengthError()"
+          (click)="saveStakes()">
+          Save
+        </button>
+      </div>
+    }
+  </div>
+</div>
