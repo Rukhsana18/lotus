@@ -1,1 +1,68 @@
-<p>security works!</p>
+<div class="setting-title">
+    Security
+</div>
+<div class="security-container">
+  <!-- Toggle Switch Row -->
+  <div class="toggle-row">
+    <label class="switch">
+      <input type="checkbox" [(ngModel)]="is2faEnabled" (change)="onToggleChange()" />
+      <span class="slider">
+        <span class="status-text">{{ is2faEnabled ? 'ON' : 'OFF' }}</span>
+        <span class="knob"></span>
+      </span>
+    </label>
+    <span class="toggle-label">Two-factor authentication</span>
+  </div>
+
+  <!-- Expanded 2FA Setup Content (visible when ON) -->
+  @if (is2faEnabled) {
+    <div class="two-fa-content">
+      <div class="qr-section">
+        <!-- Replace src with your generated QR code URL / signal -->
+        <img [src]="qrCodeUrl" alt="2FA QR Code" class="qr-code" />
+      </div>
+
+      <div class="instructions-section">
+        <p class="step">
+          <strong>Step 1:</strong> Download Google Authenticator (Available in AppStore and GooglePlay).
+        </p>
+
+        <div class="store-buttons">
+          <a href="https://apps.apple.com" target="_blank" class="store-badge">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg" alt="Download on App Store" />
+          </a>
+          <a href="https://play.google.com" target="_blank" class="store-badge">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Get it on Google Play" />
+          </a>
+        </div>
+
+        <p class="step">
+          <strong>Step 2:</strong> Setup account within Google Authenticator.
+        </p>
+
+        <p class="step">
+          <strong>Step 3:</strong> To get a token in Google Authenticator and enter the verification code down below. 
+          <a href="javascript:void(0)" class="link-press" (click)="onPressHere()">Press here</a>
+        </p>
+
+        <div class="form-group">
+          <input 
+            type="text" 
+            class="code-input" 
+            placeholder="Verification code" 
+            [(ngModel)]="verificationCode" 
+            maxlength="6"
+          />
+        </div>
+
+        <button 
+          type="button" 
+          class="submit-btn" 
+          [disabled]="!verificationCode"
+          (click)="activateTwoFactor()">
+          Activate Two-factor authentication
+        </button>
+      </div>
+    </div>
+  }
+</div>
