@@ -246,3 +246,63 @@
     }
   }
 }
+
+/* Header Wallet Dropdown & Profile Buttons */
+.wallet-toggle-btn {
+  gap: 6px;
+  background: #193136;
+  border: none;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 600;
+  height: 20px;
+  border-radius: 8px;
+  padding: 18px 8px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  margin-right: 8px;
+  cursor: pointer;
+
+  i {
+    font-size: 20px;
+  }
+
+  &::after {
+    margin-left: 6px;
+  }
+}
+
+.profile-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 38px;
+  padding: 0 14px;
+  background: #2c4f58;
+  border: none;
+  border-radius: 6px;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+
+  i {
+    font-size: 14px;
+  }
+
+  &:hover {
+    background: #234f59;
+  }
+}
+
+@media (max-width: 760px) {
+
+  .wallet-toggle-btn,
+  .profile-button {
+    height: 32px;
+    padding: 0 8px;
+    font-size: 11px;
+  }
+}

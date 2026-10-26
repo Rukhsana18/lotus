@@ -6,8 +6,7 @@
     "start": "npm run ng -- serve",
     "build": "npm run ng -- build",
     "watch": "npm run ng -- build --watch --configuration development",
-    "test": "npm run ng -- test",
-    "serve:ssr:lotus": "node dist/lotus/server/server.mjs"
+    "test": "npm run ng -- test"
   },
   "private": true,
   "packageManager": "npm@12.0.1",
@@ -20,7 +19,6 @@
     "@angular/platform-browser": "^22.0.0",
     "@angular/platform-server": "^22.0.0",
     "@angular/router": "^22.0.0",
-    "@angular/ssr": "^22.0.7",
     "@fortawesome/angular-fontawesome": "^5.1.0",
     "@fortawesome/fontawesome-free": "^7.3.1",
     "@fortawesome/fontawesome-svg-core": "^7.3.1",

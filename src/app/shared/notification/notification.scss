@@ -1,0 +1,196 @@
+.notification-container {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.notification-bell-wrapper {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 4px;
+
+  .notification-icon {
+    font-size: 20px;
+    color: #ffffff;
+  }
+
+  .count {
+    position: absolute;
+    top: -2px;
+    right: -6px;
+    background: #f39c12;
+    color: #ffffff;
+    font-size: 10px;
+    font-weight: 800;
+    padding: 1px 5px;
+    border-radius: 10px;
+    line-height: 1.2;
+  }
+}
+
+/* Backdrop Overlay positioned strictly below the header */
+.notification-backdrop {
+  position: fixed;
+  inset: 0;
+  top: 61px;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 1040;
+}
+
+/* Notification Side Drawer Panel */
+.notification-side-drawer {
+  position: fixed;
+  top: 61px;
+  right: 0;
+  width: 400px;
+  height: calc(100vh - 61px);
+  background: #ffffff;
+  box-shadow: -4px 0 20px rgba(0, 0, 0, 0.2);
+  z-index: 1050;
+  display: flex;
+  flex-direction: column;
+  animation: slideInRight 0.25s ease-out;
+
+  .drawer-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 20px;
+    // border-bottom: 1px solid #eaeaea;
+
+    .drawer-title {
+      margin: 0;
+      font-size: 18px;
+      font-weight: 700;
+      color: #111111;
+    }
+
+    .drawer-actions-top {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+
+      .mark-read-btn {
+        background: none;
+        border: none;
+        color: #666666;
+        font-size: 13px;
+        font-weight: 600;
+        cursor: pointer;
+
+        &:hover {
+          color: #111111;
+        }
+      }
+
+      .settings-icon,
+      .close-drawer-icon {
+        font-size: 16px;
+        color: #555555;
+        cursor: pointer;
+
+        &:hover {
+          color: #111111;
+        }
+      }
+    }
+  }
+
+  .notification-filters {
+    display: flex;
+    gap: 8px;
+    padding: 12px 20px;
+    // border-bottom: 1px solid #eaeaea;
+    background: #fdfdfd;
+
+    .filter-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      border-radius: 20px;
+      background: #f1f3f5;
+      border: none;
+      color: #333333;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+
+      .badge-count {
+        background: #111111;
+        color: #ffffff;
+        font-size: 10px;
+        padding: 1px 5px;
+        border-radius: 10px;
+      }
+
+      &.active {
+        background: #111111;
+        color: #ffffff;
+
+        .badge-count {
+          background: #ffffff;
+          color: #111111;
+        }
+      }
+    }
+  }
+
+  .drawer-body {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    background: #ffffff;
+
+    .empty-state {
+      text-align: center;
+      max-width: 280px;
+
+      .empty-bell-graphic {
+        font-size: 48px;
+        color: #d1d5db;
+        margin-bottom: 16px;
+      }
+
+      h3 {
+        margin: 0 0 8px 0;
+        font-size: 16px;
+        font-weight: 700;
+        color: #111111;
+      }
+
+      p {
+        margin: 0;
+        font-size: 13px;
+        line-height: 1.5;
+        color: #000;
+      }
+    }
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@media (max-width: 760px) {
+  .notification-side-drawer {
+    width: 100%;
+    top: 50px;
+    height: calc(100vh - 50px);
+  }
+
+  .notification-backdrop {
+    top: 50px;
+  }
+}

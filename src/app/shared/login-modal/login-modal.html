@@ -1,71 +1,93 @@
-<div 
-  class="modal fade login-modal" 
-  id="loginModal" 
-  tabindex="-1" 
-  aria-labelledby="loginModalLabel" 
+
+<div
+  class="modal fade login-modal"
+  id="loginModal"
+  tabindex="-1"
+  aria-labelledby="loginModalLabel"
   aria-hidden="true"
 >
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content login-card">
-      
+
       <!-- Close Button -->
-      <button 
-        type="button" 
-        class="close-btn" 
-        data-bs-dismiss="modal" 
+      <button
+        type="button"
+        class="close-btn"
+        data-bs-dismiss="modal"
         aria-label="Close"
       >
         <i class="fa-solid fa-xmark"></i>
       </button>
 
       <div class="modal-body text-center">
+
         <!-- Lotus Brand Logo -->
         <div class="brand-logo">
-            <img src="../../../assets/logo.svg" alt="" height="50">
-          
+          <img src="../../../assets/logo.svg" alt="Lotus Logo" height="50">
         </div>
 
-        <!-- Login Form -->
-        <form (ngSubmit)="onLogin()" #loginForm="ngForm">
-          <!-- Username Input -->
+        <!-- Reactive Login Form -->
+        <form [formGroup]="loginForm" (ngSubmit)="onLogin()" novalidate>
+
+          <!-- Username -->
           <div class="input-group mb-3">
-            <input 
-              type="text" 
-              class="form-control custom-input" 
-              placeholder="Username" 
-              [(ngModel)]="username" 
-              name="username" 
-              required
+            <input
+              type="text"
+              class="form-control custom-input"
+              placeholder="Username"
+              formControlName="username"
+              autocomplete="username"
+              [class.is-invalid]="submitted && f['username'].invalid"
             >
           </div>
 
-          <!-- Password Input -->
+          @if (submitted && f['username'].hasError('required')) {
+            <div class="text-danger text-start mb-2">
+              Username is required.
+            </div>
+          }
+
+          <!-- Password -->
           <div class="input-group mb-4 position-relative">
-            <input 
-              [type]="showPassword ? 'text' : 'password'" 
-              class="form-control custom-input pe-5" 
-              placeholder="Password" 
-              [(ngModel)]="password" 
-              name="password" 
-              required
+            <input
+              [type]="showPassword ? 'text' : 'password'"
+              class="form-control custom-input pe-5"
+              placeholder="Password"
+              formControlName="password"
+              autocomplete="current-password"
+              [class.is-invalid]="submitted && f['password'].invalid"
             >
-            <button 
-              type="button" 
-              class="eye-toggle-btn" 
-              (click)="togglePasswordVisibility()" 
-              aria-label="Toggle password view"
+
+            <button
+              type="button"
+              class="eye-toggle-btn"
+              (click)="togglePasswordVisibility()"
+              aria-label="Toggle password visibility"
             >
-              <i class="fa-solid" [class.fa-eye]="showPassword" [class.fa-eye-slash]="!showPassword"></i>
+              <i
+                class="fa-solid"
+                [class.fa-eye]="showPassword"
+                [class.fa-eye-slash]="!showPassword"
+              ></i>
             </button>
           </div>
 
-          <!-- Submit Button -->
-          <button type="submit" class="btn login-submit-btn w-100">
+          @if (submitted && f['password'].hasError('required')) {
+            <div class="text-danger text-start mb-2">
+              Password is required.
+            </div>
+          }
+
+          <!-- Submit -->
+          <button
+            type="submit"
+            class="btn login-submit-btn w-100"
+          >
             Login
           </button>
+
         </form>
       </div>
-
     </div>
   </div>
 </div>

@@ -196,5 +196,51 @@ export const routes: Routes = [
     ],
   },
 
+  // settings and sub routes
+  {
+    path: 'general-settings',
+    loadComponent: () =>
+      import('./shared/general-settings/general-settings').then((m) => m.GeneralSettings),
+    title: 'General Settings | Lotus',
+    children: [
+      {
+        path: 'security',
+        title: 'Security | Lotus',
+        loadComponent: () =>
+          import('./shared/general-settings/security/security').then((m) => m.Security),
+      },
+      {
+        path: 'betslip',
+        title: 'Betslip | Lotus',
+        loadComponent: () =>
+          import('./shared/general-settings/betslip/betslip').then((m) => m.Betslip),
+      },
+      {
+        path: 'one-click-betting',
+        title: 'One Click Betting | Lotus',
+        loadComponent: () =>
+          import('./shared/general-settings/one-click-betting/one-click-betting').then((m) => m.OneClickBetting),
+      },
+      {
+        path: 'minute-market',
+        title: 'Minute Market | Lotus',
+        loadComponent: () =>
+          import('./shared/general-settings/minute-market/minute-market').then((m) => m.MinuteMarket),
+      },
+      {
+        path: 'casino-stakes',
+        title: 'Casino Stakes | Lotus',
+        loadComponent: () =>
+          import('./shared/general-settings/casino-stakes/casino-stakes').then((m) => m.CasinoStakes),
+      },
+      {
+        path: 'notification-center',
+        title: 'Security | Lotus',
+        loadComponent: () =>
+          import('./shared/general-settings/notification-center/notification-center').then((m) => m.NotificationCenter),
+      },
+    ],
+  },
+
   { path: '**', redirectTo: 'home' },
 ];

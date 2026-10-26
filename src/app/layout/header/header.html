@@ -22,12 +22,36 @@
 
     <div class="header-actions">
         <time>{{ currentTime() | date: 'MMM d, yyyy' }} &nbsp; {{ currentTime() | date: 'HH:mm:ss' }}</time>
+
+        <app-notification></app-notification>
         <div class="border-1"></div>
         <a class="search-button" routerLink="/search" [queryParams]="isCasinoRoute() ? { mode: 'casino' } : null"
             aria-label="Search">
             <i class="icon icon-search-new" aria-hidden="true"></i>
         </a>
-        <button class="login-button" type="button" data-bs-toggle="modal" data-bs-target="#loginModal">Login</button>
+
+        @if (!isLoggedIn()) {
+            <!-- Login Button -->
+            <button class="login-button" type="button" data-bs-toggle="modal" data-bs-target="#loginModal">Login</button>
+        } @else {
+            <!-- Wallet Dropdown Button -->
+            <div class="dropdown wallet-dropdown">
+                <button class="wallet-toggle-btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="icon-wallet-solid"></i> 0.00
+                </button>
+                <ul class="dropdown-menu dropdown-menu-dark">
+                    <li><a class="dropdown-item" href="#">Main Balance: 0.00</a></li>
+                    <li><a class="dropdown-item" href="#">Exposure: 0.00</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="#">Deposit / Withdraw</a></li>
+                </ul>
+            </div>
+
+            <!-- Profile Button Triggering Side Drawer -->
+            <button class="profile-button" type="button" (click)="toggleProfileDrawer()">
+                <i class="fa-solid fa-user"></i> Profile
+            </button>
+        }
     </div>
 </header>
 

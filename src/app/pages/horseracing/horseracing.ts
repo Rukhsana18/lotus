@@ -35,7 +35,7 @@ export interface LeagueGroup {
 
 @Component({
   imports: [CommonModule, RouterOutlet, RouterLink, Sidebar,
-    Footer, Betslip, SportsHeader, Leagues],
+    Footer, Betslip, SportsHeader],
   selector: 'app-horseracing',
   styleUrl: './horseracing.scss',
   templateUrl: './horseracing.html',
