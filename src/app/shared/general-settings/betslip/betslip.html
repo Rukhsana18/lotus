@@ -1,1 +1,64 @@
-<p>betslip works!</p>
+<div class="betslip-settings-container">
+  <div class="section-title">Betslip</div>
+
+  <!-- Confirm Bet Before Placing Toggle -->
+  <div class="toggle-row">
+    <label class="switch">
+      <input type="checkbox" [(ngModel)]="confirmBet" />
+      <span class="slider">
+        <span class="status-text">{{ confirmBet ? 'ON' : 'OFF' }}</span>
+        <span class="knob"></span>
+      </span>
+    </label>
+    <span class="toggle-label">Confirm Bet Before Placing</span>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- Accept Better Odds Toggle -->
+  <div class="toggle-row">
+    <label class="switch">
+      <input type="checkbox" [(ngModel)]="acceptBetterOdds" />
+      <span class="slider">
+        <span class="status-text">{{ acceptBetterOdds ? 'ON' : 'OFF' }}</span>
+        <span class="knob"></span>
+      </span>
+    </label>
+    <span class="toggle-label">Accept Better Odds</span>
+  </div>
+
+  <!-- Edit Presets Section -->
+  <div class="presets-section">
+    <div class="presets-title">Edit Presets</div>
+    
+    <div class="presets-grid">
+      @for (preset of presets; track $index; let i = $index) {
+        <div class="input-wrapper">
+          <input 
+            type="text" 
+            class="preset-input"
+            [class.error-border]="isInputInvalid(i)"
+            [value]="preset"
+            (input)="onInputChange(i, $event)"
+            (focus)="onInputFocus(i, preset)"
+            inputmode="numeric"
+          />
+        </div>
+      }
+    </div>
+
+    <!-- Save Button (Appears when focused; styled grey/disabled if > 6 digits) -->
+    @if (activeInputIndex !== null) {
+      <div class="save-container">
+        <button 
+          type="button" 
+          class="save-btn" 
+          [class.disabled-btn]="hasLengthError()"
+          [disabled]="hasLengthError()"
+          (click)="savePresets()">
+          Save
+        </button>
+      </div>
+    }
+  </div>
+</div>

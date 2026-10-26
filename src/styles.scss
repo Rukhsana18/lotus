@@ -2747,5 +2747,65 @@ a {
     }
 
     }
-
 }
+  .switch {
+        position: relative;
+        display: inline-block;
+        width: 60px;
+        height: 30px;
+
+        input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+
+            &:checked+.slider {
+                background-color: #00a65a; // Active Green
+
+                .knob {
+                    transform: translateX(28px);
+                }
+
+                .status-text {
+                    left: 10px;
+                    right: auto;
+                    color: #ffffff;
+                }
+            }
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #cccccc; // Inactive Grey
+            transition: background-color 0.25s ease;
+            border-radius: 34px;
+            display: flex;
+            align-items: center;
+
+            .knob {
+                position: absolute;
+                height: 22px;
+                width: 22px;
+                left: 4px;
+                background-color: white;
+                transition: transform 0.25s ease;
+                border-radius: 50%;
+                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+            }
+
+            .status-text {
+                position: absolute;
+                right: 10px;
+                font-size: 11px;
+                font-weight: 700;
+                color: #222222;
+                letter-spacing: 0.5px;
+                user-select: none;
+            }
+        }
+    }
