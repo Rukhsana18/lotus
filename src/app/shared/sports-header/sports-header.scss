@@ -1,0 +1,14 @@
+.clickable-parent {
+  cursor: pointer;
+  opacity: 0.85;
+  transition: opacity 0.2s;
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
+.separator {
+  opacity: 0.6;
+  margin: 0 4px;
+}

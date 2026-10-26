@@ -2,9 +2,8 @@ import { CommonModule, Location } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NavigationEnd, Router, RouterLink, RouterOutlet } from '@angular/router';
 import { filter, Subscription } from 'rxjs';
-import { Betslip } from '../../layout/betslip/betslip';
 import { Footer } from '../../layout/footer/footer';
-import { Sidebar } from '../../layout/sidebar/sidebar';
+import { SportsLayout } from '../../layout/sports-layout/sports-layout';
 import { SportsHeader } from '../../shared/sports-header/sports-header';
 import { Leagues } from '../../shared/leagues/leagues';
 
@@ -34,7 +33,7 @@ interface LeagueGroup {
 }
 
 @Component({
-  imports: [CommonModule, RouterOutlet, RouterLink, Sidebar, Betslip, Footer, SportsHeader, Leagues],
+  imports: [CommonModule, RouterOutlet, RouterLink, SportsLayout, Footer, SportsHeader, Leagues],
   selector: 'app-mixed-martial-arts',
   styleUrl: './mixed-martial-arts.scss',
   templateUrl: './mixed-martial-arts.html',

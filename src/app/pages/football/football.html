@@ -1,11 +1,4 @@
-<div class="sports-layout">
-  <!-- Sidebar Remains Fixed -->
-  <aside class="sports-sidebar">
-    <app-sidebar />
-  </aside>
-
-  <!-- Content Container -->
-  <main class="sports-content">
+<app-sports-layout>
     @if (isChildRouteActive) {
       <!-- Render Child Components (LeagueDetail / MatchDetail) Here -->
       <router-outlet></router-outlet>
@@ -113,10 +106,4 @@
         <app-footer />
       </div>
     }
-  </main>
-
-  <!-- Betslip Remains Fixed -->
-  <aside class="sports-betslip">
-    <app-betslip />
-  </aside>
-</div>
+</app-sports-layout>

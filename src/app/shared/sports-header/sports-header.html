@@ -3,25 +3,25 @@
     <button type="button" class="back-btn" aria-label="Go back" (click)="goBack()">
       <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
     </button>
-    <h1 class="page-title">{{ pageTitle }}</h1>
+    <h1 class="page-title">
+        @if (hasSubroute()) {
+        <span class="clickable-parent" (click)="onParentClick()">{{ getParentTitle() }}</span>
+        <span class="separator"> / </span>
+        <span class="sub-title">{{ getSubTitle() }}</span>
+      } @else {
+        {{ pageTitle }}
+      }
+      </h1>
   </div>
 
+  @if (showTabs) {
   <nav class="segment-tabs" aria-label="Sports sections">
-    <button
-      type="button"
-      class="tab-btn"
-      [class.active]="activeTab === 'live'"
-      (click)="setMainTab('live')"
-    >
+    <button type="button" class="tab-btn" [class.active]="activeTab === 'live'" (click)="setMainTab('live')">
       LIVE &amp; UPCOMING
     </button>
-    <button
-      type="button"
-      class="tab-btn"
-      [class.active]="activeTab === 'leagues'"
-      (click)="setMainTab('leagues')"
-    >
+    <button type="button" class="tab-btn" [class.active]="activeTab === 'leagues'" (click)="setMainTab('leagues')">
       LEAGUES
     </button>
   </nav>
+  }
 </header>

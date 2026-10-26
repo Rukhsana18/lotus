@@ -1,8 +1,5 @@
-<div class="sports-layout">
-  <aside class="sports-sidebar">
-    <app-sidebar />
-  </aside>
-  <main class="sports-content" (pointerdown)="collapseCasinoOutside($event)">
+<app-sports-layout>
+  <div (pointerdown)="collapseCasinoOutside($event)">
     <section class="promotions" aria-label="Featured promotions">
       <div id="promotionCarousel" class="desktop-promotion-carousel carousel slide" data-bs-interval="5000">
         <div class="carousel-inner">
@@ -258,8 +255,5 @@
 
     </section>
     <app-footer />
-  </main>
-  <aside class="sports-betslip">
-    <app-betslip />
-  </aside>
-</div>
+  </div>
+</app-sports-layout>

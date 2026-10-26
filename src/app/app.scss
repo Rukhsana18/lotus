@@ -90,7 +90,17 @@ app-header {
 
 .route-content > app-sports-page,
 .route-content > app-casino-page,
-.route-content > app-search-page {
+.route-content > app-search-page,
+.route-content > app-home-page,
+.route-content > app-sports,
+.route-content > app-football,
+.route-content > app-tennis,
+.route-content > app-american-football,
+.route-content > app-basketball,
+.route-content > app-baseball,
+.route-content > app-horseracing,
+.route-content > app-greyhound-racing,
+.route-content > app-mixed-martial-arts {
   display: block;
   width: 100%;
   height: 100%;

@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { Sidebar } from '../../layout/sidebar/sidebar';
-import { Betslip } from '../../layout/betslip/betslip';
+import { SportsLayout } from '../../layout/sports-layout/sports-layout';
 import { Footer } from '../../layout/footer/footer';
 import { LoginModal } from '../../shared/login-modal/login-modal';
 
@@ -58,7 +57,7 @@ export interface CasinoGameItem {
 @Component({
   selector: 'app-home-page',
   standalone: true,
-  imports: [RouterLink, Sidebar, Betslip, Footer, LoginModal],
+  imports: [RouterLink, SportsLayout, Footer, LoginModal],
   templateUrl: './home.html',
   styleUrl: './home.scss',
 })

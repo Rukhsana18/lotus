@@ -2,8 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule, Location } from '@angular/common';
 import { Router, NavigationEnd, RouterOutlet, RouterLink, ActivatedRoute } from '@angular/router';
 import { filter, Subscription } from 'rxjs';
-import { Sidebar } from '../../layout/sidebar/sidebar';
-import { Betslip } from '../../layout/betslip/betslip';
+import { SportsLayout } from '../../layout/sports-layout/sports-layout';
 import { Footer } from '../../layout/footer/footer';
 import { Leagues } from '../../shared/leagues/leagues';
 
@@ -35,8 +34,8 @@ export interface LeagueGroup {
 @Component({
   selector: 'app-sports',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, RouterLink, Sidebar,
-    Footer, Betslip, Leagues],
+  imports: [CommonModule, RouterOutlet, RouterLink, SportsLayout,
+    Footer, Leagues],
   templateUrl: './sports.html',
   styleUrl: './sports.scss',
 })

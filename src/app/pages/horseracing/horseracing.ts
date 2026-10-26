@@ -2,8 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule, Location } from '@angular/common';
 import { Router, NavigationEnd, RouterOutlet, RouterLink } from '@angular/router';
 import { filter, Subscription } from 'rxjs';
-import { Sidebar } from '../../layout/sidebar/sidebar';
-import { Betslip } from '../../layout/betslip/betslip';
+import { SportsLayout } from '../../layout/sports-layout/sports-layout';
 import { Footer } from '../../layout/footer/footer';
 import { SportsHeader } from '../../shared/sports-header/sports-header';
 import { Leagues } from '../../shared/leagues/leagues';
@@ -34,8 +33,8 @@ export interface LeagueGroup {
 }
 
 @Component({
-  imports: [CommonModule, RouterOutlet, RouterLink, Sidebar,
-    Footer, Betslip, SportsHeader],
+  imports: [CommonModule, RouterOutlet, RouterLink, SportsLayout,
+    Footer, SportsHeader],
   selector: 'app-horseracing',
   styleUrl: './horseracing.scss',
   templateUrl: './horseracing.html',

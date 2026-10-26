@@ -1,1 +1,35 @@
-<p>general-settings works!</p>
+<app-sports-layout>
+    <!-- Pass parentClick output to navigate back to general settings -->
+    <app-sports-header 
+        [pageTitle]="subroutes ? 'General settings / ' + subRouteName : 'General settings'" 
+        (back)="goBack()" 
+        (parentClick)="navigateToGeneralSettings()"
+        [showTabs]="false">
+    </app-sports-header>
+    
+    <!-- general settings layout container -->
+    <div class="general-settings">
+        <!-- Use style or class binding to hide the list without destroying the DOM tree -->
+        <div [style.display]="subroutes ? 'none' : 'block'">
+            <div class="setting-title">
+                General Settings
+            </div>
+            <!-- General Settings List View -->
+            <div class="settings">
+                @for(settings of generalSettings; track settings) {
+                <a [routerLink]="settings.link" class="setting-list text-decoration-none">
+                    <div>{{settings.setting}}</div>
+                    <i class="icon-angle-right"></i>
+                </a>
+                }
+            </div>
+        </div>
+
+        <!-- Router Outlet is ALWAYS in the DOM, so subroutes render instantly on 1 click -->
+        <div class="subroute-content-container">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+<div class="mt-3"></div>
+    <app-footer />
+</app-sports-layout>
