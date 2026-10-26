@@ -1,12 +1,11 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Router, RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-notification',
   standalone: true,
-  imports: [CommonModule,
-    RouterLink
+  imports: [CommonModule
   ],
   templateUrl: './notification.html',
   styleUrl: './notification.scss'

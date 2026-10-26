@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { SportsLayout } from '../../layout/sports-layout/sports-layout';
 import { Footer } from '../../layout/footer/footer';
-import { LoginModal } from '../../shared/login-modal/login-modal';
 
 export interface OddItem {
   val: string;
@@ -57,7 +56,7 @@ export interface CasinoGameItem {
 @Component({
   selector: 'app-home-page',
   standalone: true,
-  imports: [RouterLink, SportsLayout, Footer, LoginModal],
+  imports: [RouterLink, SportsLayout, Footer],
   templateUrl: './home.html',
   styleUrl: './home.scss',
 })

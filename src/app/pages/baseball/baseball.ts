@@ -6,7 +6,6 @@ import { Footer } from '../../layout/footer/footer';
 import { SportsLayout } from '../../layout/sports-layout/sports-layout';
 import { SportsHeader } from '../../shared/sports-header/sports-header';
 import { Leagues } from '../../shared/leagues/leagues';
-import { LoginModal } from '../../shared/login-modal/login-modal';
 
 interface OddItem {
   val: string;
@@ -34,7 +33,7 @@ interface LeagueGroup {
 }
 
 @Component({
-  imports: [CommonModule, RouterOutlet, RouterLink, SportsLayout, Footer, SportsHeader, Leagues, LoginModal],
+  imports: [CommonModule, RouterOutlet, RouterLink, SportsLayout, Footer, SportsHeader, Leagues],
   selector: 'app-baseball',
   styleUrl: './baseball.scss',
   templateUrl: './baseball.html',
