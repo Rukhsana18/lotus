@@ -242,5 +242,53 @@ export const routes: Routes = [
     ],
   },
 
+  // my bets
+  {
+    path: 'my-bets',
+    loadComponent: () => import('./pages/my-bets/my-bets').then((m) => m.MyBets),
+    title: 'My Bets | Lotus'
+  },
+  {
+    path: 'change-password',
+    loadComponent: () => import('./pages/change-password/change-password').then((m) => m.ChangePassword),
+    title: 'Change Password | Lotus'
+  },
+  {
+    path: 'reports/profit-loss',
+    loadComponent: () => import('./pages/betting-profit-loss/betting-profit-loss').then((m) => m.BettingProfitLoss),
+    title: 'Betting: Profit & Loss | Lotus'
+  },
+
+  {
+    path: 'reports/account-statement',
+    loadComponent: () => import('./pages/account-statement/account-statement').then((m) => m.AccountStatement),
+    title: 'Account Statement | Lotus'
+  },
+  {
+    path: 'reports/transfer-statement',
+    loadComponent: () => import('./pages/transfer-statement/transfer-statement').then((m) => m.TransferStatement),
+    title: 'Transfer Statement | Lotus'
+  },
+  {
+    path: 'policies/rules-and-regulations',
+    loadComponent: () => import('./pages/rules-and-regulations/rules-and-regulations').then((m) => m.RulesAndRegulations),
+    title: 'Rules & Regulations | Lotus'
+  },
+
+  {
+    path: 'policies/responsible-gambling',
+    loadComponent: () => import('./pages/responsible-gambling/responsible-gambling').then((m) => m.ResponsibleGambling),
+    title: 'Responsible Gambling | Lotus'
+  },
+  {
+    path: 'policies/kyc',
+    loadComponent: () => import('./pages/kyc/kyc').then((m) => m.Kyc),
+    title: 'KYC | Lotus'
+  },
+  {
+    path: 'policies/exclusion-policy',
+    loadComponent: () => import('./pages/exclusion-policy/exclusion-policy').then((m) => m.ExclusionPolicy),
+    title: 'Exclusion Policies | Lotus'
+  },
   { path: '**', redirectTo: 'home' },
 ];

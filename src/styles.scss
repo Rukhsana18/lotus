@@ -2387,7 +2387,7 @@ a {
     height: calc(100% - 48px);
   }
 
-  .sports-layout > .sports-content > .sports-detail-container {
+  .sports-layout>.sports-content>.sports-detail-container {
     flex: 1 0 auto;
     height: auto;
     min-height: calc(100dvh - 50px - 47px - 48px);
@@ -2404,18 +2404,18 @@ a {
     flex-direction: column;
   }
 
-  .sports-content > app-league-detail {
+  .sports-content>app-league-detail {
     display: flex;
     flex: 1 0 auto;
     flex-direction: column;
     min-height: 100%;
   }
 
-  .sports-detail-container > app-leagues {
+  .sports-detail-container>app-leagues {
     flex: 1 0 auto;
   }
 
-  .sports-detail-container > .filter-pills-bar {
+  .sports-detail-container>.filter-pills-bar {
     position: sticky;
     z-index: 20;
     top: 0;
@@ -2423,13 +2423,13 @@ a {
     background: #f2f5f5;
   }
 
-  .sports-detail-container > .matches-feed {
+  .sports-detail-container>.matches-feed {
     position: relative;
     z-index: 0;
     flex: 1 0 auto;
   }
 
-  .sports-detail-container > app-footer {
+  .sports-detail-container>app-footer {
     display: block;
     flex: 0 0 auto;
   }
@@ -2715,124 +2715,360 @@ a {
 
 // general settings ans subsettings
 .general-settings {
-    background: #fff;
-    padding: 24px 32px;
+  background: #fff;
+  padding: 24px 32px;
 
-    .setting-title {
-        margin-bottom: 16px;
-        color: #6c678b;
-        text-transform: uppercase;
-        font-size: 14px;
-        font-weight: 700;
+  .setting-title {
+    margin-bottom: 16px;
+    color: #6c678b;
+    text-transform: uppercase;
+    font-size: 14px;
+    font-weight: 700;
+  }
+
+  .settings {
+    margin-top: 10px;
+  }
+
+  .setting-list {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 52px;
+    font-size: 14px;
+    line-height: 17px;
+    cursor: pointer;
+    font-weight: 500;
+    // border-bottom: 1px solid #efefef;
+    color: #333333;
+
+    &:not(:last-child) {
+      border-bottom: 1px solid #efefef;
     }
 
-    .settings {
-        margin-top: 10px;
-    }
-
-    .setting-list {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        height: 52px;
-        font-size: 14px;
-        line-height: 17px;
-        cursor: pointer;
-        font-weight: 500;
-        // border-bottom: 1px solid #efefef;
-        color: #333333;
-
-        &:not(:last-child) {
-        border-bottom: 1px solid #efefef;
-    }
-
-    }
+  }
 }
-  .switch {
-        position: relative;
-        display: inline-block;
-        width: 60px;
-        height: 30px;
 
-        input {
-            opacity: 0;
-            width: 0;
-            height: 0;
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 30px;
 
-            &:checked+.slider {
-                background-color: #00a65a; // Active Green
+  input {
+    opacity: 0;
+    width: 0;
+    height: 0;
 
-                .knob {
-                    transform: translateX(28px);
-                }
+    &:checked+.slider {
+      background-color: #00a65a; // Active Green
 
-                .status-text {
-                    left: 10px;
-                    right: auto;
-                    color: #ffffff;
-                }
-            }
-        }
+      .knob {
+        transform: translateX(28px);
+      }
 
-        .slider {
-            position: absolute;
-            cursor: pointer;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: #cccccc; // Inactive Grey
-            transition: background-color 0.25s ease;
-            border-radius: 34px;
-            display: flex;
-            align-items: center;
+      .status-text {
+        left: 10px;
+        right: auto;
+        color: #ffffff;
+      }
+    }
+  }
 
-            .knob {
-                position: absolute;
-                height: 22px;
-                width: 22px;
-                left: 4px;
-                background-color: white;
-                transition: transform 0.25s ease;
-                border-radius: 50%;
-                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
-            }
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #cccccc; // Inactive Grey
+    transition: background-color 0.25s ease;
+    border-radius: 34px;
+    display: flex;
+    align-items: center;
 
-            .status-text {
-                position: absolute;
-                right: 10px;
-                font-size: 11px;
-                font-weight: 700;
-                color: #222222;
-                letter-spacing: 0.5px;
-                user-select: none;
-            }
-        }
+    .knob {
+      position: absolute;
+      height: 22px;
+      width: 22px;
+      left: 4px;
+      background-color: white;
+      transition: transform 0.25s ease;
+      border-radius: 50%;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
     }
 
-    .save-container {
-      margin-top: 20px;
+    .status-text {
+      position: absolute;
+      right: 10px;
+      font-size: 11px;
+      font-weight: 700;
+      color: #222222;
+      letter-spacing: 0.5px;
+      user-select: none;
+    }
+  }
+}
 
-      .save-btn {
-        width: 150px;
-        height: 40px;
-        background-color: #00a65a;
-        color: #ffffff;
+.save-container {
+  margin-top: 20px;
+
+  .save-btn {
+    width: 150px;
+    height: 40px;
+    background-color: #00a65a;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+
+    &:hover {
+      background-color: #008f4e;
+    }
+
+    /* Gray button style when invalid (> 6 digits) */
+    &.disabled-btn {
+      background-color: #8e8e93;
+      cursor: not-allowed;
+    }
+  }
+}
+
+
+// drawer stylings
+.notification-container {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.notification-bell-wrapper {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 4px;
+
+  .notification-icon {
+    font-size: 20px;
+    color: #ffffff;
+  }
+
+  .count {
+    position: absolute;
+    top: -2px;
+    right: -6px;
+    background: #f39c12;
+    color: #ffffff;
+    font-size: 10px;
+    font-weight: 800;
+    padding: 1px 5px;
+    border-radius: 10px;
+    line-height: 1.2;
+  }
+}
+
+/* Backdrop Overlay positioned strictly below the header */
+.notification-backdrop {
+  position: fixed;
+  inset: 0;
+  top: 61px;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 1040;
+}
+
+/* Notification Side Drawer Panel */
+.notification-side-drawer {
+  position: fixed;
+  top: 61px;
+  right: 0;
+  width: 400px;
+  height: calc(100vh - 61px);
+  background: #ffffff;
+  box-shadow: -4px 0 20px rgba(0, 0, 0, 0.2);
+  z-index: 1050;
+  display: flex;
+  flex-direction: column;
+  animation: slideInRight 0.25s ease-out;
+
+  .drawer-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 20px;
+    // border-bottom: 1px solid #eaeaea;
+
+    .drawer-title {
+      margin: 0;
+      font-size: 18px;
+      font-weight: 700;
+      color: #111111;
+    }
+
+    .drawer-actions-top {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+
+      .mark-read-btn {
+        background: none;
         border: none;
-        border-radius: 8px;
-        font-size: 15px;
+        color: #666666;
+        font-size: 13px;
         font-weight: 600;
         cursor: pointer;
-        transition: background-color 0.2s;
 
         &:hover {
-          background-color: #008f4e;
+          color: #111111;
         }
+      }
 
-        /* Gray button style when invalid (> 6 digits) */
-        &.disabled-btn {
-          background-color: #8e8e93;
-          cursor: not-allowed;
+      .settings-icon,
+      .close-drawer-icon {
+        font-size: 16px;
+        color: #555555;
+        cursor: pointer;
+
+        &:hover {
+          color: #111111;
         }
       }
     }
+  }
+
+  .notification-filters {
+    display: flex;
+    gap: 8px;
+    padding: 12px 20px;
+    // border-bottom: 1px solid #eaeaea;
+    background: #fdfdfd;
+
+    .filter-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      border-radius: 20px;
+      background: #f1f3f5;
+      border: none;
+      color: #333333;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+
+      .badge-count {
+        background: #111111;
+        color: #ffffff;
+        font-size: 10px;
+        padding: 1px 5px;
+        border-radius: 10px;
+      }
+
+      &.active {
+        background: #111111;
+        color: #ffffff;
+
+        .badge-count {
+          background: #ffffff;
+          color: #111111;
+        }
+      }
+    }
+  }
+
+  .drawer-body {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    background: #ffffff;
+
+    .empty-state {
+      text-align: center;
+      max-width: 280px;
+
+      .empty-bell-graphic {
+        font-size: 48px;
+        color: #d1d5db;
+        margin-bottom: 16px;
+      }
+
+      h3 {
+        margin: 0 0 8px 0;
+        font-size: 16px;
+        font-weight: 700;
+        color: #111111;
+      }
+
+      p {
+        margin: 0;
+        font-size: 13px;
+        line-height: 1.5;
+        color: #000;
+      }
+    }
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
+@media (max-width: 760px) {
+  .notification-side-drawer {
+    width: 100%;
+    top: 50px;
+    height: calc(100vh - 50px);
+  }
+
+  .notification-backdrop {
+    top: 50px;
+  }
+}
+
+
+.profile-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 38px;
+  padding: 0 14px;
+  background: #2c4f58;
+  border: none;
+  border-radius: 6px;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+
+  i {
+    font-size: 14px;
+  }
+
+  &:hover {
+    background: #234f59;
+  }
+}
+
+@media (max-width: 760px) {
+
+  .wallet-toggle-btn,
+  .profile-button {
+    height: 32px;
+    padding: 0 8px;
+    font-size: 11px;
+  }
+}

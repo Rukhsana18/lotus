@@ -8,7 +8,7 @@ import {
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Auth } from '../../services/auth';
-// import { AuthService } from './auth.service'; // Update path as necessary
+import { switchMap } from 'rxjs/operators';
 
 declare var bootstrap: any;
 
@@ -59,25 +59,41 @@ export class LoginModal {
     const { username, password } = this.loginForm.getRawValue();
     this.isLoading = true;
 
-    // The backend expects 'email' and 'password' payloads
-    this.authService.login({ email: username.trim(), password }).subscribe({
-      next: (response) => {
+    // 1. Login API
+    this.authService.login({ email: username.trim(), password }).pipe(
+      // 2. Fetch User Balance
+      switchMap((loginRes: any) => {
+        // Save fallback/extracted user_id from login response if available
+        if (loginRes?.user_id || loginRes?.id) {
+          localStorage.setItem('user_id', (loginRes.user_id || loginRes.id).toString());
+        }
+        return this.authService.getUserBalance();
+      }),
+      // 3. Fetch User Exposure
+      switchMap((balanceRes: any) => {
+        if (balanceRes) {
+          localStorage.setItem('balance', JSON.stringify(balanceRes));
+        }
+        const userId = Number(localStorage.getItem('user_id')) || 2;
+        return this.authService.getUserExposure(userId);
+      })
+    ).subscribe({
+      next: (exposureRes: any) => {
         this.isLoading = false;
-        localStorage.setItem('username', username.trim());
+        if (exposureRes) {
+          localStorage.setItem('exposure', JSON.stringify(exposureRes));
+        }
 
-        // Programmatically close the Bootstrap modal
+        // Programmatically close Bootstrap modal
         const modalEl = document.getElementById('loginModal');
         if (modalEl) {
           const modalInstance = bootstrap.Modal.getInstance(modalEl) || new bootstrap.Modal(modalEl);
           modalInstance.hide();
         }
-
-        // Reload or sync layout state, then navigate
-        window.location.reload();
       },
       error: (err) => {
         this.isLoading = false;
-        this.errorMessage = err.error?.message || 'Invalid username or password. Please try again.';
+        this.errorMessage = err.error?.message || 'Login sequence failed. Please try again.';
       }
     });
   }

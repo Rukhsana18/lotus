@@ -273,36 +273,3 @@
   }
 }
 
-.profile-button {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  height: 38px;
-  padding: 0 14px;
-  background: #2c4f58;
-  border: none;
-  border-radius: 6px;
-  color: #ffffff;
-  font-size: 14px;
-  font-weight: 500;
-  cursor: pointer;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-
-  i {
-    font-size: 14px;
-  }
-
-  &:hover {
-    background: #234f59;
-  }
-}
-
-@media (max-width: 760px) {
-
-  .wallet-toggle-btn,
-  .profile-button {
-    height: 32px;
-    padding: 0 8px;
-    font-size: 11px;
-  }
-}

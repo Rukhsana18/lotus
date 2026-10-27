@@ -6,10 +6,12 @@ import { filter, interval, map, startWith } from 'rxjs';
 import { SPORTS_SIDEBAR_DATA } from '../../data/sports-sidebar.data';
 import { LoginModal } from '../../shared/login-modal/login-modal';
 import { Notification } from '../../shared/notification/notification';
+import { Profile } from '../../shared/profile/profile';
 
 @Component({
   imports: [DatePipe, RouterLink, RouterLinkActive, LoginModal,
-    Notification
+    Notification,
+    Profile
   ],
   selector: 'app-header',
   styleUrl: './header.scss',

@@ -1,1 +1,81 @@
-<p>profile works!</p>
+<button class="profile-button" type="button" (click)="toggleDrawer()">
+    <i class="fa-solid fa-user"></i> Profile
+</button>
+
+@if (isOpen) {
+<div class="profile-backdrop" (click)="toggleDrawer()"></div>
+<aside class="profile-side-drawer">
+    
+    <!-- User Info Header -->
+    <div class="drawer-header-user">
+        <div class="username-display">{{ username }}</div>
+        <div class="last-login">Last logged in: {{ lastLogin }}</div>
+        <button type="button" class="close-drawer-btn" (click)="toggleDrawer()" aria-label="Close drawer">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+    </div>
+
+    <div class="drawer-body-content">
+        <!-- Account Section -->
+        <div class="menu-section-title">Account</div>
+        <div class="menu-items-list">
+            <a routerLink="/my-bets" class="menu-row" (click)="toggleDrawer()">
+                <i class="icon-my-bets-solid"></i>
+                <span>My Bets</span>
+            </a>
+            <a routerLink="/general-settings" class="menu-row" (click)="toggleDrawer()">
+                <i class="icon-new-settings-solid"></i>
+                <span>General Settings</span>
+            </a>
+            <a routerLink="/change-password" class="menu-row" (click)="toggleDrawer()">
+                <i class="icon-change-password-solid"></i>
+                <span>Change Password</span>
+            </a>
+        </div>
+
+        <!-- Reports Section -->
+        <div class="menu-section-title">Reports</div>
+        <div class="menu-items-list">
+            <a routerLink="/reports/profit-loss" class="menu-row" (click)="toggleDrawer()">
+                <i class="icon-pnl-solid"></i>
+                <span>Betting Profit &amp; Loss</span>
+            </a>
+            <a routerLink="/reports/account-statement" class="menu-row" (click)="toggleDrawer()">
+                <i class="icon-account-statement-solid"></i>
+                <span>Account Statement</span>
+            </a>
+            <a routerLink="/reports/transfer-statement" class="menu-row" (click)="toggleDrawer()">
+                <i class="icon-transfer-statement-solid"></i>
+                <span>Transfer Statement</span>
+            </a>
+        </div>
+
+        <!-- Policies Section -->
+        <div class="menu-section-title">Policies</div>
+        <div class="menu-items-list">
+            <a routerLink="/policies/rules-and-regulations" class="menu-row" (click)="toggleDrawer()">
+                <i class="icon-rules-solid"></i>
+                <span>Rules &amp; Regulations</span>
+            </a>
+            <a routerLink="/policies/responsible-gambling" class="menu-row" (click)="toggleDrawer()">
+                <i class="icon-responsible-solid"></i>
+                <span>Responsible Gambling</span>
+            </a>
+            <a routerLink="/policies/kyc" class="menu-row" (click)="toggleDrawer()">
+                <i class="fa-solid fa-id-card"></i>
+                <span>KYC</span>
+            </a>
+            <a routerLink="/policies/exclusion-policy" class="menu-row" (click)="toggleDrawer()">
+                <i class="icon-exclusion-policy-solid"></i>
+                <span>Exclusion Policy</span>
+            </a>
+        </div>
+
+        <!-- Sign Out Action -->
+        <div class="sign-out-row" (click)="signOut()">
+            <i class="fa-solid fa-right-from-bracket"></i>
+            <span>Sign Out</span>
+        </div>
+    </div>
+</aside>
+}

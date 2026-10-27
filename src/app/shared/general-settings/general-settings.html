@@ -1,12 +1,9 @@
 <app-sports-layout>
     <!-- Pass parentClick output to navigate back to general settings -->
-    <app-sports-header 
-        [pageTitle]="subroutes ? 'General settings / ' + subRouteName : 'General settings'" 
-        (back)="goBack()" 
-        (parentClick)="navigateToGeneralSettings()"
-        [showTabs]="false">
+    <app-sports-header [pageTitle]="subroutes ? 'General settings / ' + subRouteName : 'General settings'"
+        (back)="goBack()" (parentClick)="navigateToGeneralSettings()" [showTabs]="false">
     </app-sports-header>
-    
+
     <!-- general settings layout container -->
     <div class="general-settings">
         <!-- Use style or class binding to hide the list without destroying the DOM tree -->
@@ -30,6 +27,6 @@
             <router-outlet></router-outlet>
         </div>
     </div>
-<div class="mt-3"></div>
+    <div class="mt-3"></div>
     <app-footer />
 </app-sports-layout>
