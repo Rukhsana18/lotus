@@ -5,7 +5,7 @@
     </button>
 
     <a class="brand" routerLink="/home" aria-label="Lotus home">
-        <img src="../../../assets/logo.svg" height="30" alt="LOTUS">
+        <!-- <img src="../../../assets/logo.svg" height="29" width="150" alt="LOTUS"> -->
     </a>
 
     <nav class="primary-nav" aria-label="Main navigation">
@@ -22,8 +22,9 @@
 
     <div class="header-actions">
         <time>{{ currentTime() | date: 'MMM d, yyyy' }} &nbsp; {{ currentTime() | date: 'HH:mm:ss' }}</time>
-
+        @if(isLoggedIn()) {
         <app-notification></app-notification>
+        }
         <div class="border-1"></div>
         <a class="search-button" routerLink="/search" [queryParams]="isCasinoRoute() ? { mode: 'casino' } : null"
             aria-label="Search">
@@ -31,27 +32,30 @@
         </a>
 
         @if (!isLoggedIn()) {
-            <!-- Login Button -->
-            <button class="login-button" type="button" data-bs-toggle="modal" data-bs-target="#loginModal">Login</button>
+        <!-- Login Button -->
+        <button class="login-button" type="button" data-bs-toggle="modal" data-bs-target="#loginModal">Login</button>
         } @else {
-            <!-- Wallet Dropdown Button -->
-            <div class="dropdown wallet-dropdown">
-                <button class="wallet-toggle-btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    <i class="icon-wallet-solid"></i> 0.00
-                </button>
-                <ul class="dropdown-menu dropdown-menu-dark">
-                    <li><a class="dropdown-item" href="#">Main Balance: 0.00</a></li>
-                    <li><a class="dropdown-item" href="#">Exposure: 0.00</a></li>
-                    <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="#">Deposit / Withdraw</a></li>
-                </ul>
-            </div>
+        <!-- Wallet Dropdown Button -->
+        <div class="dropdown wallet-dropdown">
+            <button class="wallet-toggle-btn dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                aria-expanded="false">
+                <i class="icon-wallet-solid"></i> 0.00
+            </button>
+            <ul class="dropdown-menu dropdown-menu-dark">
+                <li><a class="dropdown-item" href="#">Main Balance: 0.00</a></li>
+                <li><a class="dropdown-item" href="#">Exposure: 0.00</a></li>
+                <li>
+                    <hr class="dropdown-divider">
+                </li>
+                <li><a class="dropdown-item" href="#">Deposit / Withdraw</a></li>
+            </ul>
+        </div>
 
-            <!-- Profile Button Triggering Side Drawer -->
-            <!-- <button class="profile-button" type="button" (click)="toggleProfileDrawer()">
+        <!-- Profile Button Triggering Side Drawer -->
+        <!-- <button class="profile-button" type="button" (click)="toggleProfileDrawer()">
                 <i class="fa-solid fa-user"></i> Profile
             </button> -->
-            <app-profile></app-profile>
+        <app-profile></app-profile>
         }
     </div>
 </header>
@@ -60,15 +64,15 @@
 
 <!-- Header Sports Menu Carousel Bar (Mobile Only) -->
 @if (!isCasinoRoute()) {
-    <div class="mobile-sports-carousel-wrapper">
-        <nav class="mobile-sports-subnav" aria-label="Sports menu slider">
-            @for (category of sportsCategories; track category.id) {
-            <a class="subnav-item" [class.active]="category.id === 'cricket' && isSportsRoute()"
-                [routerLink]="category.route">
-                <i class="icon {{ category.icon }} side-icon" aria-hidden="true"></i>
-                <span>{{ category.title }}</span>
-            </a>
-            }
-        </nav>
-    </div>
+<div class="mobile-sports-carousel-wrapper">
+    <nav class="mobile-sports-subnav" aria-label="Sports menu slider">
+        @for (category of sportsCategories; track category.id) {
+        <a class="subnav-item" [class.active]="category.id === 'cricket' && isSportsRoute()"
+            [routerLink]="category.route">
+            <i class="icon {{ category.icon }} side-icon" aria-hidden="true"></i>
+            <span>{{ category.title }}</span>
+        </a>
+        }
+    </nav>
+</div>
 }

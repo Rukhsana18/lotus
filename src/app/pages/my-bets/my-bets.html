@@ -1,13 +1,205 @@
 <app-sports-layout>
-    <app-sports-header 
-        [pageTitle]="'My Bets'" 
-        (back)="goBack()" 
-        [showTabs]="false">
+    <app-sports-header [pageTitle]="'My Bets'" (back)="goBack()" [showTabs]="false">
     </app-sports-header>
-    
+
     <div class="general-settings">
-        
+        <div class="my-bets-container">
+            <h2 class="page-title">My Bets</h2>
+
+            <!-- Top Level Tabs Header -->
+            <div class="main-tabs-header">
+                <button type="button" class="tab-btn" [class.active]="activeTab === 'current'"
+                    (click)="selectTab('current')">
+                    Current
+                </button>
+                <button type="button" class="tab-btn" [class.active]="activeTab === 'past'" (click)="selectTab('past')">
+                    Past
+                </button>
+            </div>
+
+            <!-- Filter Row (Sub-filters & Date Picker) -->
+            <div class="filter-bar">
+                <div class="sub-filters">
+                    @if (activeTab === 'current') {
+                    <label class="radio-chip" [class.selected]="currentFilter === 'matched'">
+                        <input type="radio" name="currentSubFilter" value="matched" [(ngModel)]="currentFilter" />
+                        <span class="radio-indicator"></span>
+                        <span class="chip-text">Matched</span>
+                    </label>
+
+                    <label class="radio-chip" [class.selected]="currentFilter === 'unmatched'">
+                        <input type="radio" name="currentSubFilter" value="unmatched" [(ngModel)]="currentFilter" />
+                        <span class="radio-indicator"></span>
+                        <span class="chip-text">Unmatched</span>
+                    </label>
+
+                    <label class="radio-chip" [class.selected]="currentFilter === 'cashedOut'">
+                        <input type="radio" name="currentSubFilter" value="cashedOut" [(ngModel)]="currentFilter" />
+                        <span class="radio-indicator"></span>
+                        <span class="chip-text">Cashed Out</span>
+                    </label>
+                    } @else {
+                    <label class="radio-chip" [class.selected]="pastFilter === 'regular'">
+                        <input type="radio" name="pastSubFilter" value="regular" [(ngModel)]="pastFilter" />
+                        <span class="radio-indicator"></span>
+                        <span class="chip-text">Regular</span>
+                    </label>
+
+                    <label class="radio-chip" [class.selected]="pastFilter === 'cashedOut'">
+                        <input type="radio" name="pastSubFilter" value="cashedOut" [(ngModel)]="pastFilter" />
+                        <span class="radio-indicator"></span>
+                        <span class="chip-text">Cashed Out</span>
+                    </label>
+                    }
+                </div>
+
+                <!-- Custom Dual-Month Calendar Picker Container -->
+                <!-- Custom Dual-Month Calendar Picker Container -->
+<div class="date-picker-container" #datePickerContainer>
+    <div class="date-picker-box" (click)="toggleCalendar()">
+        <input 
+            type="text" 
+            class="date-input" 
+            [value]="dateRangeText" 
+            readonly 
+            placeholder="Select date range"
+        />
+        <i class="fa-regular fa-calendar date-icon"></i>
     </div>
-<div class="mt-3"></div>
+
+    <!-- Calendar Popup Dropdown -->
+    @if (isCalendarOpen) {
+        <div class="calendar-dropdown">
+            <div class="calendar-dual-view">
+                <!-- Left Month (September 2026) -->
+                <div class="calendar-month">
+                    <div class="calendar-header">
+                        <button type="button" class="nav-btn" (click)="prevMonth()"><i class="fa-solid fa-chevron-left"></i></button>
+                        <span class="month-title">{{ leftMonthName }} {{ leftYear }}</span>
+                    </div>
+                    <div class="weekdays-grid">
+                        <span>MO</span><span>TU</span><span>WE</span><span>TH</span><span>FR</span><span>SA</span><span>SU</span>
+                    </div>
+                    <div class="days-grid">
+                        @for (day of leftMonthDays; track $index) {
+                            <span 
+                                [class.empty]="!day.date"
+                                [class.in-range]="day.date && isInRange(day.date)"
+                                [class.range-start]="day.date && isStartDate(day.date)"
+                                [class.range-end]="day.date && isEndDate(day.date)"
+                                [class.today-ring]="day.date && isToday(day.date)"
+                                (click)="day.date && selectDate(day.date)"
+                            >
+                                {{ day.dayNumber }}
+                            </span>
+                        }
+                    </div>
+                </div>
+
+                <!-- Right Month (October 2026) -->
+                <div class="calendar-month">
+                    <div class="calendar-header">
+                        <span class="month-title">{{ rightMonthName }} {{ rightYear }}</span>
+                        <button type="button" class="nav-btn" (click)="nextMonth()"><i class="fa-solid fa-chevron-right"></i></button>
+                    </div>
+                    <div class="weekdays-grid">
+                        <span>MO</span><span>TU</span><span>WE</span><span>TH</span><span>FR</span><span>SA</span><span>SU</span>
+                    </div>
+                    <div class="days-grid">
+                        @for (day of rightMonthDays; track $index) {
+                            <span 
+                                [class.empty]="!day.date"
+                                [class.in-range]="day.date && isInRange(day.date)"
+                                [class.range-start]="day.date && isStartDate(day.date)"
+                                [class.range-end]="day.date && isEndDate(day.date)"
+                                [class.today-ring]="day.date && isToday(day.date)"
+                                (click)="day.date && selectDate(day.date)"
+                            >
+                                {{ day.dayNumber }}
+                            </span>
+                        }
+                    </div>
+                </div>
+            </div>
+
+            <!-- Calendar Footer Presets & Actions -->
+            <div class="calendar-footer">
+                <div class="preset-buttons">
+                    <button type="button" class="preset-btn" [class.active]="selectedPreset === 'today'" (click)="selectPreset('today')">Today</button>
+                    <button type="button" class="preset-btn" [class.active]="selectedPreset === '7days'" (click)="selectPreset('7days')">7 days</button>
+                    <button type="button" class="preset-btn" [class.active]="selectedPreset === '30days'" (click)="selectPreset('30days')">30 days</button>
+                </div>
+                <div class="action-buttons">
+                    <button type="button" class="clear-btn" (click)="clearSelection()">Clear</button>
+                    <button type="button" class="apply-btn" (click)="applySelection()">Apply</button>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+            </div>
+
+            <!-- Dynamic Data Table -->
+            <div class="table-responsive">
+                <table class="bets-table">
+                    <thead>
+                        <tr>
+                            @if (activeTab === 'current') {
+                            @if (currentFilter === 'matched') {
+                            <th>Description</th>
+                            <th>Placed</th>
+                            <th>Matched</th>
+                            <th>Type</th>
+                            <th>Odds</th>
+                            <th>Stake</th>
+                            <th>Liability</th>
+                            <th class="text-end">Potential Profit</th>
+                            } @else if (currentFilter === 'unmatched') {
+                            <th>Description</th>
+                            <th>Placed</th>
+                            <th>Type</th>
+                            <th>Odds</th>
+                            <th>Stake</th>
+                            <th>Liability</th>
+                            <th class="text-end">Potential Profit</th>
+                            } @else if (currentFilter === 'cashedOut') {
+                            <th>Description</th>
+                            <th>Date/Time</th>
+                            <th>Type</th>
+                            <th>Odds</th>
+                            <th>Stake</th>
+                            <th>Cashout</th>
+                            <th class="text-end">Potential Profit</th>
+                            }
+                            } @else {
+                            @if (pastFilter === 'regular') {
+                            <th>Description</th>
+                            <th>Settled</th>
+                            <th>Placed</th>
+                            <th>Type</th>
+                            <th>Odds</th>
+                            <th>Stake</th>
+                            <th>Profit/Loss</th>
+                            <th>Status</th>
+                            } @else if (pastFilter === 'cashedOut') {
+                            <th>Description</th>
+                            <th>Date/Time</th>
+                            <th>Type</th>
+                            <th>Odds</th>
+                            <th>Stake</th>
+                            <th>Cashout</th>
+                            <th>Profit/Loss</th>
+                            }
+                            }
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Table rows will render here when populated -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="mt-3"></div>
     <app-footer />
 </app-sports-layout>

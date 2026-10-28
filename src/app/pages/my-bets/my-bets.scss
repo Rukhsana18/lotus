@@ -1,0 +1,385 @@
+.my-bets-container {
+    background-color: #ffffff;
+    color: #222222;
+
+    .page-title {
+        font-size: 21px !important;
+        font-weight: 700;
+        margin-bottom: 20px;
+        color: #111111;
+    }
+
+    /* Top Main Tabs Header */
+    .main-tabs-header {
+        display: flex;
+        gap: 32px;
+        border-bottom: 1px solid #e5e5e5;
+        margin-bottom: 20px;
+
+        .tab-btn {
+            background: none;
+            border: none;
+            font-size: 14px;
+            font-weight: 600;
+            color: #111111;
+            cursor: pointer;
+            position: relative;
+            transition: color 0.2s ease;
+            width: 80px;
+            height: 35px;
+
+            &.active {
+                color: #111111;
+
+                &::after {
+                    content: '';
+                    position: absolute;
+                    bottom: -1px;
+                    left: 0;
+                    width: 100%;
+                    height: 2px;
+                    background-color: #f7941d; // Accent orange active tab underline indicator
+                    border-radius: 2px 2px 0 0;
+                }
+            }
+        }
+    }
+
+    /* Filter Bar Row */
+    .filter-bar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 16px;
+        gap: 16px;
+        flex-wrap: wrap;
+
+        .sub-filters {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+
+            .radio-chip {
+                height: 29px;
+                display: inline-flex;
+                align-items: center;
+                gap: 8px;
+                padding: 0px 10px;
+                border: 1px solid #e0e0e0;
+                border-radius: 6px;
+                cursor: pointer;
+                background-color: #ffffff;
+                user-select: none;
+                transition: border-color 0.2s ease, background-color 0.2s ease;
+
+                input[type="radio"] {
+                    display: none;
+                }
+
+                .radio-indicator {
+                    width: 16px;
+                    height: 16px;
+                    border-radius: 50%;
+                    border: 2px solid #cccccc;
+                    position: relative;
+                    display: inline-block;
+                    box-sizing: border-box;
+                    transition: border-color 0.2s;
+
+                    &::after {
+                        content: '';
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-50%, -50%) scale(0);
+                        width: 8px;
+                        height: 8px;
+                        border-radius: 50%;
+                        background-color: #00a65a;
+                        transition: transform 0.2s ease;
+                    }
+                }
+
+                .chip-text {
+                    font-size: 14px;
+                    font-weight: 600;
+                    color: #111111;
+                }
+
+                &.selected {
+                    border-color: #e0e0e0;
+                    background-color: #ffffff;
+
+                    .radio-indicator {
+                        border-color: #00a65a;
+
+                        &::after {
+                            transform: translate(-50%, -50%) scale(1);
+                        }
+                    }
+                }
+            }
+        }
+
+        /* Date Range Input Display */
+        .date-picker-box {
+            position: relative;
+            display: flex;
+            align-items: center;
+            height: 29px;
+
+            .date-input {
+                height: 42px;
+                padding: 0 0px 0 5px;
+                border: 1px solid #cccccc;
+                border-radius: 6px;
+                font-size: 12px;
+                font-weight: 500;
+                color: #333333;
+                background-color: #ffffff;
+                outline: none;
+                cursor: pointer;
+            }
+
+            .date-icon {
+                position: absolute;
+                right: 14px;
+                font-size: 16px;
+                color: #666666;
+                pointer-events: none;
+            }
+        }
+    }
+
+    /* Table Layout & Styling */
+    .table-responsive {
+        width: 100%;
+        overflow-x: auto;
+
+        .bets-table {
+            width: 100%;
+            border-collapse: collapse;
+
+            thead {
+                background-color: #dedede;
+
+                tr th {
+                    padding: 10px;
+                    font-size: 12px;
+                    font-weight: 500;
+                    color: #444444;
+                    text-align: left;
+                    white-space: nowrap;
+
+                    &.text-end {
+                        text-align: right;
+                    }
+                }
+            }
+
+            tbody {
+                tr td {
+                    padding: 12px 16px;
+                    border-bottom: 1px solid #efefef;
+                    font-size: 14px;
+                    color: #222222;
+                }
+            }
+        }
+    }
+}
+
+
+.date-picker-container {
+      position: relative;
+      width: 200px;
+
+      .date-picker-box {
+        position: relative;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+
+        .date-input {
+          height: 40px;
+          padding: 0 0px 0 5px;
+          border: 1px solid #cccccc;
+          border-radius: 6px;
+          font-size: 12px;
+          font-weight: 500;
+          color: #333333;
+          background-color: #ffffff;
+          outline: none;
+          cursor: pointer;
+          width: 240px;
+        }
+
+        .date-icon {
+          position: absolute;
+          right: 14px;
+          font-size: 16px;
+          color: #666666;
+          pointer-events: none;
+        }
+      }
+
+      .calendar-dropdown {
+        position: absolute;
+        top: 48px;
+        right: 0;
+        background: #ffffff;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        border-radius: 8px;
+        border: 1px solid #e0e0e0;
+        z-index: 1000;
+        width: 620px;
+        padding: 20px;
+
+        .calendar-dual-view {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 24px;
+
+          .calendar-month {
+            .calendar-header {
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              margin-bottom: 16px;
+
+              .month-title {
+                font-size: 15px;
+                font-weight: 700;
+                color: #111111;
+              }
+
+              .nav-btn {
+                background: none;
+                border: none;
+                cursor: pointer;
+                color: #666666;
+                font-size: 14px;
+                padding: 4px 8px;
+              }
+            }
+
+            .weekdays-grid {
+              display: grid;
+              grid-template-columns: repeat(7, 1fr);
+              text-align: center;
+              font-size: 11px;
+              font-weight: 600;
+              color: #8e8e93;
+              margin-bottom: 8px;
+            }
+
+           // Add inside your calendar days-grid styling in my-bets.scss
+.days-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  text-align: center;
+  row-gap: 6px;
+  font-size: 13px;
+  color: #333333;
+
+  span {
+    padding: 8px 0;
+    cursor: pointer;
+    position: relative;
+    user-select: none;
+    transition: background 0.2s;
+
+    &.empty { pointer-events: none; }
+
+    // Intermediate range background pill highlight
+    &.in-range {
+      background-color: #e5ecef;
+      color: #111111;
+    }
+
+    // Start date capsule
+    &.range-start {
+      background-color: #34495e;
+      color: #ffffff;
+      border-top-left-radius: 50%;
+      border-bottom-left-radius: 50%;
+    }
+
+    // End date capsule
+    &.range-end {
+      background-color: #34495e;
+      color: #ffffff;
+      border-top-right-radius: 50%;
+      border-bottom-right-radius: 50%;
+    }
+
+    // Today ring indicator
+    &.today-ring {
+      border: 2px solid #f39c12;
+      border-radius: 50%;
+    }
+  }
+}
+          }
+        }
+
+        .calendar-footer {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-top: 20px;
+          padding-top: 16px;
+          border-top: 1px solid #efefef;
+
+          .preset-buttons {
+            display: flex;
+            gap: 8px;
+
+            .preset-btn {
+              padding: 6px 14px;
+              border: 1px solid #e0e0e0;
+              border-radius: 20px;
+              background: #f5f5f5;
+              font-size: 13px;
+              font-weight: 500;
+              cursor: pointer;
+              color: #333333;
+
+              &.active {
+                background: #ffb74d;
+                border-color: #ffb74d;
+                color: #ffffff;
+              }
+            }
+          }
+
+          .action-buttons {
+            display: flex;
+            gap: 12px;
+
+            .clear-btn {
+              background: none;
+              border: none;
+              font-size: 14px;
+              font-weight: 600;
+              color: #666666;
+              cursor: pointer;
+            }
+
+            .apply-btn {
+              background: #00a65a;
+              color: #ffffff;
+              border: none;
+              padding: 8px 24px;
+              border-radius: 4px;
+              font-size: 14px;
+              font-weight: 600;
+              cursor: pointer;
+
+              &:hover { background: #008f4e; }
+            }
+          }
+        }
+      }
+    }
+  

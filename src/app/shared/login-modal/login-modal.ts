@@ -90,6 +90,7 @@ export class LoginModal {
           const modalInstance = bootstrap.Modal.getInstance(modalEl) || new bootstrap.Modal(modalEl);
           modalInstance.hide();
         }
+        window.location.reload();
       },
       error: (err) => {
         this.isLoading = false;

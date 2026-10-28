@@ -44,7 +44,6 @@ export class Profile implements OnInit, OnDestroy {
       next: (profile: any) => {
         this.isLoadingProfile = false;
         this.username = profile?.data?.user?.username || profile?.username || 'N/A';
-        console.log(this.username);
         if (profile?.id || profile?.user_id) {
           localStorage.setItem('user_id', (profile.id || profile.user_id).toString());
         }

@@ -6,4 +6,8 @@ import { Component } from '@angular/core';
   templateUrl: './betslip.html',
   styleUrl: './betslip.scss',
 })
-export class Betslip {}
+export class Betslip {
+  get isLoggedIn(): boolean {
+    return localStorage.getItem('isLoggedIn') === 'true';
+  }
+}
