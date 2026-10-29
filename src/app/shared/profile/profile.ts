@@ -18,6 +18,7 @@ export class Profile implements OnInit, OnDestroy {
   username: string = '';
   lastLogin: string = '';
   isLoadingProfile: boolean = false;
+  user: any;
 
   ngOnInit(): void {
     this.formatLoginTime();
@@ -43,9 +44,9 @@ export class Profile implements OnInit, OnDestroy {
     this.authService.getUserProfile().subscribe({
       next: (profile: any) => {
         this.isLoadingProfile = false;
-        this.username = profile?.data?.user?.username || profile?.username || 'N/A';
-        if (profile?.id || profile?.user_id) {
-          localStorage.setItem('user_id', (profile.id || profile.user_id).toString());
+        if (profile.data) {
+          localStorage.setItem('user', JSON.stringify(profile.data?.user));
+          this.user = profile.data.user;
         }
       },
       error: (err) => {

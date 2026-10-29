@@ -22,9 +22,6 @@ body {
   font-family: 'Lato', sans-serif;
 }
 
-.sport {
-  // background: url('./assets/background.webp') center / cover;
-}
 
 .sports-layout {
   display: flex;
@@ -33,7 +30,7 @@ body {
   height: 100%;
   min-height: 0;
   gap: 12px;
-  padding: 10px;
+  padding: 12px;
   overflow: hidden;
 }
 
@@ -75,6 +72,7 @@ body {
   width: 318px;
   min-width: 318px;
 }
+
 .sports-betslip app-betslip {
   display: block;
   max-height: 100%;

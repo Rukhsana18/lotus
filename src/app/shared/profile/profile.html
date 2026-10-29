@@ -8,7 +8,7 @@
     
     <!-- User Info Header -->
     <div class="drawer-header-user">
-        <div class="username-display">{{ username }}</div>
+        <div class="username-display">{{ user?.username }}</div>
         <div class="last-login">Last logged in: {{ lastLogin }}</div>
         <button type="button" class="close-drawer-btn" (click)="toggleDrawer()" aria-label="Close drawer">
             <i class="fa-solid fa-xmark"></i>

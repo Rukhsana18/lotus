@@ -39,22 +39,19 @@
         <div class="dropdown wallet-dropdown">
             <button class="wallet-toggle-btn dropdown-toggle" type="button" data-bs-toggle="dropdown"
                 aria-expanded="false">
-                <i class="icon-wallet-solid"></i> 0.00
+                <i class="icon-wallet-solid"></i> {{profile?.inr_balance || 0.00}}
             </button>
-            <ul class="dropdown-menu dropdown-menu-dark">
-                <li><a class="dropdown-item" href="#">Main Balance: 0.00</a></li>
-                <li><a class="dropdown-item" href="#">Exposure: 0.00</a></li>
+            <ul class="dropdown-menu dropdown-menu shadow">
+                <li>Balance Information</li>
                 <li>
                     <hr class="dropdown-divider">
                 </li>
-                <li><a class="dropdown-item" href="#">Deposit / Withdraw</a></li>
+                <li class="mb-2 d-flex justify-content-between"><span>Available Credit:</span> <span>{{ profile?.credit || 0.00}}</span></li>
+                <li class="mb-2 d-flex justify-content-between"><span>Credit Limit:</span><span> {{ profile?.creditLimit || 0.00}}</span></li>
+                <li class="mb-2 d-flex justify-content-between"><span>Winnings:</span><span>{{ profile?.profit || 0.00}}</span></li>
+                <li class="mb-2 d-flex justify-content-between"><span>Net Exposure:</span> <span>{{profile?.total_exposure || 0.00}}</span></li>
             </ul>
         </div>
-
-        <!-- Profile Button Triggering Side Drawer -->
-        <!-- <button class="profile-button" type="button" (click)="toggleProfileDrawer()">
-                <i class="fa-solid fa-user"></i> Profile
-            </button> -->
         <app-profile></app-profile>
         }
     </div>

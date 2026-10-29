@@ -20,11 +20,17 @@ import { Profile } from '../../shared/profile/profile';
 export class Header {
   private readonly router = inject(Router);
   private readonly location = inject(Location);
+  profile: any = JSON.parse(localStorage.getItem('user') || '{}');
 
   readonly mobileMenuOpenChange = output<boolean>();
   protected mobileMenuOpen = false;
   protected readonly sportsCategories = SPORTS_SIDEBAR_DATA;
   protected readonly isLoggedIn = signal<boolean>(localStorage.getItem('isLoggedIn') === 'true');
+
+
+  ngOnInit() {
+    console.log(this.profile)
+  }
 
   private readonly currentUrl = toSignal(
     this.router.events.pipe(
@@ -51,10 +57,5 @@ export class Header {
 
   protected goBack(): void {
     this.location.back();
-  }
-
-  protected toggleProfileDrawer(): void {
-    // Implement your profile side drawer toggle behavior here
-    console.log('Profile side drawer toggled');
   }
 }
