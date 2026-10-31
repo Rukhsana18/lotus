@@ -4,6 +4,7 @@ import { SportsHeader } from '../../shared/sports-header/sports-header';
 import { Footer } from '../../layout/footer/footer';
 import { CommonModule, Location } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Auth } from '../../services/auth';
 
 @Component({
   imports: [SportsLayout, SportsHeader, Footer, CommonModule, FormsModule],
@@ -41,8 +42,22 @@ export class MyBets implements OnInit {
 
   @ViewChild('datePickerContainer') datePickerContainer!: ElementRef;
 
+  private auth = inject(Auth);
+
   ngOnInit(): void {
     this.generateCalendarViews();
+    this.getSportsBets();
+  }
+  getSportsBets() {
+    const params = {
+      page: 1,
+      limit: 10,
+      betType: 'all'
+    };
+
+    this.auth.getSportsBets(params).subscribe((res: any) => {
+      console.log(res);
+    });
   }
 
   selectTab(tab: 'current' | 'past'): void {

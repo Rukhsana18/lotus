@@ -7,6 +7,7 @@ import { SPORTS_SIDEBAR_DATA } from '../../data/sports-sidebar.data';
 import { LoginModal } from '../../shared/login-modal/login-modal';
 import { Notification } from '../../shared/notification/notification';
 import { Profile } from '../../shared/profile/profile';
+import { Auth } from '../../services/auth';
 
 @Component({
   imports: [DatePipe, RouterLink, RouterLinkActive, LoginModal,
@@ -27,9 +28,16 @@ export class Header {
   protected readonly sportsCategories = SPORTS_SIDEBAR_DATA;
   protected readonly isLoggedIn = signal<boolean>(localStorage.getItem('isLoggedIn') === 'true');
 
+  deviceOffset: string = '+05:30';
+  selectedTimezoneLabel: string = '+05:30';
+  selectedOffsetValue = signal<string>('+05:30');
 
   ngOnInit() {
     console.log(this.profile)
+    if (this.isLoggedIn()) {
+      this.getHeader();
+    }
+    this.calculateSystemTimezone();
   }
 
   private readonly currentUrl = toSignal(
@@ -57,5 +65,36 @@ export class Header {
 
   protected goBack(): void {
     this.location.back();
+  }
+
+  private auth = inject(Auth);
+
+  getHeader() {
+    this.auth.getHeaderName().subscribe((res: any) => {
+      console.log(res)
+    })
+  }
+
+  private calculateSystemTimezone(): void {
+    // Get timezone offset in minutes (e.g., -330 for IST)
+    const offsetMinutes = new Date().getTimezoneOffset();
+    const absMinutes = Math.abs(offsetMinutes);
+    const hours = String(Math.floor(absMinutes / 60)).padStart(2, '0');
+    const minutes = String(absMinutes % 60).padStart(2, '0');
+    
+    // JavaScript getTimezoneOffset() returns inverse sign (negative for ahead of UTC)
+    const sign = offsetMinutes <= 0 ? '+' : '-';
+    this.deviceOffset = `${sign}${hours}:${minutes}`;
+
+    // Preselect device time by default
+    this.selectedTimezoneLabel = this.deviceOffset;
+    this.selectedOffsetValue.set(this.deviceOffset);
+  }
+
+  selectTimezone(label: string, offset: string): void {
+    this.selectedTimezoneLabel = offset; // Updates top button to show e.g. "+05:30"
+    this.selectedOffsetValue.set(offset);
+    // You can save preference to localStorage if needed
+    localStorage.setItem('selectedTimezone', offset);
   }
 }

@@ -21,7 +21,7 @@ export class Auth {
                 if (response && response.token) {
                     localStorage.setItem('authToken', response.token);
                     localStorage.setItem('isLoggedIn', 'true');
-                    
+
                     // Capture and store current login date & time
                     const now = new Date();
                     localStorage.setItem('loginTimestamp', now.toISOString());
@@ -40,5 +40,52 @@ export class Auth {
 
     getUserExposure(userId: number | string): Observable<any> {
         return this.http.post(`${this.apiUrl}/user/exposure`, { user_id: userId }, { headers: this.getHeaders() });
+    }
+
+    getPlatformconfig(): Observable<any> {
+        return this.http.get(`${this.apiUrl}/admin/platformconfig`, { headers: this.getHeaders() });
+    }
+
+    getHeaderName(): Observable<any> {
+        return this.http.get(`${this.apiUrl}/admin/user/profile`, { headers: this.getHeaders() });
+    }
+
+    getStake(): Observable<any> {
+        return this.http.get(`${this.apiUrl}/user/stake-button-values`, { headers: this.getHeaders() });
+    }
+    updateStake(stakes: any): Observable<any> {
+        return this.http.post(`${this.apiUrl}/user/stake-button-values`, stakes, { headers: this.getHeaders() });
+    }
+
+    // Home Page APIs
+    getCricketMatchList(id: any): Observable<any> {
+        return this.http.post(`${this.apiUrl}/user/cricket/all-data`, id, { headers: this.getHeaders() });
+    }
+
+    getMatchPrivateData(payload: any): Observable<any> {
+        return this.http.post(`${this.apiUrl}/user/cricket/get-match-private-data`, payload, { headers: this.getHeaders() });
+    }
+
+    //my bets
+   
+    // 2.   /user/cancel-bet post
+    // 3.    /lords/transfer/statement post {}
+
+    getSportsBets(params: any): Observable<any> {
+        return this.http.get(
+            `${this.apiUrl}/user/cricket/sports-bets/user`,
+            {
+                headers: this.getHeaders(),
+                params: params
+            }
+        );
+    }
+
+    getCancelBets(payload: any): Observable<any> {
+        return this.http.post(`${this.apiUrl}/user/cancel-bet post`, payload, { headers: this.getHeaders() });
+    }
+
+    getTransferStatements(): Observable<any> {
+        return this.http.post(`${this.apiUrl}/lords/transfer/statement`, {}, { headers: this.getHeaders() });
     }
 }

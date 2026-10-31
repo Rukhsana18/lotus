@@ -1,12 +1,3 @@
-// import { Component } from '@angular/core';
-
-// @Component({
-//   imports: [],
-//   selector: 'app-one-click-betting',
-//   styleUrl: './one-click-betting.scss',
-//   templateUrl: './one-click-betting.html',
-// })
-// export class OneClickBetting {}
 import { Component, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';

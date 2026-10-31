@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { SportsLayout } from '../../layout/sports-layout/sports-layout';
 import { Footer } from '../../layout/footer/footer';
+import { Auth } from '../../services/auth';
 
 export interface OddItem {
   val: string;
@@ -65,6 +66,8 @@ export class Home {
   protected activeCategory = 'Live';
   protected casinoExpanded = false;
   private casinoTouchY = 0;
+  private auth = inject(Auth);
+  cricketData: any;
 
   protected selectCategory(category: string): void {
     this.activeCategory = category;
@@ -1310,4 +1313,43 @@ export class Home {
       image: '../../../assets/casino-games/36.webp',
     },
   ];
+
+  ngOnInit() {
+    // this.getPlatformConfig();
+    const loggedIn = localStorage.getItem('isLoggedIn');
+    if (loggedIn) {
+      this.getCricketMatches();
+      this.getMatchPrivateData();
+    }
+  }
+
+  getPlatformConfig() {
+    this.auth.getPlatformconfig().subscribe((res: any) => {
+
+    })
+  }
+
+  getCricketMatches(): void {
+    const payload = { id: 1 };
+
+    this.auth.getCricketMatchList(payload).subscribe({
+      next: (res: any) => {
+        this.cricketData = res.data.data;
+        console.log('Cricket matches response:', this.cricketData?.t1);
+      },
+      error: (err: any) => {
+        console.error('Error fetching cricket matches:', err);
+      }
+    });
+  }
+
+  getMatchPrivateData() {
+    let payload = {
+      gmid: '595020868',
+      sid: '824060'
+    }
+    this.auth.getMatchPrivateData(payload).subscribe((res: any) => {
+
+    })
+  }
 }

@@ -21,7 +21,45 @@
     </nav>
 
     <div class="header-actions">
-        <time>{{ currentTime() | date: 'MMM d, yyyy' }} &nbsp; {{ currentTime() | date: 'HH:mm:ss' }}</time>
+        <time>{{ currentTime() | date: 'MMM d, yyyy': selectedOffsetValue() }} &nbsp; {{ currentTime() | date:
+            'HH:mm:ss': selectedOffsetValue() }}</time>
+        @if (isLoggedIn()) {
+        <div class="dropdown timezone-dropdown-container">
+            <!-- Dropdown Toggle Button displaying current selected offset -->
+            <button class="btn dropdown-toggle timezone-toggle-btn" type="button" id="timezoneDropdown"
+                data-bs-toggle="dropdown" aria-expanded="false">
+                {{ selectedTimezoneLabel }} <i class="fa-solid fa-chevron-down ms-1"></i>
+            </button>
+
+            <!-- Bootstrap Dropdown Menu with the 3 Time Settings -->
+            <ul class="dropdown-menu shadow-sm custom-timezone-menu" aria-labelledby="timezoneDropdown">
+                <li>
+                    <a class="dropdown-item" href="javascript:void(0)"
+                        (click)="selectTimezone('System time - (GMT +00:00)', '+00:00')">
+                        System time - (GMT +00:00)
+                    </a>
+                </li>
+                <li>
+                    <hr class="dropdown-divider">
+                </li>
+                <li>
+                    <a class="dropdown-item" href="javascript:void(0)"
+                        (click)="selectTimezone('Your device time - (GMT ' + deviceOffset + ')', deviceOffset)">
+                        Your device time - (GMT {{ deviceOffset }})
+                    </a>
+                </li>
+                <li>
+                    <hr class="dropdown-divider">
+                </li>
+                <li>
+                    <a class="dropdown-item" href="javascript:void(0)"
+                        (click)="selectTimezone('India Standard time - (GMT ' + deviceOffset + ')', deviceOffset)">
+                        India Standard time - (GMT {{ deviceOffset }})
+                    </a>
+                </li>
+            </ul>
+        </div>
+        }
         @if(isLoggedIn()) {
         <app-notification></app-notification>
         }
@@ -46,10 +84,15 @@
                 <li>
                     <hr class="dropdown-divider">
                 </li>
-                <li class="mb-2 d-flex justify-content-between"><span>Available Credit:</span> <span>{{ profile?.credit || 0.00}}</span></li>
-                <li class="mb-2 d-flex justify-content-between"><span>Credit Limit:</span><span> {{ profile?.creditLimit || 0.00}}</span></li>
-                <li class="mb-2 d-flex justify-content-between"><span>Winnings:</span><span>{{ profile?.profit || 0.00}}</span></li>
-                <li class="mb-2 d-flex justify-content-between"><span>Net Exposure:</span> <span>{{profile?.total_exposure || 0.00}}</span></li>
+                <li class="mb-2 d-flex justify-content-between"><span>Available Credit:</span> <span>{{ profile?.credit
+                        || 0.00}}</span></li>
+                <li class="mb-2 d-flex justify-content-between"><span>Credit Limit:</span><span> {{ profile?.creditLimit
+                        || 0.00}}</span></li>
+                <li class="mb-2 d-flex justify-content-between"><span>Winnings:</span><span>{{ profile?.profit ||
+                        0.00}}</span></li>
+                <li class="mb-2 d-flex justify-content-between"><span>Net Exposure:</span>
+                    <span>{{profile?.total_exposure || 0.00}}</span>
+                </li>
             </ul>
         </div>
         <app-profile></app-profile>

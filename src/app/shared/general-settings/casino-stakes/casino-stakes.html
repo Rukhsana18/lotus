@@ -1,1 +1,34 @@
-<p>casino-stakes works!</p>
+<div class="one-click-container">
+    <div class="section-header">
+        <span class="section-title">Casino stakes</span>
+    </div>
+
+    <!-- Show Confirmation Popup Toggle -->
+
+
+    <!-- Exchange Games Section -->
+    <div class="stakes-section">
+        <div class="stakes-title">Exchange Games</div>
+
+        <div class="stakes-grid">
+            @for (stake of stakes; track $index; let i = $index) {
+                <!-- <pre>{{stake}}</pre> -->
+            <div class="input-wrapper">
+                <input type="text" class="stake-input" [class.error-border]="isInputInvalid(i)" [value]="stake"
+                    (input)="onInputChange(i, $event)" (focus)="onInputFocus(i, stake)" inputmode="numeric" />
+            </div>
+            }
+        </div>
+
+        <!-- Save Button (Appears when focused; turns grey/disabled if > 6 digits) -->
+
+        @if (activeInputIndex !== null) {
+        <div class="save-container">
+            <button type="button" class="save-btn" [class.disabled-btn]="hasLengthError() || isSaving || !hasChanges()"
+                [disabled]="hasLengthError() || isSaving || !hasChanges()" (click)="saveStakes()">
+                Save
+            </button>
+        </div>
+        }
+    </div>
+</div>
